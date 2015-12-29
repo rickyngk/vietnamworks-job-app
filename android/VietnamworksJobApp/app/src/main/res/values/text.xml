@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="textColorLight">#FFFFFF</color>
+    <color name="textColorDark">#333333</color>
+    <color name="textColorSemiDark">#666666</color>
+
+    <dimen name="font_xs">12sp</dimen>
+    <dimen name="font_s">14sp</dimen>
+    <dimen name="font_m">17sp</dimen>
+    <dimen name="font_l">22sp</dimen>
+    <dimen name="font_title">35sp</dimen>
+
+    <style name="Text">
+        <item name="android:typeface">serif</item>
+    </style>
+
+    <style name="Text.Title" parent="Text">
+        <item name="android:textColor">@color/textColorDark</item>
+        <item name="android:textSize">@dimen/font_title</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="Text.Large" parent="Text">
+        <item name="android:textColor">@color/textColorDark</item>
+        <item name="android:textSize">@dimen/font_l</item>
+    </style>
+    <style name="Text.Medium" parent="Text">
+        <item name="android:textColor">@color/textColorDark</item>
+        <item name="android:textSize">@dimen/font_m</item>
+    </style>
+    <style name="Text.Small" parent="Text">
+        <item name="android:textColor">@color/textColorDark</item>
+        <item name="android:textSize">@dimen/font_s</item>
+    </style>
+    <style name="Text.ExtraSmall" parent="Text">
+        <item name="android:textColor">@color/textColorDark</item>
+        <item name="android:textSize">@dimen/font_xs</item>
+    </style>
+
+    <style name="Text.Title.Light" parent="Text.Title">
+        <item name="android:textColor">@color/textColorLight</item>
+    </style>
+    <style name="Text.Large.Light" parent="Text.Large">
+        <item name="android:textColor">@color/textColorLight</item>
+    </style>
+    <style name="Text.Medium.Light" parent="Text.Medium">
+        <item name="android:textColor">@color/textColorLight</item>
+    </style>
+    <style name="Text.Small.Light" parent="Text.Small">
+        <item name="android:textColor">@color/textColorLight</item>
+    </style>
+    <style name="Text.ExtraSmall.Light" parent="Text.ExtraSmall">
+        <item name="android:textColor">@color/textColorLight</item>
+    </style>
+
+</resources>
