@@ -22,7 +22,9 @@
                 android:layout_gravity="center_horizontal|top"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:layout_marginLeft="@dimen/base_padding_4x"
+                android:layout_marginRight="@dimen/base_padding_4x" />
         </RelativeLayout>
 
         <RelativeLayout
