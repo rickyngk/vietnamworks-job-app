@@ -15,13 +15,13 @@ import vietnamworks.com.vietnamworksjobapp.activities.onboarding.InputInfoActivi
 /**
  * Created by duynk on 1/4/16.
  */
-public class InputTitleFragment extends BaseFragment {
+public class InputLocationFragment extends BaseFragment {
     @Bind(R.id.btn_next)
     Button btnNext;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_input_title, container, false);
+        final ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_input_location, container, false);
         ButterKnife.bind(this, rootView);
 
         btnNext.setOnClickListener(new View.OnClickListener() {

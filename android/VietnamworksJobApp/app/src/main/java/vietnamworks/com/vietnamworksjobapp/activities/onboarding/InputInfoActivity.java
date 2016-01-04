@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 
 import vietnamworks.com.helper.BaseActivity;
 import vietnamworks.com.vietnamworksjobapp.R;
+import vietnamworks.com.vietnamworksjobapp.activities.onboarding.fragments.InputLocationFragment;
 import vietnamworks.com.vietnamworksjobapp.activities.onboarding.fragments.InputTitleFragment;
 
 public class InputInfoActivity extends BaseActivity {
@@ -19,9 +20,6 @@ public class InputInfoActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         hideSystemUI();
         setContentView(R.layout.activity_input_info);
-
-        openFragment(new InputTitleFragment(), R.id.fragment_holder);
-
         setPageIndex(0);
     }
 
@@ -49,6 +47,14 @@ public class InputInfoActivity extends BaseActivity {
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(30, 30);
             lp.setMargins(50, 0, 50, 0);
             img.setLayoutParams(lp);
+        }
+        switch (index) {
+            case 0:
+                openFragment(new InputTitleFragment(), R.id.fragment_holder);
+                break;
+            case 1:
+                openFragment(new InputLocationFragment(), R.id.fragment_holder);
+                break;
         }
     }
 }

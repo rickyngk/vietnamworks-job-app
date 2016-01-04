@@ -10,4 +10,9 @@
     <string name="already_have_account">Already have account</string>
 
     <string name="question_job_title">What\'s your job title?</string>
+    <string name="question_job_location">Where do you prefer working?</string>
+    <string name="location_saigon">Ho Chi Minh</string>
+    <string name="location_hanoi">Ha Noi</string>
+    <string name="location_danang">Da Nang</string>
+    <string name="location_other">Others</string>
 </resources>
