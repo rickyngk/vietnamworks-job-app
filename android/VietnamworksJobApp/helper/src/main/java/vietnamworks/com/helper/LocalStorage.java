@@ -1,9 +1,15 @@
 package vietnamworks.com.helper;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.snappydb.DB;
 import com.snappydb.DBFactory;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
 
 /**
  * Created by duynk on 1/4/16.
@@ -30,7 +36,7 @@ public class LocalStorage {
         }
     }
 
-    private static void set(String key, int value) {
+    public static void set(@NonNull String key, int value) {
         try {
             sInstance.db.putInt(key, value);
         } catch (Exception E) {
@@ -38,7 +44,7 @@ public class LocalStorage {
         }
     }
 
-    private static void set(String key, long value) {
+    public static void set(@NonNull String key, long value) {
         try {
             sInstance.db.putLong(key, value);
         } catch (Exception E) {
@@ -46,7 +52,7 @@ public class LocalStorage {
         }
     }
 
-    private static void set(String key, String value) {
+    public static void set(@NonNull String key, String value) {
         try {
             sInstance.db.put(key, value);
         } catch (Exception E) {
@@ -54,9 +60,26 @@ public class LocalStorage {
         }
     }
 
-    private static void set(String key, boolean b) {
+    public static void set(@NonNull String key, boolean b) {
         try {
             sInstance.db.putBoolean(key, b);
+        } catch (Exception E) {
+            E.printStackTrace();
+        }
+    }
+
+    public static void set(@NonNull String key, JSONObject json) {
+        try {
+            sInstance.db.put(key, json.toString());
+        } catch (Exception E) {
+            E.printStackTrace();
+        }
+    }
+
+    public static void set(@NonNull String key, HashMap map) {
+        try {
+            JSONObject obj = new JSONObject(map);
+            set(key, obj);
         } catch (Exception E) {
             E.printStackTrace();
         }
@@ -78,7 +101,15 @@ public class LocalStorage {
         set(sInstance.ctx.getString(key), value);
     }
 
-    private static int getInt(String key, int defaultValue) {
+    public static void set(int key, JSONObject value) {
+        set(sInstance.ctx.getString(key), value);
+    }
+
+    public static void set(int key, HashMap value) {
+        set(sInstance.ctx.getString(key), value);
+    }
+
+    public static int getInt(@NonNull String key, int defaultValue) {
         try {
             return sInstance.db.getInt(key);
         } catch (Exception E) {
@@ -86,7 +117,7 @@ public class LocalStorage {
         }
     }
 
-    private static long getLong(String key, long defaultValue) {
+    public static long getLong(@NonNull String key, long defaultValue) {
         try {
             return sInstance.db.getLong(key);
         } catch (Exception E) {
@@ -94,7 +125,7 @@ public class LocalStorage {
         }
     }
 
-    private static String getString(String key, String defaultValue) {
+    public static String getString(@NonNull String key, String defaultValue) {
         try {
             return sInstance.db.get(key);
         } catch (Exception E) {
@@ -102,13 +133,35 @@ public class LocalStorage {
         }
     }
 
-    private static boolean getBool(String key, boolean defaultValue) {
+    public static boolean getBool(@NonNull String key, boolean defaultValue) {
         try {
             return sInstance.db.getBoolean(key);
         } catch (Exception E) {
             return defaultValue;
         }
     }
+
+    public static JSONObject getJSON(@NonNull String key) {
+        try {
+            String str = sInstance.db.get(key);
+            return new JSONObject(str);
+        } catch (Exception E) {
+            return null;
+        }
+    }
+
+    public static HashMap getHashMap(@NonNull String key) {
+        String s = getString(key, null);
+        if (s != null) {
+            try {
+                return new ObjectMapper().readValue(s, HashMap.class);
+            } catch (Exception E) {
+                return null;
+            }
+        } else {
+            return null;
+        }
+    };
 
     public static int getInt(int key, int defaultValue) {
         return getInt(sInstance.ctx.getString(key), defaultValue);
@@ -124,5 +177,13 @@ public class LocalStorage {
 
     public static boolean getBool(int key, boolean defaultValue) {
         return getBool(sInstance.ctx.getString(key), defaultValue);
+    }
+
+    public static JSONObject getJSON(int key) {
+        return getJSON(sInstance.ctx.getString(key));
+    }
+
+    public static HashMap getHashMap(int key) {
+        return getHashMap(sInstance.ctx.getString(key));
     }
 }

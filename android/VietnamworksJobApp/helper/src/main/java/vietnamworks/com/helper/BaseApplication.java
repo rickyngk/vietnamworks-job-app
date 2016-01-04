@@ -1,5 +1,7 @@
 package vietnamworks.com.helper;
 
+import android.support.annotation.CallSuper;
+
 /**
  * Created by duynk on 12/29/15.
  */
@@ -35,11 +37,20 @@ public class BaseApplication  extends android.app.Application {
         sInstance = this;
     }
 
+    @CallSuper
     @Override
     public void onCreate() {
         super.onCreate();
         LocalStorage.init(this);
     }
+
+    @CallSuper
+    @Override
+    public void onTerminate() {
+        LocalStorage.close();
+        super.onTerminate();
+    }
+
 
     public static void setDefaultFont(FontType type, String filename) {
         FontsOverride.setDefaultFont(sInstance, type.toString(), filename);
