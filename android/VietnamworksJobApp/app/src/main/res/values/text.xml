@@ -17,7 +17,6 @@
     <style name="Text.Title" parent="Text">
         <item name="android:textColor">@color/textColorDark</item>
         <item name="android:textSize">@dimen/font_title</item>
-        <item name="android:textStyle">bold</item>
     </style>
     <style name="Text.Large" parent="Text">
         <item name="android:textColor">@color/textColorDark</item>
