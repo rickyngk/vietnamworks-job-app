@@ -6,6 +6,7 @@ import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Display;
 import android.view.View;
@@ -119,5 +120,43 @@ public class BaseActivity extends AppCompatActivity {
             result = BaseActivity.sInstance.getResources().getDimensionPixelSize(resourceId);
         }
         return result;
+    }
+
+
+    public void pushFragment(android.support.v4.app.Fragment f, int holder_id, boolean addToBackStack) {
+        if (addToBackStack) {
+            getSupportFragmentManager().beginTransaction().add(holder_id, f).addToBackStack(null).commit();
+        } else {
+            getSupportFragmentManager().beginTransaction().replace(holder_id, f).commit();
+        }
+    }
+
+    public void pushFragment(android.support.v4.app.Fragment f, int holder_id) {
+        pushFragment(f, holder_id, true);
+    }
+
+    public void openFragment(android.support.v4.app.Fragment f, int holder_id, boolean addToBackStack) {
+        if (addToBackStack) {
+            getSupportFragmentManager().beginTransaction().replace(holder_id, f).addToBackStack(null).commit();
+        } else {
+            getSupportFragmentManager().beginTransaction().replace(holder_id, f).commit();
+        }
+    }
+
+    public void openFragmentAndClean(android.support.v4.app.Fragment f, int holder_id) {
+        FragmentManager manager = getSupportFragmentManager();
+        try {
+            if (manager.getBackStackEntryCount() > 0) {
+                FragmentManager.BackStackEntry first = manager.getBackStackEntryAt(0);
+                manager.popBackStack(first.getId(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            }
+        }catch (Exception E) {
+            E.printStackTrace();
+        }
+        manager.beginTransaction().replace(holder_id, f).commit();
+    }
+
+    public void openFragment(android.support.v4.app.Fragment f, int holder_id) {
+        openFragment(f, holder_id, false);
     }
 }
