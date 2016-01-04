@@ -49,7 +49,7 @@
         <Button
             style="@style/Text.Medium.Light"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/button_large_height"
+            android:layout_height="wrap_content"
             android:text="@string/get_started"
             android:id="@+id/button2"
             android:background="@drawable/rounded_button"
@@ -59,7 +59,7 @@
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="@dimen/button_large_height"
+            android:layout_height="wrap_content"
             android:text="@string/already_have_account"
             android:id="@+id/button"
             android:background="@drawable/rounded_button"
