@@ -1,15 +1,17 @@
-package vietnamworks.com.vietnamworksjobapp.activities.onboarding;
+package vietnamworks.com.vietnamworksjobapp.activities.onboarding.input;
 
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import vietnamworks.com.helper.BaseActivity;
 import vietnamworks.com.vietnamworksjobapp.R;
-import vietnamworks.com.vietnamworksjobapp.activities.onboarding.fragments.InputLocationFragment;
-import vietnamworks.com.vietnamworksjobapp.activities.onboarding.fragments.InputTitleFragment;
+import vietnamworks.com.vietnamworksjobapp.activities.onboarding.input.fragments.InputIndustryFragment;
+import vietnamworks.com.vietnamworksjobapp.activities.onboarding.input.fragments.InputLocationFragment;
+import vietnamworks.com.vietnamworksjobapp.activities.onboarding.input.fragments.InputTitleFragment;
 
 public class InputInfoActivity extends BaseActivity {
     int currentPageIndex = 0;
@@ -21,6 +23,10 @@ public class InputInfoActivity extends BaseActivity {
         hideSystemUI();
         setContentView(R.layout.activity_input_info);
         setPageIndex(0);
+    }
+
+    public void onSkip(View v) {
+        //TODO: on skip input
     }
 
     public void setPageIndex(int index) {
@@ -54,6 +60,9 @@ public class InputInfoActivity extends BaseActivity {
                 break;
             case 1:
                 openFragment(new InputLocationFragment(), R.id.fragment_holder);
+                break;
+            case 2:
+                openFragment(new InputIndustryFragment(), R.id.fragment_holder);
                 break;
         }
     }

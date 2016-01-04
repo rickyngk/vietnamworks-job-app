@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="industry_array">
+        <item>-- Select one --</item>
+        <item>Sale</item>
+        <item>IT</item>
+        <item>Marketing</item>
+    </string-array>
+</resources>

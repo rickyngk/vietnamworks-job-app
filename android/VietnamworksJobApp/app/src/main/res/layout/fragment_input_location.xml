@@ -56,7 +56,8 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_margin="@dimen/base_padding_4x" />
+                android:layout_margin="@dimen/base_padding_4x"
+                android:onClick="onSkip" />
 
             <CheckBox
                 android:layout_width="match_parent"

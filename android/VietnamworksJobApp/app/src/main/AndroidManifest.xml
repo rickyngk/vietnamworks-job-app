@@ -19,7 +19,7 @@
         <activity
             android:name=".activities.onboarding.WelcomeActivity"
             android:theme="@style/NoActionBar" />
-        <activity android:name=".activities.onboarding.InputInfoActivity" android:theme="@style/NoActionBar"/>
+        <activity android:name=".activities.onboarding.input.InputInfoActivity" android:theme="@style/NoActionBar"/>
     </application>
 
 </manifest>

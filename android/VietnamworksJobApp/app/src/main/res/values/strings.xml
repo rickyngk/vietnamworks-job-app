@@ -4,6 +4,7 @@
     <!--button-->
     <string name="next">Next</string>
     <string name="skip">Skip</string>
+    <string name="done">Done</string>
 
 
     <string name="get_started">Getting started</string>
@@ -15,4 +16,6 @@
     <string name="location_hanoi">Ha Noi</string>
     <string name="location_danang">Da Nang</string>
     <string name="location_other">Others</string>
+    <string name="question_job_industry">What\'s your industry?</string>
+
 </resources>

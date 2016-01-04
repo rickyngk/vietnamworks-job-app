@@ -5,6 +5,7 @@ import android.view.View;
 
 import vietnamworks.com.helper.BaseActivity;
 import vietnamworks.com.vietnamworksjobapp.R;
+import vietnamworks.com.vietnamworksjobapp.activities.onboarding.input.InputInfoActivity;
 
 public class WelcomeActivity extends BaseActivity {
 

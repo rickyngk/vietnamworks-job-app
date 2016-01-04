@@ -1,4 +1,4 @@
-package vietnamworks.com.vietnamworksjobapp.activities.onboarding.fragments;
+package vietnamworks.com.vietnamworksjobapp.activities.onboarding.input.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,7 +10,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import vietnamworks.com.helper.BaseFragment;
 import vietnamworks.com.vietnamworksjobapp.R;
-import vietnamworks.com.vietnamworksjobapp.activities.onboarding.InputInfoActivity;
+import vietnamworks.com.vietnamworksjobapp.activities.onboarding.input.InputInfoActivity;
 
 /**
  * Created by duynk on 1/4/16.
@@ -27,7 +27,7 @@ public class InputLocationFragment extends BaseFragment {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivityRef(InputInfoActivity.class).setPageIndex(1);
+                getActivityRef(InputInfoActivity.class).setPageIndex(2);
             }
         });
 
