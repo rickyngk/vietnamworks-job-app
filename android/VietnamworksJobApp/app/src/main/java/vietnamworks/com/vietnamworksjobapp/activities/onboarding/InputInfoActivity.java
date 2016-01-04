@@ -1,25 +1,19 @@
 package vietnamworks.com.vietnamworksjobapp.activities.onboarding;
 
 import android.os.Bundle;
-import android.view.View;
 
 import vietnamworks.com.helper.BaseActivity;
 import vietnamworks.com.vietnamworksjobapp.R;
+import vietnamworks.com.vietnamworksjobapp.activities.onboarding.fragments.InputTitleFragment;
 
-public class WelcomeActivity extends BaseActivity {
+public class InputInfoActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         hideSystemUI();
-        setContentView(R.layout.activity_welcome);
-    }
+        setContentView(R.layout.activity_input_info);
 
-    public void onGettingStarted(View v) {
-        openActivity(InputInfoActivity.class);
-    }
-
-    public void onLogin(View v) {
-
+        openFragment(new InputTitleFragment(), R.id.fragment_holder);
     }
 }

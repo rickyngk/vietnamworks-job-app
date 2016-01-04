@@ -3,12 +3,12 @@
     package="vietnamworks.com.vietnamworksjobapp">
 
     <application
+        android:name=".Application"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:name="Application">
+        android:theme="@style/AppTheme">
         <activity android:name=".activities.LauncherActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -16,7 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.onboarding.WelcomeActivity" android:theme="@style/NoActionBar"></activity>
+        <activity
+            android:name=".activities.onboarding.WelcomeActivity"
+            android:theme="@style/NoActionBar" />
+        <activity android:name=".activities.onboarding.InputInfoActivity" android:theme="@style/NoActionBar"/>
     </application>
 
 </manifest>

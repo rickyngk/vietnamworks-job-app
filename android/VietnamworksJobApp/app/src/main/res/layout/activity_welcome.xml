@@ -54,7 +54,8 @@
             android:id="@+id/button2"
             android:background="@drawable/rounded_button"
             android:layout_marginBottom="@dimen/base_padding_8x"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:onClick="onGettingStarted" />
 
         <Button
             android:layout_width="match_parent"
@@ -63,7 +64,8 @@
             android:id="@+id/button"
             android:background="@drawable/rounded_button"
             style="@style/Text.Medium.Light"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:onClick="onLogin" />
     </LinearLayout>
 
 </RelativeLayout>
