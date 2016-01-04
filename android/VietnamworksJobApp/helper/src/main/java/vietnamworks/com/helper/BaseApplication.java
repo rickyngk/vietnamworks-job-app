@@ -38,6 +38,7 @@ public class BaseApplication  extends android.app.Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        LocalStorage.init(this);
     }
 
     public static void setDefaultFont(FontType type, String filename) {
