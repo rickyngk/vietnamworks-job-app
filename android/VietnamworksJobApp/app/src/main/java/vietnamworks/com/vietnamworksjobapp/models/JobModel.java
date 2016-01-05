@@ -54,4 +54,12 @@ public class JobModel {
         JSONArray array = new JSONArray(a);
         return array.toString();
     }
+
+    public static int count() {
+        return instance.data.size();
+    }
+
+    public static Job get(int index) {
+        return instance.data.get(index);
+    }
 }

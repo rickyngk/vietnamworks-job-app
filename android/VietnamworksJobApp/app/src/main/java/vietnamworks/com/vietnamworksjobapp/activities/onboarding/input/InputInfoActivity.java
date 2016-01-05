@@ -30,18 +30,6 @@ public class InputInfoActivity extends BaseActivity {
     public void onSkip(View v) {
         UserLocalProfileModel.saveLocal();
         System.out.println(UserLocalProfileModel.getEntity().exportToHashMap());
-
-        /*
-        JobModel.load(this, new Callback() {
-            @Override
-            public void onCompleted(Context context, CallbackResult result) {
-                if (context == InputInfoActivity.this) {
-                    System.out.println(JobModel.getInstance());
-                }
-            }
-        });
-        */
-
         openActivity(MainActivity.class);
     }
 

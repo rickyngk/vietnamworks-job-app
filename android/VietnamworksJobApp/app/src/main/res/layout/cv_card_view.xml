@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="300dp"
+    android:orientation="vertical"
+    android:id="@+id/card_view"
+    android:layout_gravity="center_horizontal"
+    android:layout_centerVertical="true"
+    android:layout_centerHorizontal="true"
+    android:background="@drawable/card">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Job Title"
+        android:id="@+id/job_title"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        style="@style/Text.Title" />
+</RelativeLayout>

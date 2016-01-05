@@ -1,0 +1,59 @@
+package vietnamworks.com.vietnamworksjobapp.activities.main.fragments;
+
+import android.content.Context;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import vietnamworks.com.cardstack.CardStackView;
+import vietnamworks.com.cardstack.CardStackViewDelegate;
+import vietnamworks.com.helper.BaseFragment;
+import vietnamworks.com.helper.Callback;
+import vietnamworks.com.helper.CallbackResult;
+import vietnamworks.com.vietnamworksjobapp.R;
+import vietnamworks.com.vietnamworksjobapp.custom_view.CardView;
+import vietnamworks.com.vietnamworksjobapp.models.JobModel;
+
+/**
+ * Created by duynk on 1/5/16.
+ */
+public class CardsFragment extends BaseFragment {
+    @Bind(R.id.cardview)
+    CardStackView cardView;
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        final ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_cards, container, false);
+        ButterKnife.bind(this, rootView);
+        cardView.setDelegate(delegate);
+
+        return rootView;
+    }
+
+    CardStackViewDelegate delegate = new CardStackViewDelegate() {
+        @Override
+        public void onStarted() {
+            JobModel.load(null, new Callback() {
+                @Override
+                public void onCompleted(Context context, CallbackResult result) {
+                    cardView.ready();
+                }
+            });
+        }
+
+        @Override
+        public View onLoadView(int index) {
+            CardView cv = new CardView(CardsFragment.this.getContext());
+            cv.setViewModel(JobModel.get(index));
+            return cv;
+        }
+
+        @Override
+        public int getCount() {
+            return JobModel.count();
+        }
+    };
+}

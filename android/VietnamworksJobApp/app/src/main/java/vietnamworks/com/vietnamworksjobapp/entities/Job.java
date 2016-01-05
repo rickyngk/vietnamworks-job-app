@@ -19,7 +19,7 @@ public class Job extends BaseEntity {
         set(JOB_TITLE, value);
     }
 
-    public String getJobTitle(String value) {
+    public String getJobTitle() {
         return getString(JOB_TITLE, "");
     }
 
@@ -27,7 +27,7 @@ public class Job extends BaseEntity {
         set(JOB_LEVEL, value);
     }
 
-    public String getJobLevel(String value) {
+    public String getJobLevel() {
         return getString(JOB_TITLE, "");
     }
 }

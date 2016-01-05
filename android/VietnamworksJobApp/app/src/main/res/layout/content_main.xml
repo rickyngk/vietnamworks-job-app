@@ -10,13 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".activities.main.MainActivity"
-    tools:showIn="@layout/app_bar_main">
-
-    <vietnamworks.com.cardstack.CardStackView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal"
-        android:layout_centerHorizontal="true"
-        android:elevation="5dp"/>
-
+    tools:showIn="@layout/app_bar_main"
+    android:id="@+id/fragment_holder">
 </RelativeLayout>

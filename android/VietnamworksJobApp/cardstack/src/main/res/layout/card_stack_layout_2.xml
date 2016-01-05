@@ -2,17 +2,17 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent" android:id="@+id/ccs_holder">
 
-    <vietnamworks.com.cardstack.CardView
+    <vietnamworks.com.cardstack.CardHolder
         android:layout_width="400dp"
         android:layout_height="300dp"
         android:layout_gravity="center"
         android:id="@+id/ccs_back"/>
-    <vietnamworks.com.cardstack.CardView
+    <vietnamworks.com.cardstack.CardHolder
         android:layout_width="400dp"
         android:layout_height="300dp"
         android:layout_gravity="center"
         android:id="@+id/ccs_mid"/>
-    <vietnamworks.com.cardstack.CardView
+    <vietnamworks.com.cardstack.CardHolder
         android:layout_width="400dp"
         android:layout_height="300dp"
         android:layout_gravity="center"
