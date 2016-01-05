@@ -12,6 +12,7 @@ import vietnamworks.com.vietnamworksjobapp.R;
 import vietnamworks.com.vietnamworksjobapp.activities.onboarding.input.fragments.InputIndustryFragment;
 import vietnamworks.com.vietnamworksjobapp.activities.onboarding.input.fragments.InputLocationFragment;
 import vietnamworks.com.vietnamworksjobapp.activities.onboarding.input.fragments.InputTitleFragment;
+import vietnamworks.com.vietnamworksjobapp.models.UserLocalProfileModel;
 
 public class InputInfoActivity extends BaseActivity {
     int currentPageIndex = 0;
@@ -26,6 +27,8 @@ public class InputInfoActivity extends BaseActivity {
     }
 
     public void onSkip(View v) {
+        UserLocalProfileModel.saveLocal();
+        System.out.println(UserLocalProfileModel.getEntity().exportToHashMap());
         //TODO: on skip input
     }
 

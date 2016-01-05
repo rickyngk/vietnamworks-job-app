@@ -13,6 +13,7 @@ import butterknife.ButterKnife;
 import vietnamworks.com.helper.BaseFragment;
 import vietnamworks.com.vietnamworksjobapp.R;
 import vietnamworks.com.vietnamworksjobapp.activities.onboarding.input.InputInfoActivity;
+import vietnamworks.com.vietnamworksjobapp.models.UserLocalProfileModel;
 
 /**
  * Created by duynk on 1/4/16.
@@ -32,6 +33,11 @@ public class InputIndustryFragment extends BaseFragment {
         btnDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String industry = "";
+                if (industrySpinner.getSelectedItemPosition() > 0) {
+                    industry = industrySpinner.getSelectedItem().toString();
+                }
+                UserLocalProfileModel.getEntity().setIndustry(industry);
                 getActivityRef(InputInfoActivity.class).onSkip(null);
             }
         });
