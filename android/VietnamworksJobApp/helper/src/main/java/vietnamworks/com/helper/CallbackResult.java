@@ -4,7 +4,7 @@ package vietnamworks.com.helper;
  * Created by duynk on 12/29/15.
  */
 public class CallbackResult {
-    public class CallbackError {
+    public static class CallbackError {
         int errorCode;
         String message;
         public CallbackError(int errorCode, String message) {
@@ -26,5 +26,10 @@ public class CallbackResult {
     public CallbackResult(CallbackError error, Object data) {
         this.error = error;
         this.data = data;
+    }
+
+    public CallbackResult(CallbackError error) {
+        this.error = error;
+        this.data = null;
     }
 }

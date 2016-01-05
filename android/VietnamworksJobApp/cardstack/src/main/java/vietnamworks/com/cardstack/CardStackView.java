@@ -10,6 +10,9 @@ import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 
+import vietnamworks.com.helper.BaseActivity;
+import vietnamworks.com.helper.Common;
+
 /**
  * Created by duynk on 1/5/16.
  */
@@ -26,20 +29,11 @@ public class CardStackView extends FrameLayout {
     private boolean lockState;
     private long lastUpdate;
     private Thread thread;
-    private android.os.Handler handler = new android.os.Handler();
 
     //ui
     ProgressBar progressBar;
     ArrayList<ViewGroup> cards;
     View cardHolder;
-
-    private void setTimeout(Runnable r) {
-        handler.post(r);
-    }
-
-    private void setTimeout(Runnable r, long dt) {
-        handler.postDelayed(r, dt);
-    }
 
     CardStackViewDelegate delegate = new CardStackViewDelegate() {
         @Override
@@ -85,9 +79,9 @@ public class CardStackView extends FrameLayout {
         progressBar = (ProgressBar)this.findViewById(R.id.progressBar);
 
         cards = new ArrayList<ViewGroup>();
-        cards.add((ViewGroup) this.findViewById(R.id.card_back));
-        cards.add((ViewGroup) this.findViewById(R.id.card_mid));
         cards.add((ViewGroup) this.findViewById(R.id.card_front));
+        cards.add((ViewGroup) this.findViewById(R.id.card_mid));
+        cards.add((ViewGroup) this.findViewById(R.id.card_back));
         cardHolder = this.findViewById(R.id.cards);
 
         thread = new Thread() {
@@ -152,6 +146,7 @@ public class CardStackView extends FrameLayout {
                     }
                 }
                 showLoading(false);
+                updateLayoutOnce();
                 break;
         }
     }
@@ -164,14 +159,44 @@ public class CardStackView extends FrameLayout {
     }
 
     private void showLoading(final boolean val) {
-        setTimeout(new Runnable() {
+        BaseActivity.timeout(new Runnable() {
             @Override
             public void run() {
-                progressBar.setVisibility(val?VISIBLE:GONE);
-                cardHolder.setVisibility(val?GONE:VISIBLE);
+                progressBar.setVisibility(val ? VISIBLE : GONE);
+                cardHolder.setVisibility(val ? GONE : VISIBLE);
             }
         });
     }
+
+    private void setLockState(boolean val) {
+        lockState = val;
+    }
+
+    private void updateLayoutOnce() {
+        switch (state) {
+            case STATE_IDLE:
+                int n = Math.min(delegate.getCount(), cards.size());
+                for (int i = 1; i < n; i++) {
+                    final View v = cards.get(i);
+                    float width = v.getWidth();
+                    float widthTarget = width - Common.convertDpToPixel(5.0f * i);
+                    final float scale = widthTarget/width;
+                    final float translate = Common.convertDpToPixel(5.0f * i);
+                    setLockState(true);
+                    BaseActivity.timeout(new Runnable() {
+                         @Override
+                         public void run() {
+                             v.setTranslationY(translate);
+                             v.setScaleX(scale);
+                             v.setScaleY(scale);
+                             setLockState(false);
+                         }
+                     });
+                }
+                break;
+        }
+    }
+
 
     public void ready() {
         showLoading(false);

@@ -30,9 +30,14 @@ public class JobModel {
                     Job job2 = new Job();
                     job2.setJobTitle("bbb");
 
+                    Job job3 = new Job();
+                    job2.setJobTitle("ccc");
+
                     instance.data.clear();
                     instance.data.add(job1);
                     instance.data.add(job2);
+                    instance.data.add(job3);
+
                     callback.onCompleted(ctx, new CallbackSuccess());
                 } catch (Exception E) {
                     E.printStackTrace();

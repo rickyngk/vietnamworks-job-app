@@ -33,6 +33,7 @@ public class MainActivity extends BaseActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         openFragment(new CardsFragment(), R.id.fragment_holder);
+        setActivityTitle(R.string.title_cards);
     }
 
     @Override

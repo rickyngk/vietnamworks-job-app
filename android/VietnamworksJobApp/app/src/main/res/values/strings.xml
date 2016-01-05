@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Vietnamworks Job App</string>
 
+    <!-- activity title -->
+    <string name="title_cards">Matched jobs</string>
+
     <!--button-->
     <string name="next">Next</string>
     <string name="skip">Skip</string>
