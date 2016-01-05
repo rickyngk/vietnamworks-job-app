@@ -1,4 +1,4 @@
-package vietnamworks.com.vietnamworksjobapp.activities;
+package vietnamworks.com.vietnamworksjobapp.activities.launcher;
 
 import android.os.Bundle;
 

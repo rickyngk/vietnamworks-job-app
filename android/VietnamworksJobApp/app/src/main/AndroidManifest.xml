@@ -9,7 +9,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.LauncherActivity">
+        <activity android:name=".activities.launcher.LauncherActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,7 +19,13 @@
         <activity
             android:name=".activities.onboarding.WelcomeActivity"
             android:theme="@style/NoActionBar" />
-        <activity android:name=".activities.onboarding.input.InputInfoActivity" android:theme="@style/NoActionBar"/>
+        <activity
+            android:name=".activities.onboarding.input.InputInfoActivity"
+            android:theme="@style/NoActionBar" />
+        <activity
+            android:name=".activities.main.MainActivity"
+            android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
