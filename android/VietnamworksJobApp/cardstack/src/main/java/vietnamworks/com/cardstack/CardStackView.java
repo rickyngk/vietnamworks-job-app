@@ -1,12 +1,15 @@
 package vietnamworks.com.cardstack;
 
 import android.content.Context;
+import android.support.v4.view.MotionEventCompat;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 
@@ -18,8 +21,13 @@ import vietnamworks.com.helper.Common;
  */
 public class CardStackView extends FrameLayout {
     public final static int STATE_PRE_INIT = 0;
-    public final static int STATE_IDLE = 1;
+    public final static int STATE_IDLE = STATE_PRE_INIT + 1;
+    public final static int STATE_DRAG = STATE_IDLE + 1;
+    public final static int STATE_DRAG_OUT = STATE_DRAG + 1;
 
+
+    public final static float CARD_TRIGGER_PERCENT = 0.25f;
+    public final static float FIRST_CARD_MAX_ROTATE_ANGLE = 5.0f;
 
     private int state = -1;
     private int nextState = STATE_PRE_INIT;
@@ -34,6 +42,10 @@ public class CardStackView extends FrameLayout {
     ProgressBar progressBar;
     ArrayList<ViewGroup> cards;
     View cardHolder;
+
+    private float movingPercent;
+    private float overMovingPercent;
+    RelativeLayout.LayoutParams layoutParams;
 
     CardStackViewDelegate delegate = new CardStackViewDelegate() {
         @Override
@@ -146,15 +158,46 @@ public class CardStackView extends FrameLayout {
                     }
                 }
                 showLoading(false);
-                updateLayoutOnce();
+                updateLayout();
+                if (cards.size() > 0) {
+                    cards.get(0).setOnTouchListener(onTouchListener);
+                }
                 break;
         }
     }
 
     private void onUpdateState() {
+        boolean updateLayout = false;
         switch (state) {
             case STATE_PRE_INIT:
                 break;
+            case STATE_DRAG:
+            case STATE_DRAG_OUT:
+                int targetX = targetScrollX;
+                View front = cards.get(0);
+                layoutParams = ((RelativeLayout.LayoutParams) front.getLayoutParams());
+                int currentX = layoutParams.leftMargin;
+
+                if (targetX != currentX) {
+                    layoutParams.leftMargin = Common.lerp(layoutParams.leftMargin, targetScrollX, 0.8f);
+                    updateLayout = true;
+                }
+
+                if (updateLayout) {
+                    float p = Math.abs(layoutParams.leftMargin) / (front.getWidth()*CARD_TRIGGER_PERCENT);
+                    movingPercent = Math.min(p, 1.0f);
+                    overMovingPercent = Math.max(Math.min(p - 1.0f, 1.0f), 0f);
+                    if (movingPercent >= 1.0f) {
+                        switchState(STATE_DRAG_OUT);
+                    } else if (movingPercent > 0 && state == STATE_DRAG_OUT) {
+                        switchState(STATE_DRAG);
+                    }
+                }
+                break;
+        }
+
+        if (updateLayout) {
+            updateLayout();
         }
     }
 
@@ -172,7 +215,8 @@ public class CardStackView extends FrameLayout {
         lockState = val;
     }
 
-    private void updateLayoutOnce() {
+    private void updateLayout() {
+        setLockState(true);
         switch (state) {
             case STATE_IDLE:
                 int n = Math.min(delegate.getCount(), cards.size());
@@ -182,7 +226,6 @@ public class CardStackView extends FrameLayout {
                     float widthTarget = width - Common.convertDpToPixel(5.0f * i);
                     final float scale = widthTarget/width;
                     final float translate = Common.convertDpToPixel(5.0f * i);
-                    setLockState(true);
                     BaseActivity.timeout(new Runnable() {
                          @Override
                          public void run() {
@@ -194,8 +237,53 @@ public class CardStackView extends FrameLayout {
                      });
                 }
                 break;
+            case STATE_DRAG:
+            case STATE_DRAG_OUT:
+                BaseActivity.timeout(new Runnable() {
+                    @Override
+                    public void run() {
+                        View front = cards.get(0);
+                        front.setLayoutParams(layoutParams);
+                        front.setRotation(overMovingPercent * FIRST_CARD_MAX_ROTATE_ANGLE * Common.sign(layoutParams.leftMargin));
+                    }
+                });
+                setLockState(false);
+                break;
+            default:
+                setLockState(false);
+                break;
         }
     }
+
+    private float mDownX;
+    private long lastTimeTouch = 0;
+    int originLayoutMargin = 0;
+    int targetScrollX = 0;
+
+    private OnTouchListener onTouchListener = new OnTouchListener() {
+        @Override
+        public boolean onTouch(View v, MotionEvent ev) {
+            final int action = MotionEventCompat.getActionMasked(ev);
+            int distance = (int) (ev.getRawX() - mDownX);
+
+            switch (action) {
+                case MotionEvent.ACTION_DOWN: {
+                    lastTimeTouch = System.currentTimeMillis();
+                    mDownX = ev.getRawX();
+                    originLayoutMargin = ((RelativeLayout.LayoutParams) v.getLayoutParams()).leftMargin;
+                    if (state != STATE_DRAG && state != STATE_DRAG_OUT) {
+                        switchState(STATE_DRAG);
+                    }
+                    break;
+                }
+                case MotionEvent.ACTION_MOVE: {
+                    targetScrollX = originLayoutMargin + (int) (ev.getRawX() - mDownX);
+                    break;
+                }
+            }
+            return true;
+        }
+    };
 
 
     public void ready() {
