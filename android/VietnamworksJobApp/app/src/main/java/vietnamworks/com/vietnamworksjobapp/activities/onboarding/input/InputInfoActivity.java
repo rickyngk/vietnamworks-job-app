@@ -1,5 +1,6 @@
 package vietnamworks.com.vietnamworksjobapp.activities.onboarding.input;
 
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -8,10 +9,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import vietnamworks.com.helper.BaseActivity;
+import vietnamworks.com.helper.Callback;
+import vietnamworks.com.helper.CallbackResult;
 import vietnamworks.com.vietnamworksjobapp.R;
 import vietnamworks.com.vietnamworksjobapp.activities.onboarding.input.fragments.InputIndustryFragment;
 import vietnamworks.com.vietnamworksjobapp.activities.onboarding.input.fragments.InputLocationFragment;
 import vietnamworks.com.vietnamworksjobapp.activities.onboarding.input.fragments.InputTitleFragment;
+import vietnamworks.com.vietnamworksjobapp.models.JobModel;
 import vietnamworks.com.vietnamworksjobapp.models.UserLocalProfileModel;
 
 public class InputInfoActivity extends BaseActivity {
@@ -29,6 +33,15 @@ public class InputInfoActivity extends BaseActivity {
     public void onSkip(View v) {
         UserLocalProfileModel.saveLocal();
         System.out.println(UserLocalProfileModel.getEntity().exportToHashMap());
+
+        JobModel.load(this, new Callback() {
+            @Override
+            public void onCompleted(Context context, CallbackResult result) {
+                if (context == InputInfoActivity.this) {
+                    System.out.println(JobModel.getInstance());
+                }
+            }
+        });
         //TODO: on skip input
     }
 
