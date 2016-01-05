@@ -2,6 +2,7 @@ package vietnamworks.com.helper;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.snappydb.DB;
@@ -70,7 +71,11 @@ public class LocalStorage {
 
     public static void set(@NonNull String key, JSONObject json) {
         try {
-            sInstance.db.put(key, json.toString());
+            if (json != null) {
+                sInstance.db.put(key, json.toString());
+            } else {
+                sInstance.db.del(key);
+            }
         } catch (Exception E) {
             E.printStackTrace();
         }
@@ -78,8 +83,24 @@ public class LocalStorage {
 
     public static void set(@NonNull String key, HashMap map) {
         try {
-            JSONObject obj = new JSONObject(map);
-            set(key, obj);
+            if (map != null) {
+                JSONObject obj = new JSONObject(map);
+                set(key, obj);
+            } else {
+                sInstance.db.del(key);
+            }
+        } catch (Exception E) {
+            E.printStackTrace();
+        }
+    }
+
+    public static void set(@NonNull String key, IExportable obj) {
+        try {
+            if (obj != null) {
+                set(key, obj.exportToHashMap());
+            } else {
+                sInstance.db.del(key);
+            }
         } catch (Exception E) {
             E.printStackTrace();
         }
@@ -107,6 +128,10 @@ public class LocalStorage {
 
     public static void set(int key, HashMap value) {
         set(sInstance.ctx.getString(key), value);
+    }
+
+    public static void set(int key, IExportable obj) {
+        set(sInstance.ctx.getString(key), obj);
     }
 
     public static int getInt(@NonNull String key, int defaultValue) {
@@ -141,6 +166,7 @@ public class LocalStorage {
         }
     }
 
+    @Nullable
     public static JSONObject getJSON(@NonNull String key) {
         try {
             String str = sInstance.db.get(key);
@@ -150,6 +176,7 @@ public class LocalStorage {
         }
     }
 
+    @Nullable
     public static HashMap getHashMap(@NonNull String key) {
         String s = getString(key, null);
         if (s != null) {
@@ -162,6 +189,16 @@ public class LocalStorage {
             return null;
         }
     };
+
+    public static boolean loadExportableObject(@NonNull String key, @NonNull IExportable obj) {
+        HashMap m = getHashMap(key);
+        if (m != null) {
+            obj.importFromHashMap(m);
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     public static int getInt(int key, int defaultValue) {
         return getInt(sInstance.ctx.getString(key), defaultValue);
@@ -185,5 +222,9 @@ public class LocalStorage {
 
     public static HashMap getHashMap(int key) {
         return getHashMap(sInstance.ctx.getString(key));
+    }
+
+    public static boolean loadExportableObject(int key, @NonNull IExportable obj) {
+        return loadExportableObject(sInstance.ctx.getString(key), obj);
     }
 }
