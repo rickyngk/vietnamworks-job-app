@@ -1,1 +1,1 @@
-include ':app', ':helper', ':vnwcore'
+include ':app', ':helper', ':vnwcore', ':cardstack'
