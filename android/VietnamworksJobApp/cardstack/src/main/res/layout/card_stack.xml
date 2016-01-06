@@ -8,6 +8,13 @@
             android:layout_width="300dp"
             android:layout_height="300dp"
             android:layout_gravity="center"
+            android:id="@+id/card_reserve"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"/>
+        <RelativeLayout
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center"
             android:id="@+id/card_back"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
@@ -24,9 +31,7 @@
             android:layout_gravity="center"
             android:id="@+id/card_front"
             android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true">
-
-        </RelativeLayout>
+            android:layout_centerHorizontal="true"/>
     </RelativeLayout>
 
     <ProgressBar

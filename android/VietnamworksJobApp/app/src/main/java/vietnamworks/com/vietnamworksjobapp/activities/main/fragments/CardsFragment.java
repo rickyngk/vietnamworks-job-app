@@ -35,17 +35,17 @@ public class CardsFragment extends BaseFragment {
 
     CardStackViewDelegate delegate = new CardStackViewDelegate() {
         @Override
-        public void onStarted() {
+        public void onStarted(final CardStackView v) {
             JobModel.load(null, new Callback() {
                 @Override
                 public void onCompleted(Context context, CallbackResult result) {
-                    cardView.ready();
+                    v.ready();
                 }
             });
         }
 
         @Override
-        public View onLoadView(int index) {
+        public View onLoadView(CardStackView v, int index) {
             CardView cv = new CardView(CardsFragment.this.getContext());
             cv.setViewModel(JobModel.get(index));
             return cv;
@@ -54,6 +54,22 @@ public class CardsFragment extends BaseFragment {
         @Override
         public int getCount() {
             return JobModel.count();
+        }
+
+        @Override
+        public void onDrag(CardStackView v, float confidence) {
+        }
+
+        @Override
+        public void onActive(CardStackView v, int index) {}
+
+        @Override
+        public void onEndOfStack(CardStackView v) {
+            v.reset();
+        }
+
+        @Override
+        public void onOpen(CardStackView v, int index) {
         }
     };
 }

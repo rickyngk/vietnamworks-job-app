@@ -29,7 +29,6 @@ public class InputInfoActivity extends BaseActivity {
 
     public void onSkip(View v) {
         UserLocalProfileModel.saveLocal();
-        System.out.println(UserLocalProfileModel.getEntity().exportToHashMap());
         openActivity(MainActivity.class);
     }
 

@@ -7,6 +7,7 @@ import org.json.JSONArray;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import vietnamworks.com.helper.BaseActivity;
 import vietnamworks.com.helper.Callback;
 import vietnamworks.com.helper.CallbackSuccess;
 import vietnamworks.com.vietnamworksjobapp.entities.Job;
@@ -19,31 +20,20 @@ public class JobModel {
     ArrayList<Job> data = new ArrayList<>();
 
     public static void load(final Context ctx, final Callback callback) {
-        new Thread(new Runnable() {
+        BaseActivity.timeout(new Runnable() {
             @Override
             public void run() {
-                try {
-                    Thread.sleep(3000);
-                    Job job1 = new Job();
-                    job1.setJobTitle("aaa");
+                int n = 5;
+                instance.data.clear();
+                for (int i = 0; i < n; i++) {
+                    Job job = new Job();
+                    job.setJobTitle("JOB " + (i + 1));
+                    instance.data.add(job);
 
-                    Job job2 = new Job();
-                    job2.setJobTitle("bbb");
-
-                    Job job3 = new Job();
-                    job2.setJobTitle("ccc");
-
-                    instance.data.clear();
-                    instance.data.add(job1);
-                    instance.data.add(job2);
-                    instance.data.add(job3);
-
-                    callback.onCompleted(ctx, new CallbackSuccess());
-                } catch (Exception E) {
-                    E.printStackTrace();
                 }
+                callback.onCompleted(ctx, new CallbackSuccess());
             }
-        }).start();
+        }, 3000);
     }
 
     public static JobModel getInstance() {
