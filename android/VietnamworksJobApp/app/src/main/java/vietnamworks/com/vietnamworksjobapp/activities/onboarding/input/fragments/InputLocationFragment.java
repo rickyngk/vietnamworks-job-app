@@ -14,6 +14,7 @@ import butterknife.ButterKnife;
 import vietnamworks.com.helper.BaseFragment;
 import vietnamworks.com.vietnamworksjobapp.R;
 import vietnamworks.com.vietnamworksjobapp.activities.onboarding.input.InputInfoActivity;
+import vietnamworks.com.vietnamworksjobapp.entities.WorkingLocation;
 import vietnamworks.com.vietnamworksjobapp.models.UserLocalProfileModel;
 
 /**
@@ -43,18 +44,18 @@ public class InputLocationFragment extends BaseFragment {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ArrayList<String> locations = new ArrayList<String>();
+                ArrayList<WorkingLocation> locations = new ArrayList<>();
                 if (cb_hcm.isChecked()) {
-                    locations.add("Ho Chi Minh");
+                    locations.add(WorkingLocation.HoChiMinh);
                 }
                 if (cb_hn.isChecked()) {
-                    locations.add("Ha Noi");
+                    locations.add(WorkingLocation.HaNoi);
                 }
                 if (cb_danang.isChecked()) {
-                    locations.add("Da Nang");
+                    locations.add(WorkingLocation.DaNang);
                 }
                 if (cb_other_location.isChecked()) {
-                    locations.add("Other");
+                    locations.add(WorkingLocation.Other);
                 }
                 UserLocalProfileModel.getEntity().setWorkingLocation(locations);
                 getActivityRef(InputInfoActivity.class).setPageIndex(2);

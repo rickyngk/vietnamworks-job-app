@@ -17,5 +17,6 @@
         android:id="@+id/job_title"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        style="@style/Text.Title" />
+        style="@style/Text.Title"
+        android:layout_margin="@dimen/base_padding_2x" />
 </RelativeLayout>

@@ -12,6 +12,7 @@ import vietnamworks.com.helper.Callback;
 import vietnamworks.com.helper.CallbackResult;
 import vietnamworks.com.helper.CallbackSuccess;
 import vietnamworks.com.vietnamworksjobapp.entities.Job;
+import vietnamworks.com.vietnamworksjobapp.entities.WorkingLocation;
 import vietnamworks.com.vnwcore.VNWAPI;
 
 /**
@@ -24,11 +25,14 @@ public class JobModel {
 
     public static void load(final Context ctx, final Callback callback) {
         String jobTitle = UserLocalProfileModel.getEntity().getJobTitle();
-        ArrayList<String> locations = UserLocalProfileModel.getEntity().getWorkingLocations();
+        ArrayList<WorkingLocation> locations = UserLocalProfileModel.getEntity().getWorkingLocations();
         StringBuilder sb = new StringBuilder();
-        for (String s : locations) {
-            sb.append(s);
-            sb.append(",");
+        for (int i = 0; i < locations.size(); i++) {
+            WorkingLocation l = locations.get(i);
+            sb.append(l.getLocationId());
+            if (i < locations.size() - 1) {
+                sb.append(",");
+            }
         }
         String jobIndustry = UserLocalProfileModel.getEntity().getIndustry();
 

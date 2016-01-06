@@ -1,5 +1,7 @@
 package vietnamworks.com.helper;
 
+import org.json.JSONObject;
+
 import java.util.HashMap;
 
 /**
@@ -8,4 +10,5 @@ import java.util.HashMap;
 public interface IExportable {
     HashMap exportToHashMap();
     void importFromHashMap(HashMap m);
+    JSONObject exportToJsonObject();
 }

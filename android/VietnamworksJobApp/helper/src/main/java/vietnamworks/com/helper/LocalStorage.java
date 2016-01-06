@@ -97,7 +97,12 @@ public class LocalStorage {
     public static void set(@NonNull String key, IExportable obj) {
         try {
             if (obj != null) {
-                set(key, obj.exportToHashMap());
+                JSONObject json = obj.exportToJsonObject();
+                if (json == null) {
+                    set(key, obj.exportToHashMap());
+                } else {
+                    set(key, json);
+                }
             } else {
                 sInstance.db.del(key);
             }
