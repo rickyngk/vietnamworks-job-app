@@ -19,6 +19,10 @@ public class UserLocalProfileModel {
         LocalStorage.set(LS_LOCAL_PROFILE_MODEL, entity);
     }
 
+    public static void removeLocal() {
+        LocalStorage.remove(LS_LOCAL_PROFILE_MODEL);
+    }
+
     public static UserLocalProfile getEntity() {
         return entity;
     }
