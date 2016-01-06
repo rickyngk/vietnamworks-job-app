@@ -11,7 +11,9 @@ import android.view.MenuItem;
 
 import vietnamworks.com.helper.BaseActivity;
 import vietnamworks.com.vietnamworksjobapp.R;
+import vietnamworks.com.vietnamworksjobapp.activities.launcher.LauncherActivity;
 import vietnamworks.com.vietnamworksjobapp.activities.main.fragments.CardsFragment;
+import vietnamworks.com.vietnamworksjobapp.models.UserLocalProfileModel;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -62,6 +64,8 @@ public class MainActivity extends BaseActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            UserLocalProfileModel.removeLocal();
+            openActivity(LauncherActivity.class);
             return true;
         }
 
