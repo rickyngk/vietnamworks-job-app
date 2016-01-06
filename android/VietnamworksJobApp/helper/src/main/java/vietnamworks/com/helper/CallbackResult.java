@@ -32,4 +32,8 @@ public class CallbackResult {
         this.error = error;
         this.data = null;
     }
+
+    public Object getData() {
+        return data;
+    }
 }

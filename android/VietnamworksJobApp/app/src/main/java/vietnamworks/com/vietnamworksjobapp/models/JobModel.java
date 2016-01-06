@@ -3,37 +3,58 @@ package vietnamworks.com.vietnamworksjobapp.models;
 import android.content.Context;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import vietnamworks.com.helper.BaseActivity;
 import vietnamworks.com.helper.Callback;
+import vietnamworks.com.helper.CallbackResult;
 import vietnamworks.com.helper.CallbackSuccess;
 import vietnamworks.com.vietnamworksjobapp.entities.Job;
+import vietnamworks.com.vnwcore.VNWAPI;
 
 /**
  * Created by duynk on 1/5/16.
  */
 public class JobModel {
+    public final static int MAX_JOBS = 20;
     static JobModel instance =  new JobModel();
     ArrayList<Job> data = new ArrayList<>();
 
     public static void load(final Context ctx, final Callback callback) {
-        BaseActivity.timeout(new Runnable() {
-            @Override
-            public void run() {
-                int n = 5;
-                instance.data.clear();
-                for (int i = 0; i < n; i++) {
-                    Job job = new Job();
-                    job.setJobTitle("JOB " + (i + 1));
-                    instance.data.add(job);
+        String jobTitle = UserLocalProfileModel.getEntity().getJobTitle();
+        ArrayList<String> locations = UserLocalProfileModel.getEntity().getWorkingLocations();
+        StringBuilder sb = new StringBuilder();
+        for (String s : locations) {
+            sb.append(s);
+            sb.append(",");
+        }
+        String jobIndustry = UserLocalProfileModel.getEntity().getIndustry();
 
+
+        VNWAPI.searchJob(MAX_JOBS, jobTitle, sb.toString(), jobIndustry, new Callback() {
+            @Override
+            public void onCompleted(Context context, CallbackResult result) {
+                if (result.hasError()) {
+                    callback.onCompleted(context, new CallbackResult(result.getError()));
+                } else {
+                    try {
+                        JSONObject res = (JSONObject) result.getData();
+                        JSONObject data = res.optJSONObject("data");
+                        JSONArray jobs = data.getJSONArray("jobs");
+                        for (int i = 0; i < jobs.length(); i++) {
+                            Job j = new Job();
+                            j.setJobTitle(jobs.getJSONObject(i).getString("job_title"));
+                            instance.data.add(j);
+                        }
+                    } catch (Exception E) {
+                        callback.onCompleted(context, new CallbackResult(new CallbackResult.CallbackError(-1, E.getMessage())));
+                    }
+                    callback.onCompleted(context, new CallbackSuccess());
                 }
-                callback.onCompleted(ctx, new CallbackSuccess());
             }
-        }, 3000);
+        });
     }
 
     public static JobModel getInstance() {
