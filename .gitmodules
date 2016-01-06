@@ -1,0 +1,3 @@
+[submodule "android/VietnamworksJobApp/volley"]
+	path = android/VietnamworksJobApp/volley
+	url = https://android.googlesource.com/platform/frameworks/volley
