@@ -227,4 +227,18 @@ public class LocalStorage {
     public static boolean loadExportableObject(int key, @NonNull IExportable obj) {
         return loadExportableObject(sInstance.ctx.getString(key), obj);
     }
+
+    public static void remove(String key) {
+        try {
+            sInstance.db.del(key);
+        } catch (Exception E) {
+            E.printStackTrace();
+        }
+    }
+
+    public static void remove(int key) {
+        remove(sInstance.ctx.getString(key));
+    }
+
+
 }
