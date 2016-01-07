@@ -1,1 +1,1 @@
-include ':app', ':android-helper', ':vnw-core', ':volley', ':volleyhelper', ':card-stack-view'
+include ':app', ':android-helper', ':vnw-core', ':volley', ':volley-helper', ':card-stack-view'

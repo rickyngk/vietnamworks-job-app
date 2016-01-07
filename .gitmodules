@@ -10,3 +10,6 @@
 [submodule "android/VietnamworksJobApp/vnw-core"]
 	path = android/VietnamworksJobApp/vnw-core
 	url = https://github.com/rickyngk/vnw-core.git
+[submodule "android/VietnamworksJobApp/volley-helper"]
+	path = android/VietnamworksJobApp/volley-helper
+	url = https://github.com/rickyngk/volley-helper.git
