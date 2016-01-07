@@ -35,7 +35,6 @@ public class InputTitleFragment extends BaseFragment {
 
     ArrayAdapter<String> adapter;
 
-    private boolean isLoadingAutoHint = false;
     private boolean preventTextChangeEvent = false;
 
     @Override
@@ -63,11 +62,10 @@ public class InputTitleFragment extends BaseFragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (isLoadingAutoHint || preventTextChangeEvent) {
+                if (preventTextChangeEvent) {
                     preventTextChangeEvent = false;
                     return;
                 }
-                isLoadingAutoHint = true;
                 VNWAPI.jobTitleSuggestion(jobTitle.getText().toString(), new Callback() {
                     @Override
                     public void onCompleted(Context context, CallbackResult result) {
@@ -86,7 +84,6 @@ public class InputTitleFragment extends BaseFragment {
                                 E.printStackTrace();
                             }
                         }
-                        isLoadingAutoHint = false;
                     }
                 });
             }

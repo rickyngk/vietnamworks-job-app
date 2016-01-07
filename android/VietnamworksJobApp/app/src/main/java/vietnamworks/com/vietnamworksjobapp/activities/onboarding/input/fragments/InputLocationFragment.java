@@ -33,8 +33,10 @@ public class InputLocationFragment extends BaseFragment {
     @Bind(R.id.cb_danang)
     CheckBox cb_danang;
 
+    /*
     @Bind(R.id.cb_other_location)
     CheckBox cb_other_location;
+    */
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -54,9 +56,11 @@ public class InputLocationFragment extends BaseFragment {
                 if (cb_danang.isChecked()) {
                     locations.add(WorkingLocation.DaNang);
                 }
+                /*
                 if (cb_other_location.isChecked()) {
                     locations.add(WorkingLocation.Other);
                 }
+                */
                 UserLocalProfileModel.getEntity().setWorkingLocation(locations);
                 getActivityRef(InputInfoActivity.class).setPageIndex(2);
             }
