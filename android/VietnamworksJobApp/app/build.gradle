@@ -30,7 +30,7 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile project(':android-helper')
-    compile project(':vnwcore')
+    compile project(':vnw-core')
     compile project(':card-stack-view')
 
     compile 'com.android.support:appcompat-v7:23.0.1'
