@@ -34,10 +34,14 @@ public class InputIndustryFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 String industry = "";
-                if (industrySpinner.getSelectedItemPosition() > 0) {
+                String industry_code = "";
+                int index = industrySpinner.getSelectedItemPosition();
+                if (index > 0) {
                     industry = industrySpinner.getSelectedItem().toString();
+                    industry_code = getResources().getStringArray(R.array.industry_code)[index];
                 }
                 UserLocalProfileModel.getEntity().setIndustry(industry);
+                UserLocalProfileModel.getEntity().setIndustryCode(industry_code);
                 getActivityRef(InputInfoActivity.class).onSkip(null);
             }
         });

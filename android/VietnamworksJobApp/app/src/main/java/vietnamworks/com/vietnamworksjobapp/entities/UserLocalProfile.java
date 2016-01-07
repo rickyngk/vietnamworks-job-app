@@ -17,12 +17,14 @@ import R.helper.BaseEntity;
 public class UserLocalProfile extends BaseEntity {
     public final static String JOB_TITLE = "jobTitle";
     public final static String INDUSTRY = "industry";
+    public final static String INDUSTRY_CODE = "industry_code";
     public final static String WORKING_LOCATION = "workingLocation";
 
     public UserLocalProfile() {
-        super(Arrays.asList(JOB_TITLE, INDUSTRY, WORKING_LOCATION));
+        super(Arrays.asList(JOB_TITLE, INDUSTRY, WORKING_LOCATION, INDUSTRY_CODE));
         set(JOB_TITLE, "");
         set(INDUSTRY, "");
+        set(INDUSTRY_CODE, "");
         set(WORKING_LOCATION, new ArrayList<WorkingLocation>());
     }
 
@@ -67,8 +69,16 @@ public class UserLocalProfile extends BaseEntity {
         set(INDUSTRY, value);
     }
 
+    public void setIndustryCode(String industryCode) {
+        set(INDUSTRY_CODE, industryCode);
+    }
+
     public String getIndustry() {
         return getString(INDUSTRY, "");
+    }
+
+    public String getIndustryCode() {
+        return getString(INDUSTRY_CODE, "");
     }
 
     public void setWorkingLocation(WorkingLocation... l) {

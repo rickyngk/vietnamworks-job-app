@@ -34,7 +34,7 @@ public class JobModel {
                 sb.append(",");
             }
         }
-        String jobIndustry = UserLocalProfileModel.getEntity().getIndustry();
+        String jobIndustry = UserLocalProfileModel.getEntity().getIndustryCode();
 
 
         VNWAPI.searchJob(MAX_JOBS, jobTitle, sb.toString(), jobIndustry, new Callback() {
