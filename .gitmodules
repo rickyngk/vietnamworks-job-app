@@ -1,0 +1,6 @@
+[submodule "android/VietnamworksJobApp/card-stack-view"]
+	path = android/VietnamworksJobApp/card-stack-view
+	url = https://github.com/rickyngk/card-stack-view.git
+[submodule "android/VietnamworksJobApp/volley"]
+	path = android/VietnamworksJobApp/volley
+	url = https://android.googlesource.com/platform/frameworks/volley
