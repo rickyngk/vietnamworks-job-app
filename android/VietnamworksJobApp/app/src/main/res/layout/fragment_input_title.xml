@@ -61,11 +61,11 @@
                 android:layout_margin="@dimen/base_padding_4x"
                 android:onClick="onSkip" />
 
-            <EditText
+            <AutoCompleteTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/job_title"
-                style="@style/Text.Title.Light"
+                style="@style/Text.Large.Light"
                 android:inputType="text"
                 android:background="@drawable/rounded_input"
                 android:paddingLeft="@dimen/button_large_corner"
@@ -74,7 +74,8 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="@dimen/base_padding_4x"
-                android:layout_marginRight="@dimen/base_padding_4x" />
+                android:layout_marginRight="@dimen/base_padding_4x"
+                android:completionThreshold="1"/>
         </RelativeLayout>
     </LinearLayout>
 
