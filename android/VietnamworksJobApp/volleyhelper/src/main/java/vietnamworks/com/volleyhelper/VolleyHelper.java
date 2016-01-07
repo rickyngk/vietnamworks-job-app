@@ -16,9 +16,9 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import vietnamworks.com.helper.Callback;
-import vietnamworks.com.helper.CallbackResult;
-import vietnamworks.com.helper.CallbackSuccess;
+import R.helper.Callback;
+import R.helper.CallbackResult;
+import R.helper.CallbackSuccess;
 
 /**
  * Created by duynk on 1/6/16.

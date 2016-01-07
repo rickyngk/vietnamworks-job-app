@@ -1,6 +1,6 @@
 package vietnamworks.com.vietnamworksjobapp.models;
 
-import vietnamworks.com.helper.LocalStorage;
+import R.helper.LocalStorage;
 import vietnamworks.com.vietnamworksjobapp.entities.UserLocalProfile;
 
 /**

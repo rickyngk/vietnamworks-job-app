@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import vietnamworks.com.helper.BaseFragment;
+import R.helper.BaseFragment;
 import vietnamworks.com.vietnamworksjobapp.R;
 import vietnamworks.com.vietnamworksjobapp.activities.onboarding.input.InputInfoActivity;
 import vietnamworks.com.vietnamworksjobapp.entities.WorkingLocation;

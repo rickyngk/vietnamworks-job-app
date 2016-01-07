@@ -2,7 +2,7 @@ package vietnamworks.com.vietnamworksjobapp.entities;
 
 import java.util.Arrays;
 
-import vietnamworks.com.helper.BaseEntity;
+import R.helper.BaseEntity;
 
 /**
  * Created by duynk on 1/6/16.

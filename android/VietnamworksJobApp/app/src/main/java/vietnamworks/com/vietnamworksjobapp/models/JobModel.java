@@ -8,9 +8,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import vietnamworks.com.helper.Callback;
-import vietnamworks.com.helper.CallbackResult;
-import vietnamworks.com.helper.CallbackSuccess;
+import R.helper.Callback;
+import R.helper.CallbackResult;
+import R.helper.CallbackSuccess;
 import vietnamworks.com.vietnamworksjobapp.entities.Job;
 import vietnamworks.com.vietnamworksjobapp.entities.WorkingLocation;
 import vietnamworks.com.vnwcore.VNWAPI;

@@ -1,5 +1,5 @@
 package vietnamworks.com.vietnamworksjobapp;
-import vietnamworks.com.helper.BaseApplication;
+import R.helper.BaseApplication;
 import vietnamworks.com.vnwcore.VNWAPI;
 
 /**

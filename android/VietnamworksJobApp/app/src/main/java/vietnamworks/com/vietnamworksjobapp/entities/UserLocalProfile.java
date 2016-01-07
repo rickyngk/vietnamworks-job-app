@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-import vietnamworks.com.helper.BaseEntity;
+import R.helper.BaseEntity;
 
 /**
  * Created by duynk on 1/5/16.

@@ -2,7 +2,7 @@ package vietnamworks.com.vnwcore;
 
 import android.os.Bundle;
 
-import vietnamworks.com.helper.BaseActivity;
+import R.helper.BaseActivity;
 
 /**
  * Created by duynk on 12/29/15.

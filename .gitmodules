@@ -4,3 +4,6 @@
 [submodule "android/VietnamworksJobApp/volley"]
 	path = android/VietnamworksJobApp/volley
 	url = https://android.googlesource.com/platform/frameworks/volley
+[submodule "android/VietnamworksJobApp/android-helper"]
+	path = android/VietnamworksJobApp/android-helper
+	url = https://github.com/rickyngk/android-helper.git
