@@ -19,7 +19,7 @@ import vietnamworks.com.vnwcore.entities.Job;
  * Created by duynk on 1/5/16.
  */
 public class JobModel {
-    public final static int MAX_JOBS = 20;
+    public final static int MAX_JOBS = 10;
     static JobModel instance =  new JobModel();
     ArrayList<Job> data = new ArrayList<>();
 
