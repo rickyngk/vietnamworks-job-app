@@ -35,7 +35,7 @@ public class UserLocalProfile extends BaseEntity {
     }
 
     @Override
-    public void importFromHashMap(@NonNull HashMap m) {
+    public void importData(@NonNull HashMap m) {
         for (String field:fields) {
             if (m.containsKey(field)) {
                 if (field.compareTo(WORKING_LOCATION) == 0) {

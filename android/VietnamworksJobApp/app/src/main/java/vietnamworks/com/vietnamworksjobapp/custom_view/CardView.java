@@ -9,7 +9,7 @@ import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import vietnamworks.com.vietnamworksjobapp.R;
-import vietnamworks.com.vietnamworksjobapp.entities.Job;
+import vietnamworks.com.vnwcore.entities.Job;
 
 /**
  * Created by duynk on 1/5/16.

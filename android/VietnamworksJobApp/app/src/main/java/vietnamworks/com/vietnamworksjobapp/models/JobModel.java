@@ -11,9 +11,9 @@ import java.util.HashMap;
 import R.helper.Callback;
 import R.helper.CallbackResult;
 import R.helper.CallbackSuccess;
-import vietnamworks.com.vietnamworksjobapp.entities.Job;
 import vietnamworks.com.vietnamworksjobapp.entities.WorkingLocation;
 import vietnamworks.com.vnwcore.VNWAPI;
+import vietnamworks.com.vnwcore.entities.Job;
 
 /**
  * Created by duynk on 1/5/16.
@@ -49,7 +49,7 @@ public class JobModel {
                         JSONArray jobs = data.getJSONArray("jobs");
                         for (int i = 0; i < jobs.length(); i++) {
                             Job j = new Job();
-                            j.setJobTitle(jobs.getJSONObject(i).getString("job_title"));
+                            j.importData(jobs.getJSONObject(i));
                             instance.data.add(j);
                         }
                     } catch (Exception E) {
