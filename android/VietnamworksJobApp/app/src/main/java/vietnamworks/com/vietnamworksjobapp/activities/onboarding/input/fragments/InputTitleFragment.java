@@ -4,12 +4,15 @@ import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 
@@ -45,14 +48,22 @@ public class InputTitleFragment extends BaseFragment {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                UserLocalProfileModel.getEntity().setJobTitle(jobTitle.getText().toString());
-                getActivityRef(InputInfoActivity.class).setPageIndex(1);
+                onNext();
             }
         });
 
         adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_dropdown_item_1line);
 
-
+        jobTitle.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if ((actionId == getResources().getInteger(R.integer.ime_job_title) || actionId == EditorInfo.IME_NULL) && event == null) {
+                    onNext();
+                    return true;
+                }
+                return false;
+            }
+        });
         jobTitle.setAdapter(adapter);
         jobTitle.addTextChangedListener(new TextWatcher() {
             @Override
@@ -95,5 +106,10 @@ public class InputTitleFragment extends BaseFragment {
         });
 
         return rootView;
+    }
+
+    private void onNext() {
+        UserLocalProfileModel.getEntity().setJobTitle(jobTitle.getText().toString());
+        getActivityRef(InputInfoActivity.class).setPageIndex(1);
     }
 }
