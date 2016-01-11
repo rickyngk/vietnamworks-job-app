@@ -10,13 +10,32 @@
     android:layout_centerHorizontal="true"
     android:background="@drawable/card">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Job Title"
-        android:id="@+id/job_title"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        style="@style/Text.Title"
-        android:layout_margin="@dimen/base_padding_2x" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            style="@style/Text.Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Company"
+            android:id="@+id/company"
+            android:layout_margin="@dimen/base_padding_2x"
+            android:textAlignment="center" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Job Title"
+            android:id="@+id/job_title"
+            style="@style/Text.Title"
+            android:layout_margin="@dimen/base_padding_2x"
+            android:textAlignment="center" />
+
+    </LinearLayout>
+
 </RelativeLayout>

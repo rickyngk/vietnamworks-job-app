@@ -18,6 +18,9 @@ public class CardView extends FrameLayout {
     @Bind(R.id.job_title)
     TextView jobTitle;
 
+    @Bind(R.id.company)
+    TextView company;
+
     public CardView(Context context) {
         super(context);
         initializeViews(context);
@@ -43,5 +46,6 @@ public class CardView extends FrameLayout {
 
     public void setViewModel(Job j) {
         jobTitle.setText(j.getJobTitle());
+        company.setText(j.getCompany());
     }
 }
