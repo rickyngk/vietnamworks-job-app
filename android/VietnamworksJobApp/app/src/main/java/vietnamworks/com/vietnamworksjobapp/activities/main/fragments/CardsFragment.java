@@ -18,6 +18,7 @@ import vietnamworks.com.cardstack.CardStackView;
 import vietnamworks.com.cardstack.CardStackViewDelegate;
 import vietnamworks.com.vietnamworksjobapp.R;
 import vietnamworks.com.vietnamworksjobapp.custom_view.CardView;
+import vietnamworks.com.vietnamworksjobapp.custom_view.EmptyCardView;
 import vietnamworks.com.vietnamworksjobapp.models.JobModel;
 import vietnamworks.com.vietnamworksjobapp.models.UserLocalProfileModel;
 
@@ -102,6 +103,11 @@ public class CardsFragment extends BaseFragment {
         }
 
         @Override
+        public View onLoadEmptyView(CardStackView v) {
+            return new EmptyCardView(CardsFragment.this.getContext());
+        }
+
+        @Override
         public int getCount() {
             return JobModel.count();
         }
@@ -111,7 +117,11 @@ public class CardsFragment extends BaseFragment {
         }
 
         @Override
-        public void onActive(CardStackView v, int index) {}
+        public void onActive(CardStackView v, int index) {
+            if (index == -1) { //click on empty card
+                v.reset();
+            }
+        }
 
         @Override
         public void onEndOfStack(CardStackView v) {
