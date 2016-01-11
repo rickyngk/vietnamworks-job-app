@@ -9,13 +9,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import R.cardstack.CardStackView;
+import R.cardstack.CardStackViewDelegate;
 import R.helper.BaseFragment;
 import R.helper.Callback;
 import R.helper.CallbackResult;
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import vietnamworks.com.cardstack.CardStackView;
-import vietnamworks.com.cardstack.CardStackViewDelegate;
 import vietnamworks.com.vietnamworksjobapp.R;
 import vietnamworks.com.vietnamworksjobapp.custom_view.CardView;
 import vietnamworks.com.vietnamworksjobapp.custom_view.EmptyCardView;
