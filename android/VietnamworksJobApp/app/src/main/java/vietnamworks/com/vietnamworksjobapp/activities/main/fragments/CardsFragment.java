@@ -39,6 +39,9 @@ public class CardsFragment extends BaseFragment {
             JobModel.load(null, new Callback() {
                 @Override
                 public void onCompleted(Context context, CallbackResult result) {
+                    if (result.hasError()) {
+                        System.out.println("ERROR: " + result.getError().getMessage());
+                    }
                     v.ready();
                 }
             });
