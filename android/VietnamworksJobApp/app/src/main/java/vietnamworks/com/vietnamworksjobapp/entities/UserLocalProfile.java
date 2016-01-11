@@ -1,13 +1,10 @@
 package vietnamworks.com.vietnamworksjobapp.entities;
 
-import android.support.annotation.NonNull;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 
 import R.helper.BaseEntity;
 import R.helper.EntityField;
@@ -19,8 +16,7 @@ public class UserLocalProfile extends BaseEntity {
     @EntityField("jobTitle") String JOB_TITLE;
     @EntityField("industry") String INDUSTRY;
     @EntityField("industry_code") String INDUSTRY_CODE;
-    @EntityField("workingLocation") String WORKING_LOCATION;
-
+    @EntityField(value = "workingLocation", type = WorkingLocation.class, collectionType = ArrayList.class) String WORKING_LOCATION;
 
     public UserLocalProfile() {
         super();
@@ -36,19 +32,6 @@ public class UserLocalProfile extends BaseEntity {
 
     public String getJobTitle() {
         return getString(JOB_TITLE, "");
-    }
-
-    @Override
-    public void importData(@NonNull HashMap m) {
-        for (String field:fields) {
-            if (m.containsKey(field)) {
-                if (field.compareTo(WORKING_LOCATION) == 0) {
-                    data.put(field, convertArrayList(m.get(field), WorkingLocation.class));
-                } else {
-                    data.put(field, m.get(field));
-                }
-            }
-        }
     }
 
     @Override
