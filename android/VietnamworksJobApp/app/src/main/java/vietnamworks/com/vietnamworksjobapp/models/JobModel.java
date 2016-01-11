@@ -44,6 +44,7 @@ public class JobModel {
                     callback.onCompleted(context, new CallbackResult(result.getError()));
                 } else {
                     try {
+                        instance.data.clear();
                         JSONObject res = (JSONObject) result.getData();
                         JSONObject data = res.optJSONObject("data");
                         JSONArray jobs = data.getJSONArray("jobs");
