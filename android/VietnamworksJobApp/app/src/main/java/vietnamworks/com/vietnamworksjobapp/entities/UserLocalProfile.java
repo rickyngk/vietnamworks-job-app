@@ -10,18 +10,20 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 import R.helper.BaseEntity;
+import R.helper.EntityField;
 
 /**
  * Created by duynk on 1/5/16.
  */
 public class UserLocalProfile extends BaseEntity {
-    public final static String JOB_TITLE = "jobTitle";
-    public final static String INDUSTRY = "industry";
-    public final static String INDUSTRY_CODE = "industry_code";
-    public final static String WORKING_LOCATION = "workingLocation";
+    @EntityField("jobTitle") String JOB_TITLE;
+    @EntityField("industry") String INDUSTRY;
+    @EntityField("industry_code") String INDUSTRY_CODE;
+    @EntityField("workingLocation") String WORKING_LOCATION;
+
 
     public UserLocalProfile() {
-        super(Arrays.asList(JOB_TITLE, INDUSTRY, WORKING_LOCATION, INDUSTRY_CODE));
+        super();
         set(JOB_TITLE, "");
         set(INDUSTRY, "");
         set(INDUSTRY_CODE, "");

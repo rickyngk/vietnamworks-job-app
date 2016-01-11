@@ -1,23 +1,23 @@
 package vietnamworks.com.vietnamworksjobapp.entities;
 
-import java.util.Arrays;
-
 import R.helper.BaseEntity;
+import R.helper.EntityField;
 
 /**
  * Created by duynk on 1/6/16.
  */
 public class WorkingLocation extends BaseEntity {
-    public final static String LOCATION_ID = "location_id";
-    public final static String LANG_VN = "lang_vn";
-    public final static String LANG_EN = "lang_en";
+
+    @EntityField("location_id") String LOCATION_ID;
+    @EntityField("lang_vn") String LANG_VN;
+    @EntityField("lang_en") String LANG_EN;
 
     public WorkingLocation() {
-        super(Arrays.asList(LOCATION_ID, LANG_VN, LANG_EN));
+        super();
     }
 
     public WorkingLocation(int locationID, String lang_vn, String lang_en) {
-        super(Arrays.asList(LOCATION_ID, LANG_VN, LANG_EN));
+        super();
         set(LOCATION_ID, locationID);
         set(LANG_VN, lang_vn);
         set(LANG_EN, lang_en);
