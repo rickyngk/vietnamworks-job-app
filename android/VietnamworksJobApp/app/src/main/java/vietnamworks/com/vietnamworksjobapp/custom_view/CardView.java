@@ -9,7 +9,7 @@ import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import vietnamworks.com.vietnamworksjobapp.R;
-import vietnamworks.com.vnwcore.entities.Job;
+import vietnamworks.com.vnwcore.entities.JobSearchResult;
 
 /**
  * Created by duynk on 1/5/16.
@@ -44,7 +44,7 @@ public class CardView extends FrameLayout {
         ButterKnife.bind(this, this);
     }
 
-    public void setViewModel(Job j) {
+    public void setViewModel(JobSearchResult j) {
         jobTitle.setText(j.getJobTitle());
         company.setText(j.getCompany());
     }

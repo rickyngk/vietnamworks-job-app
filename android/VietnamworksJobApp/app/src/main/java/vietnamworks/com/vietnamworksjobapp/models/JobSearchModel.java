@@ -12,15 +12,15 @@ import R.helper.CallbackResult;
 import R.helper.CallbackSuccess;
 import vietnamworks.com.vietnamworksjobapp.entities.WorkingLocation;
 import vietnamworks.com.vnwcore.VNWAPI;
-import vietnamworks.com.vnwcore.entities.Job;
+import vietnamworks.com.vnwcore.entities.JobSearchResult;
 
 /**
  * Created by duynk on 1/5/16.
  */
-public class JobModel {
+public class JobSearchModel {
     public final static int MAX_JOBS = 10;
-    static JobModel instance =  new JobModel();
-    ArrayList<Job> data = new ArrayList<>();
+    static JobSearchModel instance =  new JobSearchModel();
+    ArrayList<JobSearchResult> data = new ArrayList<>();
 
     public static void load(final Context ctx, final Callback callback) {
         String jobTitle = UserLocalProfileModel.getEntity().getJobTitle();
@@ -48,7 +48,7 @@ public class JobModel {
                         JSONObject data = res.optJSONObject("data");
                         JSONArray jobs = data.getJSONArray("jobs");
                         for (int i = 0; i < jobs.length(); i++) {
-                            Job j = new Job();
+                            JobSearchResult j = new JobSearchResult();
                             j.importData(jobs.getJSONObject(i));
                             instance.data.add(j);
                         }
@@ -61,7 +61,7 @@ public class JobModel {
         });
     }
 
-    public static JobModel getInstance() {
+    public static JobSearchModel getInstance() {
         return instance;
     }
 
@@ -69,7 +69,7 @@ public class JobModel {
     public String toString() {
         try {
             JSONArray a = new JSONArray();
-            for (Job j : data) {
+            for (JobSearchResult j : data) {
                 a.put(j.exportToJsonObject());
             }
             return a.toString();
@@ -82,7 +82,7 @@ public class JobModel {
         return instance.data.size();
     }
 
-    public static Job get(int index) {
+    public static JobSearchResult get(int index) {
         return instance.data.get(index);
     }
 }

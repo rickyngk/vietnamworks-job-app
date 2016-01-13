@@ -19,8 +19,12 @@ import butterknife.ButterKnife;
 import vietnamworks.com.vietnamworksjobapp.R;
 import vietnamworks.com.vietnamworksjobapp.custom_view.CardView;
 import vietnamworks.com.vietnamworksjobapp.custom_view.EmptyCardView;
-import vietnamworks.com.vietnamworksjobapp.models.JobModel;
+import vietnamworks.com.vietnamworksjobapp.models.JobDetailModel;
+import vietnamworks.com.vietnamworksjobapp.models.JobSearchModel;
 import vietnamworks.com.vietnamworksjobapp.models.UserLocalProfileModel;
+import vietnamworks.com.vnwcore.entities.Job;
+import vietnamworks.com.vnwcore.entities.JobDetail;
+import vietnamworks.com.vnwcore.entities.Skill;
 
 /**
  * Created by duynk on 1/5/16.
@@ -84,7 +88,7 @@ public class CardsFragment extends BaseFragment {
     CardStackViewDelegate delegate = new CardStackViewDelegate() {
         @Override
         public void onStarted(final CardStackView v) {
-            JobModel.load(null, new Callback() {
+            JobSearchModel.load(null, new Callback() {
                 @Override
                 public void onCompleted(Context context, CallbackResult result) {
                     if (result.hasError()) {
@@ -98,7 +102,7 @@ public class CardsFragment extends BaseFragment {
         @Override
         public View onLoadView(CardStackView v, int index) {
             CardView cv = new CardView(CardsFragment.this.getContext());
-            cv.setViewModel(JobModel.get(index));
+            cv.setViewModel(JobSearchModel.get(index));
             return cv;
         }
 
@@ -109,7 +113,7 @@ public class CardsFragment extends BaseFragment {
 
         @Override
         public int getCount() {
-            return JobModel.count();
+            return JobSearchModel.count();
         }
 
         @Override
@@ -118,9 +122,6 @@ public class CardsFragment extends BaseFragment {
 
         @Override
         public void onActive(CardStackView v, int index) {
-            if (index == -1) { //click on empty card
-                v.reset();
-            }
         }
 
         @Override
@@ -130,6 +131,23 @@ public class CardsFragment extends BaseFragment {
 
         @Override
         public void onOpen(CardStackView v, int index) {
+            if (index == -1) { //click on empty card
+                v.reset();
+            } else {
+                JobDetailModel.load(getContext(), JobSearchModel.get(index).getJobId(), new Callback() {
+                    @Override
+                    public void onCompleted(Context context, CallbackResult result) {
+                        if (!result.hasError()) {
+                            Job job = (Job) result.getData();
+                            JobDetail jobDetail = (JobDetail) job.get(Job.JOB_DETAIL, null);
+                            if (jobDetail != null) {
+                                Skill skill = (Skill) jobDetail.getArray(JobDetail.SKILLS).get(0);
+                                System.out.println(skill.getInt(Skill.SKILL_WEIGHT, -1));
+                            }
+                        }
+                    }
+                });
+            }
         }
     };
 }
