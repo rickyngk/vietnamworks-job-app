@@ -45,7 +45,7 @@ public class UserLocalProfile extends BaseEntity {
             array.put(l.get(i).exportToJsonObject());
         }
         try {
-            obj.put(WORKING_LOCATION, (Object)array);
+            obj.put(WORKING_LOCATION, array);
         } catch (Exception E) {}
         return obj;
     }
