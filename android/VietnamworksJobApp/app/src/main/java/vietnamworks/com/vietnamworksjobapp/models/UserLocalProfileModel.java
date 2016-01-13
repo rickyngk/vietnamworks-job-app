@@ -12,11 +12,20 @@ public class UserLocalProfileModel {
     static UserLocalProfile entity = new UserLocalProfile();
 
     public static boolean loadLocal() {
-        return LocalStorage.loadExportableObject(LS_LOCAL_PROFILE_MODEL, entity);
+        try {
+            return LocalStorage.loadExportableObject(LS_LOCAL_PROFILE_MODEL, entity);
+        } catch (Exception E) {
+            E.printStackTrace();
+            return false;
+        }
     }
 
     public static void saveLocal() {
-        LocalStorage.set(LS_LOCAL_PROFILE_MODEL, entity);
+        try {
+            LocalStorage.set(LS_LOCAL_PROFILE_MODEL, entity);
+        }catch (Exception E) {
+            LocalStorage.remove(LS_LOCAL_PROFILE_MODEL);
+        }
     }
 
     public static void removeLocal() {

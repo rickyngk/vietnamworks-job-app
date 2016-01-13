@@ -6,7 +6,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import R.helper.Callback;
 import R.helper.CallbackResult;
@@ -68,12 +67,15 @@ public class JobModel {
 
     @Override
     public String toString() {
-        ArrayList<HashMap> a = new ArrayList<>();
-        for (Job j:data) {
-            a.add(j.exportToHashMap());
+        try {
+            JSONArray a = new JSONArray();
+            for (Job j : data) {
+                a.put(j.exportToJsonObject());
+            }
+            return a.toString();
+        }catch (Exception E) {
+            return E.toString();
         }
-        JSONArray array = new JSONArray(a);
-        return array.toString();
     }
 
     public static int count() {
