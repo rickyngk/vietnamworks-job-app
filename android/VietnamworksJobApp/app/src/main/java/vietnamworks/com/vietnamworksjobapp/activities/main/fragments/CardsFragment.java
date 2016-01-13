@@ -88,7 +88,7 @@ public class CardsFragment extends BaseFragment {
     CardStackViewDelegate delegate = new CardStackViewDelegate() {
         @Override
         public void onStarted(final CardStackView v) {
-            JobSearchModel.load(null, new Callback() {
+            JobSearchModel.load(getContext(), new Callback() {
                 @Override
                 public void onCompleted(Context context, CallbackResult result) {
                     if (result.hasError()) {

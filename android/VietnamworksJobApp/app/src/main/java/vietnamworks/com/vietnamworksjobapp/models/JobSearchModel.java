@@ -36,7 +36,7 @@ public class JobSearchModel {
         String jobIndustry = UserLocalProfileModel.getEntity().getIndustryCode();
 
 
-        VNWAPI.searchJob(MAX_JOBS, jobTitle, sb.toString(), jobIndustry, new Callback() {
+        VNWAPI.searchJob(ctx, MAX_JOBS, jobTitle, sb.toString(), jobIndustry, new Callback() {
             @Override
             public void onCompleted(Context context, CallbackResult result) {
                 if (result.hasError()) {

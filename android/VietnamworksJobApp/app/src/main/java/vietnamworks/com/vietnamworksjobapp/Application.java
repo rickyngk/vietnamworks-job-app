@@ -11,6 +11,6 @@ public class Application extends BaseApplication {
     public void onCreate() {
         super.onCreate();
         setDefaultFont(FontType.SERIF, "fonts/Montserrat-Regular.ttf");
-        VNWAPI.init(this, "d54e4c1463d7709f8c6c49e93b3454e69befbdbe15a6723885bf399aa2a74bfe", "", false);
+        VNWAPI.init("d54e4c1463d7709f8c6c49e93b3454e69befbdbe15a6723885bf399aa2a74bfe", "", false);
     }
 }

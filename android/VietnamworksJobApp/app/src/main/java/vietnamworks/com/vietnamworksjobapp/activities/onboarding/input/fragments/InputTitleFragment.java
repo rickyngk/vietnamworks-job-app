@@ -77,7 +77,7 @@ public class InputTitleFragment extends BaseFragment {
                     preventTextChangeEvent = false;
                     return;
                 }
-                VNWAPI.jobTitleSuggestion(jobTitle.getText().toString(), new Callback() {
+                VNWAPI.jobTitleSuggestion(getContext(), jobTitle.getText().toString(), new Callback() {
                     @Override
                     public void onCompleted(Context context, CallbackResult result) {
                         adapter.clear();
