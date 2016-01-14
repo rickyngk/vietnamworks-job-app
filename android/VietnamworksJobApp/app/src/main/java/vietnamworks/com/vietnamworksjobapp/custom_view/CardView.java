@@ -6,20 +6,36 @@ import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import vietnamworks.com.vietnamworksjobapp.R;
+import vietnamworks.com.vietnamworksjobapp.entities.WorkingLocation;
 import vietnamworks.com.vnwcore.entities.JobSearchResult;
+import vietnamworks.com.vnwcore.entities.Skill;
 
 /**
  * Created by duynk on 1/5/16.
  */
 public class CardView extends FrameLayout {
-    @Bind(R.id.job_title)
+    @Bind(R.id.job_card_job_title)
     TextView jobTitle;
 
-    @Bind(R.id.company)
+    @Bind(R.id.job_card_company)
     TextView company;
+
+    @Bind(R.id.job_card_job_level)
+    TextView jobLevel;
+
+    @Bind(R.id.job_card_location)
+    TextView location;
+
+    @Bind(R.id.job_card_salary)
+    TextView salary;
+
+    @Bind(R.id.job_card_skills)
+    TextView skills;
 
     public CardView(Context context) {
         super(context);
@@ -45,7 +61,56 @@ public class CardView extends FrameLayout {
     }
 
     public void setViewModel(JobSearchResult j) {
+        StringBuilder sb = new StringBuilder();
+        String delimiter = "";
+
         jobTitle.setText(j.getTitle());
         company.setText(j.getCompany());
+        jobLevel.setText(j.getJobLevel());
+
+
+        String locations = j.getLocations();
+        String[] location_array = locations.split(",");
+        sb = new StringBuilder();
+        delimiter = "";
+        for (String l: location_array) {
+            l = l.trim();
+            int i_l = Integer.parseInt(l);
+            String addedLoc = "";
+            if (i_l == WorkingLocation.DaNang.getId()) {
+                addedLoc = WorkingLocation.DaNang.getLangEn();
+            } else if (i_l == WorkingLocation.HoChiMinh.getId()) {
+                addedLoc = WorkingLocation.HoChiMinh.getLangEn();
+            } else if (i_l == WorkingLocation.DaNang.getId()) {
+                addedLoc = WorkingLocation.DaNang.getLangEn();
+            }
+            if (!addedLoc.isEmpty()) {
+                sb.append(delimiter);
+                sb.append(addedLoc);
+                delimiter = ", ";
+            }
+        }
+        location.setText(sb.toString());
+
+        salary.setText(j.getSalary());
+
+        ArrayList<Skill> sks = j.getSkills();
+        sb = new StringBuilder();
+        delimiter = "";
+        int max = 3;
+        if (skills != null && sks.size() > 0) {
+            for (Skill sk: sks) {
+                if (max == 0) {
+                    sb.append("...");
+                    break;
+                } else {
+                    max--;
+                    sb.append(delimiter);
+                    sb.append(sk.getName());
+                    delimiter = ", ";
+                }
+            }
+        }
+        skills.setText(sb.toString());
     }
 }
