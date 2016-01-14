@@ -45,7 +45,7 @@ public class CardView extends FrameLayout {
     }
 
     public void setViewModel(JobSearchResult j) {
-        jobTitle.setText(j.getJobTitle());
+        jobTitle.setText(j.getTitle());
         company.setText(j.getCompany());
     }
 }

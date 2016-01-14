@@ -134,15 +134,15 @@ public class CardsFragment extends BaseFragment {
             if (index == -1) { //click on empty card
                 v.reset();
             } else {
-                JobDetailModel.load(getContext(), JobSearchModel.get(index).getJobId(), new Callback() {
+                JobDetailModel.load(getContext(), JobSearchModel.get(index).getId(), new Callback() {
                     @Override
                     public void onCompleted(Context context, CallbackResult result) {
                         if (!result.hasError()) {
                             Job job = (Job) result.getData();
-                            JobDetail jobDetail = (JobDetail) job.get(Job.JOB_DETAIL, null);
+                            JobDetail jobDetail = job.getJobDetail();
                             if (jobDetail != null) {
-                                Skill skill = (Skill) jobDetail.getArray(JobDetail.SKILLS).get(0);
-                                System.out.println(skill.getInt(Skill.SKILL_WEIGHT, -1));
+                                Skill skill = jobDetail.getSkills().get(0);
+                                System.out.println(skill.getWeight());
                             }
                         }
                     }

@@ -7,6 +7,11 @@ import vietnamworks.com.vnwcore.VNWAPI;
  * Created by duynk on 12/29/15.
  */
 public class Application extends BaseApplication {
+
+    public Application() {
+        super();
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();

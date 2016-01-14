@@ -28,7 +28,7 @@ public class JobSearchModel {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < locations.size(); i++) {
             WorkingLocation l = locations.get(i);
-            sb.append(l.getLocationId());
+            sb.append(l.getId());
             if (i < locations.size() - 1) {
                 sb.append(",");
             }
@@ -49,7 +49,7 @@ public class JobSearchModel {
                         JSONArray jobs = data.getJSONArray("jobs");
                         for (int i = 0; i < jobs.length(); i++) {
                             JobSearchResult j = new JobSearchResult();
-                            j.importData(jobs.getJSONObject(i));
+                            j.importFromJson(jobs.getJSONObject(i));
                             instance.data.add(j);
                         }
                     } catch (Exception E) {
@@ -70,7 +70,7 @@ public class JobSearchModel {
         try {
             JSONArray a = new JSONArray();
             for (JobSearchResult j : data) {
-                a.put(j.exportToJsonObject());
+                a.put(j.exportToJson());
             }
             return a.toString();
         }catch (Exception E) {

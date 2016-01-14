@@ -61,7 +61,7 @@ public class InputLocationFragment extends BaseFragment {
                     locations.add(WorkingLocation.Other);
                 }
                 */
-                UserLocalProfileModel.getEntity().setWorkingLocation(locations);
+                UserLocalProfileModel.getEntity().setWorkingLocations(locations);
                 getActivityRef(InputInfoActivity.class).setPageIndex(2);
             }
         });

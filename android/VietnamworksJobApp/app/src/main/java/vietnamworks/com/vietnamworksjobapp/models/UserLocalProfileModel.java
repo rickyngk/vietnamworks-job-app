@@ -13,7 +13,7 @@ public class UserLocalProfileModel {
 
     public static boolean loadLocal() {
         try {
-            return LocalStorage.loadExportableObject(LS_LOCAL_PROFILE_MODEL, entity);
+            return LocalStorage.loadEntityX(LS_LOCAL_PROFILE_MODEL, entity);
         } catch (Exception E) {
             E.printStackTrace();
             return false;
