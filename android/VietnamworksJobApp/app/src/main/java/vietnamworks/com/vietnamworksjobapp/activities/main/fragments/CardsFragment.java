@@ -139,11 +139,10 @@ public class CardsFragment extends BaseFragment {
                 bundle.putString("jobTitle", ele.getText().toString());
                 bundle.putString("jobId", JobSearchModel.get(index).getId());
 
-                act.pushFragmentWithShareAnimation(
+                act.pushFragmentAnimateTransition(
                         new JobDetailFragment(),
                         R.id.fragment_holder,
                         bundle,
-                        0, 0,
                         new BaseActivity.ShareAnimationView(ele, getString(R.string.transition_job_card_to_job_detail))
                 );
             }
