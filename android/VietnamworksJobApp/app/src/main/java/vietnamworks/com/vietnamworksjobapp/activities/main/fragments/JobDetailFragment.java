@@ -17,6 +17,7 @@ import butterknife.ButterKnife;
 import vietnamworks.com.vietnamworksjobapp.R;
 import vietnamworks.com.vietnamworksjobapp.models.JobDetailModel;
 import vietnamworks.com.vnwcore.entities.Company;
+import vietnamworks.com.vnwcore.entities.Configuration;
 import vietnamworks.com.vnwcore.entities.Job;
 import vietnamworks.com.vnwcore.entities.JobDetail;
 import vietnamworks.com.vnwcore.entities.JobSummary;
@@ -73,7 +74,7 @@ public class JobDetailFragment extends BaseFragment {
                     JobSummary js = j.getJobSummary();
                     Company c = j.getCompany();
                     if (JobDetailFragment.this.getContext() == context) {
-                        jobLevel.setText(js.getLevel() + "");
+                        jobLevel.setText(Configuration.findJobLevel(js.getLevel() + "").getEn());
                         jobIndustry.setText(js.getCategories());
                         companyName.setText(c.getName());
                         companyProfile.setText(c.getProfile());
