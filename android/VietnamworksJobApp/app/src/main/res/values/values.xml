@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <integer name="ime_job_title">0x01000007</integer>
+    <string name="transition_job_card_to_job_detail">Job card to detail</string>
 </resources>

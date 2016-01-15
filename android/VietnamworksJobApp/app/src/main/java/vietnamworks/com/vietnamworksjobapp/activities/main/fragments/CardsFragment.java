@@ -8,9 +8,11 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import R.cardstack.CardStackView;
 import R.cardstack.CardStackViewDelegate;
+import R.helper.BaseActivity;
 import R.helper.BaseFragment;
 import R.helper.Callback;
 import R.helper.CallbackResult;
@@ -23,8 +25,6 @@ import vietnamworks.com.vietnamworksjobapp.models.JobDetailModel;
 import vietnamworks.com.vietnamworksjobapp.models.JobSearchModel;
 import vietnamworks.com.vietnamworksjobapp.models.UserLocalProfileModel;
 import vietnamworks.com.vnwcore.entities.Job;
-import vietnamworks.com.vnwcore.entities.JobDetail;
-import vietnamworks.com.vnwcore.entities.Skill;
 
 /**
  * Created by duynk on 1/5/16.
@@ -139,11 +139,19 @@ public class CardsFragment extends BaseFragment {
                     public void onCompleted(Context context, CallbackResult result) {
                         if (!result.hasError()) {
                             Job job = (Job) result.getData();
-                            JobDetail jobDetail = job.getJobDetail();
-                            if (jobDetail != null) {
-                                Skill skill = jobDetail.getSkills().get(0);
-                                System.out.println(skill.getWeight());
-                            }
+                            BaseActivity act = getActivityRef(BaseActivity.class);
+                            TextView ele = (TextView)cardView.getFront().findViewById(R.id.job_card_job_title);
+
+                            Bundle bundle = new Bundle();
+                            bundle.putString("jobTitle", ele.getText().toString());
+
+                            act.pushFragmentWithShareAnimation(
+                                    new JobDetailFragment(),
+                                    R.id.fragment_holder,
+                                    bundle,
+                                    0, 0,
+                                    new BaseActivity.ShareAnimationView(ele, getString(R.string.transition_job_card_to_job_detail))
+                            );
                         }
                     }
                 });
