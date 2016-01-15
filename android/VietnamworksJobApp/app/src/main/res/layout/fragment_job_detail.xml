@@ -1,12 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Job Title"
-        android:id="@+id/job_detail_job_title"
-        style="@style/Text.Large"
-        android:layout_margin="@dimen/base_padding_2x"/>
-</LinearLayout>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/scrollView">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Job Title"
+                    android:id="@+id/job_detail_job_title"
+                    style="@style/Text.Large"
+                    android:layout_margin="@dimen/base_padding_2x"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Job Level"
+                    android:id="@+id/job_detail_job_level"
+                    style="@style/Text.Medium"
+                    android:layout_margin="@dimen/base_padding_2x"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Job Industry"
+                    android:id="@+id/job_detail_job_industry"
+                    style="@style/Text.Medium"
+                    android:layout_margin="@dimen/base_padding_2x"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Company name"
+                    android:id="@+id/job_detail_company_name"
+                    style="@style/Text.Medium"
+                    android:layout_margin="@dimen/base_padding_2x"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Company profile"
+                    android:id="@+id/job_detail_company_profile"
+                    style="@style/Text.Medium"
+                    android:layout_margin="@dimen/base_padding_2x"/>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBar"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+
+</FrameLayout>
