@@ -21,10 +21,8 @@ import butterknife.ButterKnife;
 import vietnamworks.com.vietnamworksjobapp.R;
 import vietnamworks.com.vietnamworksjobapp.custom_view.CardView;
 import vietnamworks.com.vietnamworksjobapp.custom_view.EmptyCardView;
-import vietnamworks.com.vietnamworksjobapp.models.JobDetailModel;
 import vietnamworks.com.vietnamworksjobapp.models.JobSearchModel;
 import vietnamworks.com.vietnamworksjobapp.models.UserLocalProfileModel;
-import vietnamworks.com.vnwcore.entities.Job;
 
 /**
  * Created by duynk on 1/5/16.
@@ -134,27 +132,20 @@ public class CardsFragment extends BaseFragment {
             if (index == -1) { //click on empty card
                 v.reset();
             } else {
-                JobDetailModel.load(getContext(), JobSearchModel.get(index).getId(), new Callback() {
-                    @Override
-                    public void onCompleted(Context context, CallbackResult result) {
-                        if (!result.hasError()) {
-                            Job job = (Job) result.getData();
-                            BaseActivity act = getActivityRef(BaseActivity.class);
-                            TextView ele = (TextView)cardView.getFront().findViewById(R.id.job_card_job_title);
+                BaseActivity act = getActivityRef(BaseActivity.class);
+                TextView ele = (TextView)cardView.getFront().findViewById(R.id.job_card_job_title);
 
-                            Bundle bundle = new Bundle();
-                            bundle.putString("jobTitle", ele.getText().toString());
+                Bundle bundle = new Bundle();
+                bundle.putString("jobTitle", ele.getText().toString());
+                bundle.putString("jobId", JobSearchModel.get(index).getId());
 
-                            act.pushFragmentWithShareAnimation(
-                                    new JobDetailFragment(),
-                                    R.id.fragment_holder,
-                                    bundle,
-                                    0, 0,
-                                    new BaseActivity.ShareAnimationView(ele, getString(R.string.transition_job_card_to_job_detail))
-                            );
-                        }
-                    }
-                });
+                act.pushFragmentWithShareAnimation(
+                        new JobDetailFragment(),
+                        R.id.fragment_holder,
+                        bundle,
+                        0, 0,
+                        new BaseActivity.ShareAnimationView(ele, getString(R.string.transition_job_card_to_job_detail))
+                );
             }
         }
     };
