@@ -38,6 +38,7 @@ public class JobDetailFragment extends BaseFragment {
     @Bind(R.id.job_detail_company_name) TextView companyName;
     @Bind(R.id.job_detail_company_image) ImageView companyImage;
     @Bind(R.id.job_detail_company_address) TextView companyAddress;
+    @Bind(R.id.job_detail_salary) TextView salary;
 
     //job summary
     @Bind(R.id.summary_job_detail) View summaryJobDetailView;
@@ -70,9 +71,10 @@ public class JobDetailFragment extends BaseFragment {
         jobTitle.setText(bundle.getString("jobTitle"));
         String jobId = bundle.getString("jobId");
 
-        workingLocations.setText("");
-        companyName.setText("");
-        companyAddress.setText("");
+        workingLocations.setVisibility(View.GONE);
+        companyName.setVisibility(View.GONE);
+        companyAddress.setVisibility(View.GONE);
+        salary.setVisibility(View.GONE);
 
         summaryJobDetailView.setVisibility(View.INVISIBLE);
         aboutCompanyView.setVisibility(View.INVISIBLE);
@@ -106,8 +108,15 @@ public class JobDetailFragment extends BaseFragment {
                                 }
                             }
                             workingLocations.setText(String.format(getString(R.string.work_location), b.toString()));
+                            workingLocations.setVisibility(View.VISIBLE);
                         }
 
+                        salary.setVisibility(View.VISIBLE);
+                        if (js.isSalaryVisible()) {
+                            salary.setText(String.format(getString(R.string.salary), js.getSalaryRange()));
+                        } else {
+                            salary.setText(String.format(getString(R.string.salary), getString(R.string.negotiable)));
+                        }
 
                         jobLevel.setText(Configuration.findJobLevel(js.getLevel() + "").getEn());
 
@@ -135,7 +144,9 @@ public class JobDetailFragment extends BaseFragment {
                         //company
                         Company c = j.getCompany();
                         companyName.setText(c.getName());
+                        companyName.setVisibility(View.VISIBLE);
                         companyAddress.setText(c.getAddress());
+                        companyAddress.setVisibility(View.VISIBLE);
                         Picasso.with(context).load(c.getLogo()).into(companyImage);
 
                         //company detail

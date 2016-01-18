@@ -36,4 +36,6 @@
     <string name="about_our_company">About our company</string>
     <string name="contact_person">Contact person: %s</string>
     <string name="company_size">Company size: %s</string>
+    <string name="salary">Salary: %s</string>
+    <string name="negotiable">Negotiable</string>
 </resources>

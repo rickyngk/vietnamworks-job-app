@@ -100,8 +100,19 @@
                                 android:id="@+id/job_detail_working_location"
                                 style="@style/Text.Medium.Muted"
                                 android:layout_marginLeft="@dimen/base_padding_2x"
-                                android:layout_marginBottom="@dimen/base_padding"
+                                android:layout_marginBottom="@dimen/base_padding_2x"
                                 android:layout_marginRight="@dimen/base_padding_2x" />
+
+                            <TextView
+                                style="@style/Text.Medium"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Salary"
+                                android:id="@+id/job_detail_salary"
+                                android:layout_marginLeft="@dimen/base_padding_2x"
+                                android:layout_marginBottom="@dimen/base_padding"
+                                android:layout_marginRight="@dimen/base_padding_2x"
+                                android:textStyle="bold" />
                         </LinearLayout>
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
