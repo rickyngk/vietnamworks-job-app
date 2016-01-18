@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+
 import R.helper.BaseFragment;
 import R.helper.Callback;
 import R.helper.CallbackResult;
@@ -27,6 +29,7 @@ import vietnamworks.com.vnwcore.entities.JobDetail;
 import vietnamworks.com.vnwcore.entities.JobSummary;
 import vietnamworks.com.vnwcore.entities.Language;
 import vietnamworks.com.vnwcore.entities.Location;
+import vietnamworks.com.vnwcore.entities.Skill;
 
 /**
  * Created by duynk on 1/15/16.
@@ -55,6 +58,18 @@ public class JobDetailFragment extends BaseFragment {
     @Bind(R.id.company_detail_desc) TextView companyDetailDesc;
     @Bind(R.id.company_detail_size) TextView companyDetailSize;
 
+    //required skills
+    @Bind(R.id.required_skills) View requiredSkillsView;
+    @Bind(R.id.job_detail_required_skills) TextView requiredSkills;
+
+    //job desc
+    @Bind(R.id.job_desc) View jobDescriptionView;
+    @Bind(R.id.job_detail_desc) TextView jobDesc;
+
+    //job requirement
+    @Bind(R.id.job_requirement) View jobRequirementView;
+    @Bind(R.id.job_detail_requirement) TextView jobRequirement;
+
     @Bind(R.id.progressBar)
     ProgressBar progressBar;
 
@@ -75,6 +90,9 @@ public class JobDetailFragment extends BaseFragment {
         companyName.setVisibility(View.GONE);
         companyAddress.setVisibility(View.GONE);
         salary.setVisibility(View.GONE);
+        requiredSkillsView.setVisibility(View.GONE);
+        jobDescriptionView.setVisibility(View.GONE);
+        jobRequirementView.setVisibility(View.GONE);
 
         summaryJobDetailView.setVisibility(View.INVISIBLE);
         aboutCompanyView.setVisibility(View.INVISIBLE);
@@ -84,12 +102,28 @@ public class JobDetailFragment extends BaseFragment {
             @Override
             public void onCompleted(Context context, CallbackResult result) {
                 progressBar.setVisibility(View.GONE);
-                summaryJobDetailView.setVisibility(View.VISIBLE);
-                aboutCompanyView.setVisibility(View.VISIBLE);
+
                 if (!result.hasError()) {
+                    summaryJobDetailView.setVisibility(View.VISIBLE);
+                    aboutCompanyView.setVisibility(View.VISIBLE);
+                    requiredSkillsView.setVisibility(View.VISIBLE);
+                    jobDescriptionView.setVisibility(View.VISIBLE);
+                    jobRequirementView.setVisibility(View.VISIBLE);
+
                     if (JobDetailFragment.this.getContext() == context) {
                         Job j = (Job) result.getData();
                         JobDetail jd = j.getJobDetail();
+
+                        ArrayList<Skill> skills = jd.getSkills();
+                        StringBuilder skillStringBuilder = new StringBuilder();
+                        for (Skill s : skills) {
+                            skillStringBuilder.append("+ ");
+                            skillStringBuilder.append(s.getName());
+                            skillStringBuilder.append("\n");
+                        }
+                        requiredSkills.setText(skillStringBuilder.toString());
+                        jobDesc.setText(jd.getDescription());
+                        jobRequirement.setText(jd.getRequirement());
 
                         //job summary
                         JobSummary js = j.getJobSummary();
@@ -113,7 +147,13 @@ public class JobDetailFragment extends BaseFragment {
 
                         salary.setVisibility(View.VISIBLE);
                         if (js.isSalaryVisible()) {
-                            salary.setText(String.format(getString(R.string.salary), js.getSalaryRange()));
+                            int min = js.getMinSalary();
+                            int max = js.getMaxSalary();
+                            if (min < max) {
+                                salary.setText(String.format(getString(R.string.salary), js.getSalaryRange()));
+                            } else {
+                                salary.setText(String.format(getString(R.string.salary), min + ""));
+                            }
                         } else {
                             salary.setText(String.format(getString(R.string.salary), getString(R.string.negotiable)));
                         }
@@ -139,6 +179,8 @@ public class JobDetailFragment extends BaseFragment {
                         Language lang = Configuration.findLanguage(js.getPreferLanguage() + "");
                         if (lang != null) {
                             preferredLanguage.setText(lang.getName());
+                        } else {
+                            preferredLanguage.setText(getString(R.string.any));
                         }
 
                         //company

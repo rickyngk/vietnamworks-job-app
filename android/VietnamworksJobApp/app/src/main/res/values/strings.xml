@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Vietnamworks Job App</string>
 
+    <string name="any">Any</string>
+
     <!-- activity title -->
     <string name="title_cards">Matched jobs</string>
 
@@ -38,4 +40,7 @@
     <string name="company_size">Company size: %s</string>
     <string name="salary">Salary: %s</string>
     <string name="negotiable">Negotiable</string>
+    <string name="required_skills">You Should Be Best At</string>
+    <string name="job_desc">What You Will Do</string>
+    <string name="job_requirement">What You Are Good At</string>
 </resources>
