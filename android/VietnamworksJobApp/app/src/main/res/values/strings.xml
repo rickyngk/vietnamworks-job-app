@@ -26,5 +26,14 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
-
+    
+    <!-- job detail-->
+    <string name="work_location">Work location: %s</string>
+    <string name="summary_job_detail">Summary job detail</string>
+    <string name="job_level">Job level</string>
+    <string name="job_category">Job category</string>
+    <string name="preferred_language">Preferred language</string>
+    <string name="about_our_company">About our company</string>
+    <string name="contact_person">Contact person: %s</string>
+    <string name="company_size">Company size: %s</string>
 </resources>

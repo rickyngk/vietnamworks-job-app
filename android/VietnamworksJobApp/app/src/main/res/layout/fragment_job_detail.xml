@@ -14,47 +14,255 @@
             android:id="@+id/scrollView">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Job Title"
-                    android:id="@+id/job_detail_job_title"
-                    style="@style/Text.Large"
-                    android:layout_margin="@dimen/base_padding_2x"/>
 
-                <TextView
+                <android.support.v7.widget.CardView
+                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Job Level"
-                    android:id="@+id/job_detail_job_level"
-                    style="@style/Text.Medium"
-                    android:layout_margin="@dimen/base_padding_2x"/>
+                    card_view:cardCornerRadius="4dp"
+                    android:layout_margin="@dimen/base_padding_2x"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Job Industry"
-                    android:id="@+id/job_detail_job_industry"
-                    style="@style/Text.Medium"
-                    android:layout_margin="@dimen/base_padding_2x"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        >
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Company name"
-                    android:id="@+id/job_detail_company_name"
-                    style="@style/Text.Medium"
-                    android:layout_margin="@dimen/base_padding_2x"/>
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
 
-                <TextView
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Job Title"
+                                    android:id="@+id/job_detail_job_title"
+                                    style="@style/Text.Large"
+                                    android:layout_marginBottom="@dimen/base_padding"
+                                    android:layout_marginLeft="@dimen/base_padding_2x"
+                                    android:layout_marginTop="@dimen/base_padding_2x"
+                                    android:layout_marginRight="@dimen/base_padding_2x" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Company name"
+                                    android:id="@+id/job_detail_company_name"
+                                    style="@style/Text.Medium"
+                                    android:layout_marginLeft="@dimen/base_padding_2x"
+                                    android:layout_marginBottom="@dimen/base_padding"
+                                    android:layout_marginRight="@dimen/base_padding_2x"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
+                                android:id="@+id/job_detail_company_image"
+                                android:layout_marginTop="@dimen/base_padding_2x"
+                                android:layout_marginLeft="@dimen/base_padding_2x"
+                                android:scaleType="fitStart"
+                                android:contentDescription="@null"
+                                android:layout_marginRight="@dimen/base_padding_2x" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Company address"
+                                android:id="@+id/job_detail_company_address"
+                                style="@style/Text.Medium.Muted"
+                                android:layout_marginLeft="@dimen/base_padding_2x"
+                                android:layout_marginBottom="@dimen/base_padding"
+                                android:layout_marginRight="@dimen/base_padding_2x" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Working location"
+                                android:id="@+id/job_detail_working_location"
+                                style="@style/Text.Medium.Muted"
+                                android:layout_marginLeft="@dimen/base_padding_2x"
+                                android:layout_marginBottom="@dimen/base_padding"
+                                android:layout_marginRight="@dimen/base_padding_2x" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+
+
+                <android.support.v7.widget.CardView
+                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Company profile"
-                    android:id="@+id/job_detail_company_profile"
-                    style="@style/Text.Medium"
-                    android:layout_margin="@dimen/base_padding_2x"/>
+                    card_view:cardCornerRadius="4dp"
+                    android:layout_margin="@dimen/base_padding_2x"
+                    android:id="@+id/summary_job_detail"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/summary_job_detail"
+                            style="@style/Text.Large"
+                            android:layout_margin="@dimen/base_padding_2x"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/job_level"
+                            style="@style/Text.Medium"
+                            android:layout_marginLeft="@dimen/base_padding_2x"
+                            android:layout_marginTop="@dimen/base_padding_2x"
+                            android:layout_marginRight="@dimen/base_padding_2x"
+                            android:layout_marginBottom="@dimen/base_padding"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/job_level"
+                            android:id="@+id/job_detail_job_level"
+                            style="@style/Text.Medium.Muted"
+                            android:layout_marginLeft="@dimen/base_padding_2x"
+                            android:layout_marginRight="@dimen/base_padding_2x"
+                            android:layout_marginBottom="@dimen/base_padding_2x" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/job_category"
+                            style="@style/Text.Medium"
+                            android:layout_marginLeft="@dimen/base_padding_2x"
+                            android:layout_marginTop="@dimen/base_padding_2x"
+                            android:layout_marginRight="@dimen/base_padding_2x"
+                            android:layout_marginBottom="@dimen/base_padding"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/job_category"
+                            android:id="@+id/job_detail_job_industry"
+                            style="@style/Text.Medium.Muted"
+                            android:layout_marginLeft="@dimen/base_padding_2x"
+                            android:layout_marginRight="@dimen/base_padding_2x"
+                            android:layout_marginBottom="@dimen/base_padding_2x" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/preferred_language"
+                            style="@style/Text.Medium"
+                            android:layout_marginLeft="@dimen/base_padding_2x"
+                            android:layout_marginTop="@dimen/base_padding_2x"
+                            android:layout_marginRight="@dimen/base_padding_2x"
+                            android:layout_marginBottom="@dimen/base_padding"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/preferred_language"
+                            android:id="@+id/job_detail_preferred_language"
+                            style="@style/Text.Medium.Muted"
+                            android:layout_marginLeft="@dimen/base_padding_2x"
+                            android:layout_marginRight="@dimen/base_padding_2x"
+                            android:layout_marginBottom="@dimen/base_padding_2x" />
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    card_view:cardCornerRadius="4dp"
+                    android:layout_margin="@dimen/base_padding_2x"
+                    android:id="@+id/about_company">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/about_our_company"
+                            style="@style/Text.Large"
+                            android:layout_margin="@dimen/base_padding_2x"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="company"
+                            style="@style/Text.Medium"
+                            android:id="@+id/company_detail_name"
+                            android:layout_marginLeft="@dimen/base_padding_2x"
+                            android:layout_marginTop="@dimen/base_padding_2x"
+                            android:layout_marginRight="@dimen/base_padding_2x"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="@dimen/base_padding" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="address"
+                            style="@style/Text.Medium.Muted"
+                            android:id="@+id/company_detail_address"
+                            android:layout_marginLeft="@dimen/base_padding_2x"
+                            android:layout_marginRight="@dimen/base_padding_2x"
+                            android:layout_marginBottom="@dimen/base_padding"
+                            />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="contact persion"
+                            style="@style/Text.Medium.Muted"
+                            android:id="@+id/company_detail_contact"
+                            android:layout_marginLeft="@dimen/base_padding_2x"
+                            android:layout_marginRight="@dimen/base_padding_2x"
+                            android:layout_marginBottom="@dimen/base_padding"
+                            />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="company size"
+                            style="@style/Text.Medium.Muted"
+                            android:id="@+id/company_detail_size"
+                            android:layout_marginRight="@dimen/base_padding_2x"
+                            android:layout_marginBottom="@dimen/base_padding_2x"
+                            android:layout_marginLeft="@dimen/base_padding_2x" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="company detail"
+                            style="@style/Text.Medium.Muted"
+                            android:id="@+id/company_detail_desc"
+                            android:layout_margin="@dimen/base_padding_2x"/>
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
@@ -70,6 +278,7 @@
             android:id="@+id/progressBar"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
+
     </RelativeLayout>
 
 </FrameLayout>

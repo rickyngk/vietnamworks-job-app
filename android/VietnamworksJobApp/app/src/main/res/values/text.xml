@@ -51,4 +51,20 @@
         <item name="android:textColor">@color/textColorLight</item>
     </style>
 
+    <style name="Text.Title.Muted" parent="Text.Title">
+        <item name="android:textColor">@color/textColorSemiDark</item>
+    </style>
+    <style name="Text.Large.Muted" parent="Text.Large">
+        <item name="android:textColor">@color/textColorSemiDark</item>
+    </style>
+    <style name="Text.Medium.Muted" parent="Text.Medium">
+        <item name="android:textColor">@color/textColorSemiDark</item>
+    </style>
+    <style name="Text.Small.Muted" parent="Text.Small">
+        <item name="android:textColor">@color/textColorSemiDark</item>
+    </style>
+    <style name="Text.ExtraSmall.Muted" parent="Text.ExtraSmall">
+        <item name="android:textColor">@color/textColorSemiDark</item>
+    </style>
+
 </resources>
