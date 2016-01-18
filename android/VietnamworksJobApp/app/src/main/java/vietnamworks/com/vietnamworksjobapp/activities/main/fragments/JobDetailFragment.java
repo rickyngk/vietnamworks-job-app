@@ -16,6 +16,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import vietnamworks.com.vietnamworksjobapp.R;
 import vietnamworks.com.vietnamworksjobapp.models.JobDetailModel;
+import vietnamworks.com.vnwcore.entities.Category;
 import vietnamworks.com.vnwcore.entities.Company;
 import vietnamworks.com.vnwcore.entities.Configuration;
 import vietnamworks.com.vnwcore.entities.Job;
@@ -69,13 +70,29 @@ public class JobDetailFragment extends BaseFragment {
             public void onCompleted(Context context, CallbackResult result) {
                 progressBar.setVisibility(View.GONE);
                 if (!result.hasError()) {
-                    Job j = (Job)result.getData();
+                    Job j = (Job) result.getData();
                     JobDetail jd = j.getJobDetail();
                     JobSummary js = j.getJobSummary();
                     Company c = j.getCompany();
                     if (JobDetailFragment.this.getContext() == context) {
                         jobLevel.setText(Configuration.findJobLevel(js.getLevel() + "").getEn());
-                        jobIndustry.setText(js.getCategories());
+
+                        String industry = js.getCategories();
+                        if (industry != null && !industry.isEmpty()) {
+                            String[] industry_arr = industry.split(",");
+                            StringBuilder b = new StringBuilder();
+                            String delim = "";
+                            for (String s : industry_arr) {
+                                Category cat = Configuration.findCategory(s.trim());
+                                if (cat != null) {
+                                    b.append(delim);
+                                    b.append(cat.getEn());
+                                    delim = ", ";
+                                }
+                            }
+                            jobIndustry.setText(b.toString());
+                        }
+
                         companyName.setText(c.getName());
                         companyProfile.setText(c.getProfile());
                     }
