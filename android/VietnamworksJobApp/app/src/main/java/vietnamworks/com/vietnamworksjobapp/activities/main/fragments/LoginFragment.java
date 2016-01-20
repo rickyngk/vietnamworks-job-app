@@ -82,7 +82,7 @@ public class LoginFragment extends BaseFragment {
                                 showError(R.string.oops_something_wrong);
                             }
                         } else {
-                            //TODO: show cover letter
+                            BaseActivity.replaceFragment(new CoverLetterFragment(), R.id.fragment_holder);
                         }
                     }
                 });

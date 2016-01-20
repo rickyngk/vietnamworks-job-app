@@ -27,10 +27,9 @@ public class CheckLoginFragment extends BaseFragment {
             @Override
             public void onCompleted(Context context, CallbackResult result) {
                 if (result.hasError()) {
-                    //TODO: open login form
                     BaseActivity.replaceFragment(new LoginFragment(), R.id.fragment_holder);
                 } else {
-                    //TODO: open cover letter form
+                    BaseActivity.replaceFragment(new CoverLetterFragment(), R.id.fragment_holder);
                 }
             }
         });

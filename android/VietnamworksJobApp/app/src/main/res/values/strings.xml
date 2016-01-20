@@ -12,6 +12,7 @@
     <string name="next">Next</string>
     <string name="skip">Skip</string>
     <string name="done">Done</string>
+    <string name="cancel">Cancel</string>
 
 
     <string name="get_started">Getting started</string>
@@ -51,4 +52,7 @@
     <string name="email_is_required">Email is required</string>
     <string name="invalid_email_format">Invalid email format</string>
     <string name="invalid_credential">Incorrect username or password</string>
+
+    <!-- cover letter-->
+    <string name="cover_letter">Cover letter</string>
 </resources>
