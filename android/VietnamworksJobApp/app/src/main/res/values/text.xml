@@ -3,6 +3,7 @@
     <color name="textColorLight">#FFFFFF</color>
     <color name="textColorDark">#333333</color>
     <color name="textColorSemiDark">#666666</color>
+    <color name="textColorError">@color/colorError</color>
 
     <dimen name="font_xs">12sp</dimen>
     <dimen name="font_s">14sp</dimen>
@@ -65,6 +66,27 @@
     </style>
     <style name="Text.ExtraSmall.Muted" parent="Text.ExtraSmall">
         <item name="android:textColor">@color/textColorSemiDark</item>
+    </style>
+
+    <style name="Text.Title.Error" parent="Text.Title">
+        <item name="android:textColor">@color/textColorError</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+    <style name="Text.Large.Error" parent="Text.Large">
+        <item name="android:textColor">@color/textColorError</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+    <style name="Text.Medium.Error" parent="Text.Medium">
+        <item name="android:textColor">@color/textColorError</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+    <style name="Text.Small.Error" parent="Text.Small">
+        <item name="android:textColor">@color/textColorError</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+    <style name="Text.ExtraSmall.Error" parent="Text.ExtraSmall">
+        <item name="android:textColor">@color/textColorError</item>
+        <item name="android:textStyle">italic</item>
     </style>
 
 </resources>

@@ -2,6 +2,7 @@ package vietnamworks.com.vietnamworksjobapp.activities.main.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import R.helper.BaseActivity;
 import R.helper.BaseFragment;
 import R.helper.Callback;
 import R.helper.CallbackResult;
@@ -72,6 +74,9 @@ public class JobDetailFragment extends BaseFragment {
 
     @Bind(R.id.progressBar)
     ProgressBar progressBar;
+
+    @Bind(R.id.btn_apply_job)
+    FloatingActionButton btnApplyJob;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -199,6 +204,14 @@ public class JobDetailFragment extends BaseFragment {
                         companyDetailSize.setText(String.format(getString(R.string.company_size), c.getSize()));
                     }
                 }
+            }
+        });
+
+
+        btnApplyJob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BaseActivity.sInstance.pushFragment(new CheckLoginFragment(), R.id.fragment_holder);
             }
         });
         return rootView;

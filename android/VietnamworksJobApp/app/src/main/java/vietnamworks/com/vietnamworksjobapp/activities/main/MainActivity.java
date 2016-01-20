@@ -2,6 +2,7 @@ package vietnamworks.com.vietnamworksjobapp.activities.main;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -10,9 +11,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import R.helper.BaseActivity;
+import R.helper.BaseFragment;
 import vietnamworks.com.vietnamworksjobapp.R;
 import vietnamworks.com.vietnamworksjobapp.activities.launcher.LauncherActivity;
 import vietnamworks.com.vietnamworksjobapp.activities.main.fragments.CardsFragment;
+import vietnamworks.com.vietnamworksjobapp.activities.main.fragments.LoginFragment;
 import vietnamworks.com.vietnamworksjobapp.models.UserLocalProfileModel;
 
 public class MainActivity extends BaseActivity
@@ -36,6 +39,13 @@ public class MainActivity extends BaseActivity
 
         openFragment(new CardsFragment(), R.id.fragment_holder);
         setActivityTitle(R.string.title_cards);
+
+        getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
+            @Override
+            public void onBackStackChanged() {
+                updateActionBar();
+            }
+        });
     }
 
     @Override
@@ -99,5 +109,16 @@ public class MainActivity extends BaseActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void updateActionBar() {
+        BaseFragment currentFragment = (BaseFragment)sInstance.getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
+        if (currentFragment != null) {
+            if (currentFragment instanceof LoginFragment) {
+                hideActionBar();
+            } else {
+                showActionBar();
+            }
+        }
     }
 }

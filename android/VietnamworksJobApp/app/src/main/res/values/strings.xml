@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">Vietnamworks Job App</string>
 
+    <!-- common-->
     <string name="any">Any</string>
+    <string name="oops_something_wrong">Oops something wrong. Please try again later</string>
 
     <!-- activity title -->
     <string name="title_cards">Matched jobs</string>
@@ -43,4 +45,10 @@
     <string name="required_skills">You Should Be Best At</string>
     <string name="job_desc">What You Will Do</string>
     <string name="job_requirement">What You Are Good At</string>
+
+    <!--login-->
+    <string name="password_is_required">Password is required</string>
+    <string name="email_is_required">Email is required</string>
+    <string name="invalid_email_format">Invalid email format</string>
+    <string name="invalid_credential">Incorrect username or password</string>
 </resources>
