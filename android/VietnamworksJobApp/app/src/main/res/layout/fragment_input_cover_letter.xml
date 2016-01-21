@@ -1,78 +1,72 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:background="@color/colorSemiAlpha"
+    android:background="@color/colorBaseBackground"
     android:onClick="nothing">
 
-    <android.support.v7.widget.CardView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="@dimen/base_padding_8x">
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/cover_letter"
+            android:id="@+id/textView2"
+            style="@style/Text.Large"
+            android:layout_marginLeft="@dimen/base_padding_2x"
+            android:layout_marginTop="@dimen/base_padding_2x"
+            android:layout_marginRight="@dimen/base_padding_2x"
+            android:layout_marginBottom="@dimen/base_padding" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="@dimen/base_padding_4x">
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:id="@+id/cover_letter_scroll_view"
+            android:background="#33cccccc"
+            android:layout_marginTop="@dimen/base_padding_2x"
+            android:layout_weight="1">
 
-            <TextView
+            <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="@string/cover_letter"
-                android:id="@+id/textView2"
-                style="@style/Text.Large" />
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:id="@+id/cover_letter_scroll_view"
-                android:background="#33cccccc"
-                android:layout_marginTop="@dimen/base_padding_2x"
-                android:layout_weight="1">
-
-                <ScrollView
+                android:layout_margin="@dimen/base_padding_2x">
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/base_padding">
-                    <LinearLayout
+                    android:orientation="vertical">
+                    <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <EditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="textMultiLine"
-                            android:ems="10"
-                            android:id="@+id/cover_letter"
-                            android:background="#00000000"/>
-                    </LinearLayout>
-                </ScrollView>
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="right">
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/cancel"
-                    android:id="@+id/btn_cancel_cover_letter" />
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/done"
-                    android:id="@+id/btn_confirm_cover_letter" />
-            </LinearLayout>
-
+                        android:inputType="textMultiLine"
+                        android:ems="10"
+                        android:id="@+id/cover_letter"
+                        android:background="#00000000"/>
+                </LinearLayout>
+            </ScrollView>
         </LinearLayout>
-    </android.support.v7.widget.CardView>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cancel"
+                android:id="@+id/btn_cancel_cover_letter" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/done"
+                android:id="@+id/btn_confirm_cover_letter" />
+        </LinearLayout>
+
+    </LinearLayout>
 </RelativeLayout>
