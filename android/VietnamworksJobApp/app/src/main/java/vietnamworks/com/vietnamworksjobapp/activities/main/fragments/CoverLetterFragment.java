@@ -1,5 +1,6 @@
 package vietnamworks.com.vietnamworksjobapp.activities.main.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,11 +10,14 @@ import android.widget.EditText;
 
 import R.helper.BaseActivity;
 import R.helper.BaseFragment;
+import R.helper.Callback;
+import R.helper.CallbackResult;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import vietnamworks.com.vietnamworksjobapp.R;
 import vietnamworks.com.vietnamworksjobapp.services.ShareContext;
 import vietnamworks.com.vnwcore.Auth;
+import vietnamworks.com.vnwcore.VNWAPI;
 import vietnamworks.com.vnwcore.entities.JobApplyForm;
 
 /**
@@ -70,6 +74,17 @@ public class CoverLetterFragment extends BaseFragment {
                             //TODO: process apply job
                             JobApplyForm jf = (JobApplyForm) ShareContext.get(ShareContext.SELECTED_JOB);
                             jf.setCoverLetter(coverLetter.getText().toString());
+
+                            VNWAPI.applyJob(getContext(), jf, new Callback() {
+                                @Override
+                                public void onCompleted(Context context, CallbackResult result) {
+                                    if (result.hasError()) {
+
+                                    } else {
+
+                                    }
+                                }
+                            });
                         }
                     }
                 });

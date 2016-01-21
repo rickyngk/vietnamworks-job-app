@@ -12,7 +12,9 @@ import R.helper.Callback;
 import R.helper.CallbackResult;
 import butterknife.ButterKnife;
 import vietnamworks.com.vietnamworksjobapp.R;
+import vietnamworks.com.vietnamworksjobapp.services.ShareContext;
 import vietnamworks.com.vnwcore.Auth;
+import vietnamworks.com.vnwcore.entities.JobApplyForm;
 
 /**
  * Created by duynk on 1/20/16.
@@ -29,6 +31,7 @@ public class CheckLoginFragment extends BaseFragment {
                 if (result.hasError()) {
                     BaseActivity.replaceFragment(new LoginFragment(), R.id.fragment_holder);
                 } else {
+                    ((JobApplyForm)ShareContext.get(ShareContext.SELECTED_JOB)).setToken(Auth.getAuthData().getProfile().getLoginToken());
                     BaseActivity.replaceFragment(new UploadCVFragment(), R.id.fragment_holder);
                 }
             }

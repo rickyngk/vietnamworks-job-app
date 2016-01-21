@@ -80,7 +80,7 @@ public class JobDetailFragment extends BaseFragment {
     @Bind(R.id.btn_apply_job)
     FloatingActionButton btnApplyJob;
 
-    public String jobId;
+    private String jobId;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -215,10 +215,10 @@ public class JobDetailFragment extends BaseFragment {
         btnApplyJob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                JobApplyForm ja = new JobApplyForm();
-                ja.setJobId(Integer.parseInt(jobId));
-                ShareContext.set(ShareContext.SELECTED_JOB, ja);
-
+                JobApplyForm jf = new JobApplyForm();
+                jf.setJobId(Integer.parseInt(jobId));
+                jf.setApplicationSubject("Application for " + jobTitle.getText() + " via VietnamWorks");
+                ShareContext.set(ShareContext.SELECTED_JOB, jf);
                 BaseActivity.pushFragment(new CheckLoginFragment(), R.id.fragment_holder);
             }
         });

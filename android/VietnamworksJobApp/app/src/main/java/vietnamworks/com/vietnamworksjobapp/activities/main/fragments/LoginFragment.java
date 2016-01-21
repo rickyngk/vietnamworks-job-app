@@ -18,7 +18,9 @@ import R.helper.CallbackResult;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import vietnamworks.com.vietnamworksjobapp.R;
+import vietnamworks.com.vietnamworksjobapp.services.ShareContext;
 import vietnamworks.com.vnwcore.Auth;
+import vietnamworks.com.vnwcore.entities.JobApplyForm;
 
 /**
  * Created by duynk on 1/20/16.
@@ -82,6 +84,7 @@ public class LoginFragment extends BaseFragment {
                                 showError(R.string.oops_something_wrong);
                             }
                         } else {
+                            ((JobApplyForm) ShareContext.get(ShareContext.SELECTED_JOB)).setToken(Auth.getAuthData().getProfile().getLoginToken());
                             BaseActivity.replaceFragment(new UploadCVFragment(), R.id.fragment_holder);
                         }
                     }
