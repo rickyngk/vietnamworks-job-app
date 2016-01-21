@@ -72,6 +72,12 @@ public class UploadCVFragment extends BaseFragment {
             public void onClick(View v) {
                 BaseActivity.hideKeyboard();
                 JobApplyForm jf = (JobApplyForm) ShareContext.get(ShareContext.SELECTED_JOB);
+                if (optUseNewCV.isChecked()) {
+                    jf.setResumeAttachId(null);
+                } else {
+                    jf.setFileContents(null);
+                    jf.setResumeAttachId(Integer.parseInt(Auth.getAuthData().getResume().getId()));
+                }
 
                 boolean hasUploadFile = jf.getFileContents() != null && !jf.getFileContents().isEmpty();
                 boolean useOld = jf.getResumeAttachId() != null;
