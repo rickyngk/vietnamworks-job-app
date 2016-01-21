@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="cloudinary_cloud_name" type="string" translatable="false">vnw-owner</item>
+    <string name="cloudinary_api_key" translatable="false">129341829622625</string>
+    <item name="cloudinary_api_secret" type="string" translatable="false">N_zEzle2DTVCprlLxK8ZJe5hAvH</item>
+</resources>

@@ -12,7 +12,9 @@ import R.helper.BaseFragment;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import vietnamworks.com.vietnamworksjobapp.R;
+import vietnamworks.com.vietnamworksjobapp.services.ShareContext;
 import vietnamworks.com.vnwcore.Auth;
+import vietnamworks.com.vnwcore.entities.JobApplyForm;
 
 /**
  * Created by duynk on 1/20/16.
@@ -65,7 +67,9 @@ public class CoverLetterFragment extends BaseFragment {
                         if (coverLetter.getText().toString().trim().length() == 0) {
                             BaseActivity.toast(R.string.cover_letter_is_required);
                         } else {
-                            //BaseActivity.replaceFragment(new UploadCVFragment(), R.id.fragment_holder);
+                            //TODO: process apply job
+                            JobApplyForm jf = (JobApplyForm) ShareContext.get(ShareContext.SELECTED_JOB);
+                            jf.setCoverLetter(coverLetter.getText().toString());
                         }
                     }
                 });

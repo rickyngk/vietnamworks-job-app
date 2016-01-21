@@ -1,6 +1,7 @@
 package vietnamworks.com.vietnamworksjobapp;
 
 import R.helper.BaseApplication;
+import vietnamworks.com.vietnamworksjobapp.services.CloudinaryService;
 import vietnamworks.com.vnwcore.VNWAPI;
 
 /**
@@ -17,5 +18,6 @@ public class Application extends BaseApplication {
         super.onCreate();
         setDefaultFont(FontType.SERIF, "fonts/RobotoSlab-Regular.ttf");
         VNWAPI.init("d54e4c1463d7709f8c6c49e93b3454e69befbdbe15a6723885bf399aa2a74bfe", "", false);
+        CloudinaryService.init(this);
     }
 }

@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "vietnamworks.com.vietnamworksjobapp"
-        minSdkVersion 14
+        minSdkVersion 16
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -38,4 +38,7 @@ dependencies {
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.android.support:design:23.0.1'
     compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.cloudinary:cloudinary-android:1.2.2'
+
+    compile 'com.nononsenseapps:filepicker:2.4.2'
 }

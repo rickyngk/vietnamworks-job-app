@@ -23,10 +23,12 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import vietnamworks.com.vietnamworksjobapp.R;
 import vietnamworks.com.vietnamworksjobapp.models.JobDetailModel;
+import vietnamworks.com.vietnamworksjobapp.services.ShareContext;
 import vietnamworks.com.vnwcore.entities.Category;
 import vietnamworks.com.vnwcore.entities.Company;
 import vietnamworks.com.vnwcore.entities.Configuration;
 import vietnamworks.com.vnwcore.entities.Job;
+import vietnamworks.com.vnwcore.entities.JobApplyForm;
 import vietnamworks.com.vnwcore.entities.JobDetail;
 import vietnamworks.com.vnwcore.entities.JobSummary;
 import vietnamworks.com.vnwcore.entities.Language;
@@ -78,6 +80,8 @@ public class JobDetailFragment extends BaseFragment {
     @Bind(R.id.btn_apply_job)
     FloatingActionButton btnApplyJob;
 
+    public String jobId;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Bundle bundle = getArguments();
@@ -89,7 +93,7 @@ public class JobDetailFragment extends BaseFragment {
             jobTitle.setTransitionName(getString(R.string.transition_job_card_to_job_detail));
         }
         jobTitle.setText(bundle.getString("jobTitle"));
-        String jobId = bundle.getString("jobId");
+        jobId = bundle.getString("jobId");
 
         workingLocations.setVisibility(View.GONE);
         companyName.setVisibility(View.GONE);
@@ -211,7 +215,11 @@ public class JobDetailFragment extends BaseFragment {
         btnApplyJob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BaseActivity.sInstance.pushFragment(new CheckLoginFragment(), R.id.fragment_holder);
+                JobApplyForm ja = new JobApplyForm();
+                ja.setJobId(Integer.parseInt(jobId));
+                ShareContext.set(ShareContext.SELECTED_JOB, ja);
+
+                BaseActivity.pushFragment(new CheckLoginFragment(), R.id.fragment_holder);
             }
         });
         return rootView;

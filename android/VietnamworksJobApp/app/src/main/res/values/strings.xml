@@ -61,8 +61,13 @@
     <string name="cover_letter">Cover letter</string>
     <string name="update_cv_title">Update CV</string>
     <string name="use_current_cv">Use current CV</string>
-    <string name="upload_new_cv_from_sdcard">Upload new CV</string>
+    <string name="upload_new_cv">Upload new CV</string>
     <string name="cover_letter_is_required">Cover letter is required</string>
     <string name="upload_from_sdcard">Upload from sdcard</string>
     <string name="upload_from_dropbox">Upload from DropBox</string>
+    <string name="fail_to_upload_file">Fail to upload file</string>
+    <string name="file_size_too_big">File size must be less than %s</string>
+    <string name="file_type_is_not_support">File type must be %s</string>
+    <string name="invalid_file">Fail to get file</string>
+    <string name="cv_is_required">CV is mandatory</string>
 </resources>

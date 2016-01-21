@@ -1,5 +1,6 @@
 package vietnamworks.com.vietnamworksjobapp.activities.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -22,6 +23,8 @@ import vietnamworks.com.vietnamworksjobapp.models.UserLocalProfileModel;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    public final static int PICK_FILE_REQUEST_CODE = 30000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,6 +124,23 @@ public class MainActivity extends BaseActivity
             } else {
                 showActionBar();
             }
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Check which request we're responding to
+        if (requestCode == PICK_FILE_REQUEST_CODE) {
+            BaseFragment currentFragment = (BaseFragment) sInstance.getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
+            if (resultCode == RESULT_OK) {
+                if (currentFragment instanceof UploadCVFragment) {
+                    ((UploadCVFragment) currentFragment).onPickedFile(data.getData().getPath());
+                }
+            } else {
+                ((UploadCVFragment) currentFragment).onPickedFile(null);
+            }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
         }
     }
 }

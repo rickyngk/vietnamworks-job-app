@@ -30,22 +30,29 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/base_padding_4x"
-                android:layout_marginBottom="@dimen/base_padding_4x"
                 android:id="@+id/upload_options">
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/use_current_cv"
-                    android:id="@+id/upload_option_sdcard"
-                    android:checked="true" />
+                    android:id="@+id/opt_use_current_cv" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/upload_new_cv_from_sdcard"
-                    android:id="@+id/upload_option_dropbox" />
+                    android:text="@string/upload_new_cv"
+                    android:id="@+id/opt_use_new_cv" />
+
             </RadioGroup>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/file_name"
+                android:layout_marginLeft="@dimen/base_padding_8x"
+                android:layout_marginBottom="@dimen/base_padding_4x"
+                style="@style/Text.Small.Muted" />
 
             <LinearLayout
                 android:orientation="vertical"
