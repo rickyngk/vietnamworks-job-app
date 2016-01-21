@@ -29,7 +29,7 @@ public class CheckLoginFragment extends BaseFragment {
                 if (result.hasError()) {
                     BaseActivity.replaceFragment(new LoginFragment(), R.id.fragment_holder);
                 } else {
-                    BaseActivity.replaceFragment(new CoverLetterFragment(), R.id.fragment_holder);
+                    BaseActivity.replaceFragment(new UploadCVFragment(), R.id.fragment_holder);
                 }
             }
         });

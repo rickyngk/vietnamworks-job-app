@@ -17,6 +17,7 @@ import vietnamworks.com.vietnamworksjobapp.activities.launcher.LauncherActivity;
 import vietnamworks.com.vietnamworksjobapp.activities.main.fragments.CardsFragment;
 import vietnamworks.com.vietnamworksjobapp.activities.main.fragments.CoverLetterFragment;
 import vietnamworks.com.vietnamworksjobapp.activities.main.fragments.LoginFragment;
+import vietnamworks.com.vietnamworksjobapp.activities.main.fragments.UploadCVFragment;
 import vietnamworks.com.vietnamworksjobapp.models.UserLocalProfileModel;
 
 public class MainActivity extends BaseActivity
@@ -115,7 +116,7 @@ public class MainActivity extends BaseActivity
     private void updateActionBar() {
         BaseFragment currentFragment = (BaseFragment)sInstance.getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
         if (currentFragment != null) {
-            if (currentFragment instanceof LoginFragment || currentFragment instanceof CoverLetterFragment) {
+            if (currentFragment instanceof LoginFragment || currentFragment instanceof CoverLetterFragment || currentFragment instanceof UploadCVFragment) {
                 hideActionBar();
             } else {
                 showActionBar();

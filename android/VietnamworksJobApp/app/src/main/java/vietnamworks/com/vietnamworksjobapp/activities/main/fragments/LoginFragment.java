@@ -82,7 +82,7 @@ public class LoginFragment extends BaseFragment {
                                 showError(R.string.oops_something_wrong);
                             }
                         } else {
-                            BaseActivity.replaceFragment(new CoverLetterFragment(), R.id.fragment_holder);
+                            BaseActivity.replaceFragment(new UploadCVFragment(), R.id.fragment_holder);
                         }
                     }
                 });

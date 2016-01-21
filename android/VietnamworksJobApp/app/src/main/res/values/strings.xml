@@ -48,11 +48,21 @@
     <string name="job_requirement">What You Are Good At</string>
 
     <!--login-->
+    <string name="email">Email</string>
+    <string name="email_hint">your@email.com</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
     <string name="password_is_required">Password is required</string>
     <string name="email_is_required">Email is required</string>
     <string name="invalid_email_format">Invalid email format</string>
     <string name="invalid_credential">Incorrect username or password</string>
 
-    <!-- cover letter-->
+    <!-- apply job-->
     <string name="cover_letter">Cover letter</string>
+    <string name="update_cv_title">Update CV</string>
+    <string name="use_current_cv">Use current CV</string>
+    <string name="upload_new_cv_from_sdcard">Upload new CV</string>
+    <string name="cover_letter_is_required">Cover letter is required</string>
+    <string name="upload_from_sdcard">Upload from sdcard</string>
+    <string name="upload_from_dropbox">Upload from DropBox</string>
 </resources>

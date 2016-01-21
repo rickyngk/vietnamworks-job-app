@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 
 import R.helper.BaseActivity;
@@ -23,6 +24,12 @@ public class CoverLetterFragment extends BaseFragment {
     @Bind(R.id.cover_letter_scroll_view)
     ViewGroup coverLetterScrollView;
 
+    @Bind(R.id.btn_cancel_cover_letter)
+    Button btnCancelCoverLetter;
+
+    @Bind(R.id.btn_confirm_cover_letter)
+    Button btnConfirmCoverLetter;
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_input_cover_letter, container, false);
         ButterKnife.bind(this, rootView);
@@ -39,6 +46,32 @@ public class CoverLetterFragment extends BaseFragment {
                 BaseActivity.showKeyboard();
             }
         });
+
+        btnCancelCoverLetter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BaseActivity.popFragment();
+                BaseActivity.hideKeyboard();
+            }
+        });
+
+        btnConfirmCoverLetter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BaseActivity.hideKeyboard();
+                BaseActivity.timeout(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (coverLetter.getText().toString().trim().length() == 0) {
+                            BaseActivity.toast(R.string.cover_letter_is_required);
+                        } else {
+                            //BaseActivity.replaceFragment(new UploadCVFragment(), R.id.fragment_holder);
+                        }
+                    }
+                });
+            }
+        });
+
         return rootView;
     }
 }
