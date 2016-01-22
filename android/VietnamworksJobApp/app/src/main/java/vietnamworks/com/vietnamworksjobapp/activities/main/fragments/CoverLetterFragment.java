@@ -12,6 +12,7 @@ import R.helper.BaseActivity;
 import R.helper.BaseFragment;
 import R.helper.Callback;
 import R.helper.CallbackResult;
+import R.helper.LocalStorage;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import vietnamworks.com.vietnamworksjobapp.R;
@@ -44,6 +45,10 @@ public class CoverLetterFragment extends BaseFragment {
 
         vietnamworks.com.vnwcore.entities.Auth auth = Auth.getAuthData();
         coverLetter.setText(auth.getCoverLetter());
+        String lastCover = LocalStorage.getString("last_cover_letter", "");
+        if (!lastCover.isEmpty()) {
+            coverLetter.setText(lastCover);
+        }
 
 
         coverLetterScrollView.setOnClickListener(new View.OnClickListener() {
@@ -72,10 +77,11 @@ public class CoverLetterFragment extends BaseFragment {
                         if (coverLetter.getText().toString().trim().length() == 0) {
                             BaseActivity.toast(R.string.cover_letter_is_required);
                         } else {
-                            //TODO: process apply job
                             JobApplyForm jf = (JobApplyForm) ShareContext.get(ShareContext.SELECTED_JOB);
                             jf.setCoverLetter(coverLetter.getText().toString());
                             jf.setCredential(Auth.getCredential());
+
+                            LocalStorage.set("last_cover_letter", coverLetter.getText().toString().trim());
 
                             VNWAPI.applyJob(getContext(), jf, new Callback() {
                                 @Override
