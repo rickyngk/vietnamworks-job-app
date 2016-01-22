@@ -21,6 +21,7 @@ import vietnamworks.com.vietnamworksjobapp.R;
 import vietnamworks.com.vietnamworksjobapp.services.ShareContext;
 import vietnamworks.com.vnwcore.Auth;
 import vietnamworks.com.vnwcore.entities.JobApplyForm;
+import vietnamworks.com.vnwcore.errors.ELoginError;
 
 /**
  * Created by duynk on 1/20/16.
@@ -70,15 +71,15 @@ public class LoginFragment extends BaseFragment {
                     @Override
                     public void onCompleted(Context context, CallbackResult result) {
                         if (result.hasError()) {
-                            CallbackResult.CallbackError r = result.getError();
+                            CallbackResult.CallbackErrorInfo r = result.getError();
                             int code = r.getCode();
-                            if (Auth.ELoginError.EMPTY_EMAIL.is(code)) {
+                            if (ELoginError.EMPTY_EMAIL.is(code)) {
                                 showError(R.string.email_is_required);
-                            } else if (Auth.ELoginError.INVALID_EMAIL.is(code)) {
+                            } else if (ELoginError.INVALID_EMAIL.is(code)) {
                                 showError(R.string.invalid_email_format);
-                            } else if (Auth.ELoginError.EMPTY_PASSWORD.is(code)) {
+                            } else if (ELoginError.EMPTY_PASSWORD.is(code)) {
                                 showError(R.string.password_is_required);
-                            } else if (Auth.ELoginError.WRONG_CREDENTIAL.is(code)) {
+                            } else if (ELoginError.WRONG_CREDENTIAL.is(code)) {
                                 showError(R.string.invalid_credential);
                             } else {
                                 showError(R.string.oops_something_wrong);

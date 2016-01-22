@@ -70,4 +70,5 @@
     <string name="file_type_is_not_support">File type must be %s</string>
     <string name="invalid_file">Fail to get file</string>
     <string name="cv_is_required">CV is mandatory</string>
+    <string name="apply_job_success">Apply job successfully</string>
 </resources>

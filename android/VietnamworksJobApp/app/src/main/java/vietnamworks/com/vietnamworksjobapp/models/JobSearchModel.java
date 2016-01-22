@@ -53,7 +53,7 @@ public class JobSearchModel {
                             instance.data.add(j);
                         }
                     } catch (Exception E) {
-                        callback.onCompleted(context, new CallbackResult(new CallbackResult.CallbackError(-1, E.getMessage())));
+                        callback.onCompleted(context, new CallbackResult(new CallbackResult.CallbackErrorInfo(-1, E.getMessage())));
                     }
                     callback.onCompleted(context, new CallbackSuccess());
                 }

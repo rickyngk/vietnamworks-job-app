@@ -19,6 +19,7 @@ import vietnamworks.com.vietnamworksjobapp.services.ShareContext;
 import vietnamworks.com.vnwcore.Auth;
 import vietnamworks.com.vnwcore.VNWAPI;
 import vietnamworks.com.vnwcore.entities.JobApplyForm;
+import vietnamworks.com.vnwcore.errors.EApplyJobError;
 
 /**
  * Created by duynk on 1/20/16.
@@ -74,14 +75,25 @@ public class CoverLetterFragment extends BaseFragment {
                             //TODO: process apply job
                             JobApplyForm jf = (JobApplyForm) ShareContext.get(ShareContext.SELECTED_JOB);
                             jf.setCoverLetter(coverLetter.getText().toString());
+                            jf.setCredential(Auth.getCredential());
 
                             VNWAPI.applyJob(getContext(), jf, new Callback() {
                                 @Override
                                 public void onCompleted(Context context, CallbackResult result) {
                                     if (result.hasError()) {
-
+                                        String errorMessage = getString(R.string.oops_something_wrong);
+                                        int errorNumber = result.getError().getCode();
+                                        if (EApplyJobError.BAD_REQUEST.is(errorNumber)) {
+                                            String tmpMessage = result.getError().getMessage();
+                                            if (!tmpMessage.isEmpty()) {
+                                                errorMessage = tmpMessage;
+                                            }
+                                        }
+                                        BaseActivity.toast(errorMessage);
+                                        BaseActivity.popFragment();
                                     } else {
-
+                                        BaseActivity.toast(R.string.apply_job_success);
+                                        BaseActivity.popFragment();
                                     }
                                 }
                             });

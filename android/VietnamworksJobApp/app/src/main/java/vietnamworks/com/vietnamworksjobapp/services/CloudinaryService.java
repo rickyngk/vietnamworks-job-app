@@ -47,10 +47,10 @@ public class CloudinaryService {
                         Map m = cloudinary.uploader().uploadLarge(fileInputStream, ObjectUtils.asMap("folder", "vnw_job_app_cv", "public_id", publicName, "resource_type", "raw", "chunk_size", 6000000));
                         callback.onCompleted(context, new CallbackSuccess(m));
                     } else {
-                        callback.onCompleted(context, new CallbackResult(new CallbackResult.CallbackError(-1, "Invalid input file")));
+                        callback.onCompleted(context, new CallbackResult(new CallbackResult.CallbackErrorInfo(-1, "Invalid input file")));
                     }
                 } catch (Exception e) {
-                    callback.onCompleted(context, new CallbackResult(new CallbackResult.CallbackError(-1, e.getMessage())));
+                    callback.onCompleted(context, new CallbackResult(new CallbackResult.CallbackErrorInfo(-1, e.getMessage())));
                     e.printStackTrace();
                 }
             }
