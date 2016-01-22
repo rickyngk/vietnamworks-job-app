@@ -23,6 +23,9 @@ import vietnamworks.com.vietnamworksjobapp.custom_view.CardView;
 import vietnamworks.com.vietnamworksjobapp.custom_view.EmptyCardView;
 import vietnamworks.com.vietnamworksjobapp.models.JobSearchModel;
 import vietnamworks.com.vietnamworksjobapp.models.UserLocalProfileModel;
+import vietnamworks.com.vnwcore.Auth;
+import vietnamworks.com.vnwcore.matchingscore.MatchingScoreChangedListener;
+import vietnamworks.com.vnwcore.matchingscore.MatchingScoreTable;
 
 /**
  * Created by duynk on 1/5/16.
@@ -80,6 +83,13 @@ public class CardsFragment extends BaseFragment {
 
             }
         });
+
+        MatchingScoreTable.setOnMatchingScoreChangedListener(new MatchingScoreChangedListener() {
+            @Override
+            public void onChanged(String userId, String jobId, int score) {
+                System.out.println(">>> " + userId + "  " + jobId + " " + score);
+            }
+        });
         return rootView;
     }
 
@@ -91,6 +101,9 @@ public class CardsFragment extends BaseFragment {
                 public void onCompleted(Context context, CallbackResult result) {
                     if (result.hasError()) {
                         System.out.println("ERROR: " + result.getError().getMessage());
+                    }
+                    if (Auth.getAuthData() != null) {
+                        MatchingScoreTable.get(getContext(), Auth.getAuthData().getProfile().getUserId(), JobSearchModel.exportJobListAsArray());
                     }
                     v.ready();
                 }

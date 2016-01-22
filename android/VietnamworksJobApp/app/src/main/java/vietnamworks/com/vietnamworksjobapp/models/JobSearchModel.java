@@ -85,4 +85,12 @@ public class JobSearchModel {
     public static JobSearchResult get(int index) {
         return instance.data.get(index);
     }
+
+    public static String[] exportJobListAsArray() {
+        ArrayList<String> ar = new ArrayList<>();
+        for (JobSearchResult s:instance.data) {
+            ar.add(s.getId());
+        }
+        return ar.toArray(new String[ar.size()]);
+    }
 }
