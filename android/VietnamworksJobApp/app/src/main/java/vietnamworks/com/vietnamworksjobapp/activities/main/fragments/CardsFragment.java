@@ -46,83 +46,6 @@ public class CardsFragment extends BaseFragment {
     ArrayAdapter<String> adapter;
 
     boolean preventTextChangedEvent = false;
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_cards, container, false);
-        ButterKnife.bind(this, rootView);
-        cardView.setDelegate(delegate);
-
-        preventTextChangedEvent = true;
-        jobTitle.setText(UserLocalProfileModel.getEntity().getJobTitle());
-        adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_dropdown_item_1line);
-        jobTitle.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if ((actionId == getResources().getInteger(R.integer.ime_job_title) || actionId == EditorInfo.IME_NULL) && event == null) {
-                    UserLocalProfileModel.getEntity().setJobTitle(jobTitle.getText().toString());
-                    UserLocalProfileModel.saveLocal();
-                    BaseActivity.hideKeyboard();
-                    adapter.clear();
-                    adapter.getFilter().filter(jobTitle.getText(), null);
-                    cardView.reset();
-                    jobTitle.clearFocus();
-                    return true;
-                }
-                return false;
-            }
-        });
-        jobTitle.setAdapter(adapter);
-        jobTitle.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (preventTextChangedEvent) {
-                    preventTextChangedEvent = false;
-                    return;
-                }
-                VNWAPI.jobTitleSuggestion(getContext(), jobTitle.getText().toString(), new Callback() {
-                    @Override
-                    public void onCompleted(Context context, CallbackResult result) {
-                        adapter.clear();
-                        if (!result.hasError()) {
-                            try {
-                                ArrayList<String> data = (ArrayList<String>) result.getData();
-                                if (data != null) {
-                                    for (int i = 0; i < data.size(); i++) {
-                                        adapter.add(data.get(i));
-                                    }
-                                }
-                                System.out.println(data);
-                                adapter.getFilter().filter(jobTitle.getText(), null);
-                            } catch (Exception E) {
-                                E.printStackTrace();
-                            }
-                        }
-                    }
-                });
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-
-        MatchingScoreTable.setOnMatchingScoreChangedListener(new MatchingScoreChangedListener() {
-            @Override
-            public void onChanged(String userId, String jobId, int score) {
-                System.out.println(">>> " + userId + "  " + jobId + " " + score);
-            }
-        });
-
-        return rootView;
-    }
-
     CardStackViewDelegate delegate = new CardStackViewDelegate() {
         @Override
         public void onStarted(final CardStackView v) {
@@ -175,14 +98,13 @@ public class CardsFragment extends BaseFragment {
             if (index == -1) { //click on empty card
                 v.reset();
             } else {
-                BaseActivity act = getActivityRef(BaseActivity.class);
-                TextView ele = (TextView)cardView.getFront().findViewById(R.id.job_card_job_title);
+                TextView ele = (TextView) cardView.getFront().findViewById(R.id.job_card_job_title);
 
                 Bundle bundle = new Bundle();
                 bundle.putString("jobTitle", ele.getText().toString());
                 bundle.putString("jobId", JobSearchModel.get(index).getId());
 
-                act.pushFragmentAnimateTransition(
+                BaseActivity.pushFragmentAnimateTransition(
                         new JobDetailFragment(),
                         R.id.fragment_holder,
                         bundle,
@@ -191,6 +113,80 @@ public class CardsFragment extends BaseFragment {
             }
         }
     };
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        final ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_cards, container, false);
+        ButterKnife.bind(this, rootView);
+        cardView.setDelegate(delegate);
+
+        preventTextChangedEvent = true;
+        jobTitle.setText(UserLocalProfileModel.getEntity().getJobTitle());
+        adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_dropdown_item_1line);
+        jobTitle.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if ((actionId == getResources().getInteger(R.integer.ime_job_title) || actionId == EditorInfo.IME_NULL) && event == null) {
+                    UserLocalProfileModel.getEntity().setJobTitle(jobTitle.getText().toString());
+                    UserLocalProfileModel.saveLocal();
+                    BaseActivity.hideKeyboard();
+                    adapter.clear();
+                    adapter.getFilter().filter(jobTitle.getText(), null);
+                    cardView.reset();
+                    jobTitle.clearFocus();
+                    return true;
+                }
+                return false;
+            }
+        });
+        jobTitle.setAdapter(adapter);
+        jobTitle.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (preventTextChangedEvent) {
+                    preventTextChangedEvent = false;
+                    return;
+                }
+                VNWAPI.jobTitleSuggestion(getContext(), jobTitle.getText().toString(), new Callback() {
+                    @Override
+                    public void onCompleted(Context context, CallbackResult result) {
+                        adapter.clear();
+                        if (!result.hasError()) {
+                            try {
+                                Object re = result.getData();
+                                ArrayList<?> data = (ArrayList<?>) re;
+                                for (int i = 0; i < data.size(); i++) {
+                                    adapter.add((String) data.get(i));
+                                }
+                                adapter.getFilter().filter(jobTitle.getText(), null);
+                            } catch (Exception E) {
+                                E.printStackTrace();
+                            }
+                        }
+                    }
+                });
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        MatchingScoreTable.setOnMatchingScoreChangedListener(new MatchingScoreChangedListener() {
+            @Override
+            public void onChanged(String userId, String jobId, int score) {
+                System.out.println(">>> " + userId + "  " + jobId + " " + score);
+            }
+        });
+
+        return rootView;
+    }
 
     public void onLayoutChanged(Rect r, boolean isSoftKeyShown) {
         if (!isSoftKeyShown) {
