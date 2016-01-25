@@ -71,8 +71,7 @@ public class LoginFragment extends BaseFragment {
                     @Override
                     public void onCompleted(Context context, CallbackResult result) {
                         if (result.hasError()) {
-                            CallbackResult.CallbackErrorInfo r = result.getError();
-                            int code = r.getCode();
+                            int code = result.getError().getCode();
                             if (ELoginError.EMPTY_EMAIL.is(code)) {
                                 showError(R.string.email_is_required);
                             } else if (ELoginError.INVALID_EMAIL.is(code)) {

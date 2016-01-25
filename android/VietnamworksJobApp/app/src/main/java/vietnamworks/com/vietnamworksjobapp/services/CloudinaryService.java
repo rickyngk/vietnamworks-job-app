@@ -12,7 +12,6 @@ import java.util.Map;
 
 import R.helper.Callback;
 import R.helper.CallbackResult;
-import R.helper.CallbackSuccess;
 import R.helper.Common;
 import vietnamworks.com.vietnamworksjobapp.R;
 
@@ -45,12 +44,12 @@ public class CloudinaryService {
 
                         FileInputStream fileInputStream = new FileInputStream(file);
                         Map m = cloudinary.uploader().uploadLarge(fileInputStream, ObjectUtils.asMap("folder", "vnw_job_app_cv", "public_id", publicName, "resource_type", "raw", "chunk_size", 6000000));
-                        callback.onCompleted(context, new CallbackSuccess(m));
+                        callback.onCompleted(context, CallbackResult.success(m));
                     } else {
-                        callback.onCompleted(context, new CallbackResult(new CallbackResult.CallbackErrorInfo(-1, "Invalid input file")));
+                        callback.onCompleted(context, CallbackResult.error("Invalid input file"));
                     }
                 } catch (Exception e) {
-                    callback.onCompleted(context, new CallbackResult(new CallbackResult.CallbackErrorInfo(-1, e.getMessage())));
+                    callback.onCompleted(context, CallbackResult.error(e.getMessage()));
                     e.printStackTrace();
                 }
             }

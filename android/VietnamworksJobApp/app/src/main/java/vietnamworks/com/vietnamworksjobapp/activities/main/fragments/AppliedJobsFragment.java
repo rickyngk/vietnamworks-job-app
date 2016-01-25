@@ -19,6 +19,8 @@ import java.util.List;
 
 import R.helper.BaseActivity;
 import R.helper.BaseFragment;
+import R.helper.Callback;
+import R.helper.CallbackResult;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import vietnamworks.com.vietnamworksjobapp.R;
@@ -88,11 +90,11 @@ public class AppliedJobsFragment extends BaseFragment {
         BaseActivity.timeout(new Runnable() {
             @Override
             public void run() {
-                VNWAPI.getAppliedJobs(getContext(), new VNWAPI.GetAppliedCallback() {
+                VNWAPI.getAppliedJobs(getContext(), new Callback() {
                     @Override
-                    public void onCompleted(Context context, VNWAPI.GetAppliedJobsCallbackResult result) {
+                    public void onCompleted(Context context, CallbackResult result) {
                         if (!result.hasError()) {
-                            adapter.setItems(result.getAppliedJobs());
+                            adapter.setItems((ArrayList<AppliedJob>)result.getData());
                             progressBar.setVisibility(View.GONE);
                         } else {
                             progressBar.setVisibility(View.GONE);

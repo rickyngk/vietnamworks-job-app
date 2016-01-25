@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 import R.helper.Callback;
 import R.helper.CallbackResult;
-import R.helper.CallbackSuccess;
 import vietnamworks.com.vietnamworksjobapp.entities.WorkingLocation;
 import vietnamworks.com.vnwcore.VNWAPI;
 import vietnamworks.com.vnwcore.entities.JobSearchResult;
@@ -40,7 +39,7 @@ public class JobSearchModel {
             @Override
             public void onCompleted(Context context, CallbackResult result) {
                 if (result.hasError()) {
-                    callback.onCompleted(context, new CallbackResult(result.getError()));
+                    callback.onCompleted(context, CallbackResult.error(result.getError()));
                 } else {
                     try {
                         instance.data.clear();
@@ -53,9 +52,9 @@ public class JobSearchModel {
                             instance.data.add(j);
                         }
                     } catch (Exception E) {
-                        callback.onCompleted(context, new CallbackResult(new CallbackResult.CallbackErrorInfo(-1, E.getMessage())));
+                        callback.onCompleted(context, CallbackResult.error(E.getMessage()));
                     }
-                    callback.onCompleted(context, new CallbackSuccess());
+                    callback.onCompleted(context, CallbackResult.success());
                 }
             }
         });
