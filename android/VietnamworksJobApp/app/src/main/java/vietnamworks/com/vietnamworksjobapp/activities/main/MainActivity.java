@@ -1,6 +1,7 @@
 package vietnamworks.com.vietnamworksjobapp.activities.main;
 
 import android.content.Intent;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -141,6 +142,14 @@ public class MainActivity extends BaseActivity
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+    @Override
+    public void onLayoutChanged(Rect r, boolean isSoftKeyShown) {
+        BaseFragment currentFragment = (BaseFragment) sInstance.getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
+        if (currentFragment instanceof CardsFragment) {
+            ((CardsFragment)currentFragment).onLayoutChanged(r, isSoftKeyShown);
         }
     }
 }

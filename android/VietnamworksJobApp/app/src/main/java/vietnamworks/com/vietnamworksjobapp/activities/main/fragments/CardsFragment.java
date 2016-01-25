@@ -1,14 +1,20 @@
 package vietnamworks.com.vietnamworksjobapp.activities.main.fragments;
 
 import android.content.Context;
+import android.graphics.Rect;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
-import android.widget.Spinner;
+import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 import R.cardstack.CardStackView;
 import R.cardstack.CardStackViewDelegate;
@@ -24,6 +30,7 @@ import vietnamworks.com.vietnamworksjobapp.custom_view.EmptyCardView;
 import vietnamworks.com.vietnamworksjobapp.models.JobSearchModel;
 import vietnamworks.com.vietnamworksjobapp.models.UserLocalProfileModel;
 import vietnamworks.com.vnwcore.Auth;
+import vietnamworks.com.vnwcore.VNWAPI;
 import vietnamworks.com.vnwcore.matchingscore.MatchingScoreChangedListener;
 import vietnamworks.com.vnwcore.matchingscore.MatchingScoreTable;
 
@@ -34,10 +41,11 @@ public class CardsFragment extends BaseFragment {
     @Bind(R.id.cardview)
     CardStackView cardView;
 
-    @Bind(R.id.industry_spinner)
-    Spinner industrySpinner;
+    @Bind(R.id.job_title)
+    AutoCompleteTextView jobTitle;
+    ArrayAdapter<String> adapter;
 
-    boolean isFirstInit = false;
+    boolean preventTextChangedEvent = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -45,41 +53,62 @@ public class CardsFragment extends BaseFragment {
         ButterKnife.bind(this, rootView);
         cardView.setDelegate(delegate);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getContext(), R.array.industry_array, R.layout.cv_dropdown_simple);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        industrySpinner.setAdapter(adapter);
-
-        String currentIndustry = UserLocalProfileModel.getEntity().getIndustry();
-        for (int i = 0; i < adapter.getCount(); i++) {
-            String adapterItem = adapter.getItem(i).toString();
-            if (currentIndustry.equals(adapterItem)) {
-                industrySpinner.setSelection(i);
-                break;
-            }
-        }
-        isFirstInit = true;
-
-        industrySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        preventTextChangedEvent = true;
+        jobTitle.setText(UserLocalProfileModel.getEntity().getJobTitle());
+        adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_dropdown_item_1line);
+        jobTitle.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (!isFirstInit) {
-                    String industry = "";
-                    String industry_code = "";
-                    if (position > 0) {
-                        industry = industrySpinner.getSelectedItem().toString();
-                        industry_code = getResources().getStringArray(R.array.industry_code)[position];
-                    }
-                    UserLocalProfileModel.getEntity().setIndustry(industry);
-                    UserLocalProfileModel.getEntity().setIndustryCode(industry_code);
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if ((actionId == getResources().getInteger(R.integer.ime_job_title) || actionId == EditorInfo.IME_NULL) && event == null) {
+                    UserLocalProfileModel.getEntity().setJobTitle(jobTitle.getText().toString());
                     UserLocalProfileModel.saveLocal();
+                    BaseActivity.hideKeyboard();
+                    adapter.clear();
+                    adapter.getFilter().filter(jobTitle.getText(), null);
                     cardView.reset();
-                } else {
-                    isFirstInit = false;
+                    jobTitle.clearFocus();
+                    return true;
                 }
+                return false;
+            }
+        });
+        jobTitle.setAdapter(adapter);
+        jobTitle.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (preventTextChangedEvent) {
+                    preventTextChangedEvent = false;
+                    return;
+                }
+                VNWAPI.jobTitleSuggestion(getContext(), jobTitle.getText().toString(), new Callback() {
+                    @Override
+                    public void onCompleted(Context context, CallbackResult result) {
+                        adapter.clear();
+                        if (!result.hasError()) {
+                            try {
+                                ArrayList<String> data = (ArrayList<String>) result.getData();
+                                if (data != null) {
+                                    for (int i = 0; i < data.size(); i++) {
+                                        adapter.add(data.get(i));
+                                    }
+                                }
+                                System.out.println(data);
+                                adapter.getFilter().filter(jobTitle.getText(), null);
+                            } catch (Exception E) {
+                                E.printStackTrace();
+                            }
+                        }
+                    }
+                });
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
 
             }
         });
@@ -90,6 +119,7 @@ public class CardsFragment extends BaseFragment {
                 System.out.println(">>> " + userId + "  " + jobId + " " + score);
             }
         });
+
         return rootView;
     }
 
@@ -161,4 +191,15 @@ public class CardsFragment extends BaseFragment {
             }
         }
     };
+
+    public void onLayoutChanged(Rect r, boolean isSoftKeyShown) {
+        if (!isSoftKeyShown) {
+            preventTextChangedEvent = true;
+            jobTitle.setText(UserLocalProfileModel.getEntity().getJobTitle());
+            jobTitle.clearFocus();
+        } else {
+            jobTitle.requestFocus();
+            jobTitle.setSelection(jobTitle.getText().length());
+        }
+    }
 }

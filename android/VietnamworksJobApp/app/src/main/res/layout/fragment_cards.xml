@@ -9,23 +9,30 @@
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         android:elevation="5dp"
-        android:id="@+id/cardview" />
+        android:id="@+id/cardview"
+        android:focusable="true" />
 
-    <Spinner
-        android:id="@+id/industry_spinner"
-        android:layout_width="fill_parent"
-        style="@style/Text.Title.Light"
-        android:inputType="text"
-        android:background="@drawable/rounded_input"
-        android:paddingLeft="@dimen/button_large_corner"
-        android:paddingRight="@dimen/button_large_corner"
-        android:layout_gravity="center"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="@dimen/base_padding_4x"
-        android:layout_marginRight="@dimen/base_padding_4x"
+    <LinearLayout
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:layout_marginTop="@dimen/base_padding_4x" />
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/base_padding_4x"
+        android:layout_marginLeft="@dimen/base_padding_4x"
+        android:layout_marginRight="@dimen/base_padding_4x">
 
+        <AutoCompleteTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/job_title"
+            style="@style/Text.Large.Light"
+            android:inputType="textNoSuggestions|text"
+            android:background="@drawable/rounded_input"
+            android:completionThreshold="1"
+            android:imeActionLabel="@string/search"
+            android:paddingLeft="@dimen/button_large_corner"
+            android:paddingRight="@dimen/button_large_corner"
+            android:imeActionId="@integer/ime_job_title" />
+    </LinearLayout>
 </RelativeLayout>
