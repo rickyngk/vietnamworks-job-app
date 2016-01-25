@@ -16,6 +16,7 @@ import R.helper.BaseActivity;
 import R.helper.BaseFragment;
 import vietnamworks.com.vietnamworksjobapp.R;
 import vietnamworks.com.vietnamworksjobapp.activities.launcher.LauncherActivity;
+import vietnamworks.com.vietnamworksjobapp.activities.main.fragments.AppliedJobsFragment;
 import vietnamworks.com.vietnamworksjobapp.activities.main.fragments.CardsFragment;
 import vietnamworks.com.vietnamworksjobapp.activities.main.fragments.CoverLetterFragment;
 import vietnamworks.com.vietnamworksjobapp.activities.main.fragments.LoginFragment;
@@ -98,18 +99,8 @@ public class MainActivity extends BaseActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        if (id == R.id.nav_applied_jobs) {
+            pushFragment(new AppliedJobsFragment(), R.id.fragment_holder);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
