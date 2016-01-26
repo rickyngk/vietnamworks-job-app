@@ -52,7 +52,5 @@ public class LauncherActivity extends vietnamworks.com.vnwcore.LauncherActivity 
                 }
             }
         });
-
-
     }
 }

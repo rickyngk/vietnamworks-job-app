@@ -25,6 +25,9 @@
             android:name=".activities.onboarding.input.InputInfoActivity"
             android:theme="@style/NoActionBar" />
         <activity
+            android:name=".activities.signup.SignUpActivity"
+            android:theme="@style/NoActionBar" />
+        <activity
             android:name=".activities.main.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar"/>

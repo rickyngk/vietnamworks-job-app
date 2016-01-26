@@ -6,6 +6,7 @@ import android.view.View;
 import R.helper.BaseActivity;
 import vietnamworks.com.vietnamworksjobapp.R;
 import vietnamworks.com.vietnamworksjobapp.activities.onboarding.input.InputInfoActivity;
+import vietnamworks.com.vietnamworksjobapp.activities.signup.SignUpActivity;
 
 public class WelcomeActivity extends BaseActivity {
 
@@ -21,6 +22,6 @@ public class WelcomeActivity extends BaseActivity {
     }
 
     public void onLogin(View v) {
-
+        openActivity(SignUpActivity.class);
     }
 }
