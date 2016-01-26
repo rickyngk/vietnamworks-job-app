@@ -23,7 +23,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import vietnamworks.com.vietnamworksjobapp.R;
 import vietnamworks.com.vietnamworksjobapp.activities.onboarding.input.InputInfoActivity;
-import vietnamworks.com.vietnamworksjobapp.models.UserLocalProfileModel;
+import vietnamworks.com.vietnamworksjobapp.models.UserLocalSearchDataModel;
 import vietnamworks.com.vnwcore.VNWAPI;
 
 /**
@@ -109,7 +109,7 @@ public class InputTitleFragment extends BaseFragment {
     }
 
     private void onNext() {
-        UserLocalProfileModel.getEntity().setJobTitle(jobTitle.getText().toString());
+        UserLocalSearchDataModel.getEntity().setJobTitle(jobTitle.getText().toString());
         getActivityRef(InputInfoActivity.class).setPageIndex(1);
     }
 }

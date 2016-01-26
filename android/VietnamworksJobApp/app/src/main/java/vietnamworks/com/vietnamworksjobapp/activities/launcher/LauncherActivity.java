@@ -8,7 +8,8 @@ import R.helper.CallbackResult;
 import R.helper.Common;
 import vietnamworks.com.vietnamworksjobapp.activities.main.MainActivity;
 import vietnamworks.com.vietnamworksjobapp.activities.onboarding.WelcomeActivity;
-import vietnamworks.com.vietnamworksjobapp.models.UserLocalProfileModel;
+import vietnamworks.com.vietnamworksjobapp.models.UserLocalSearchDataModel;
+import vietnamworks.com.vnwcore.Auth;
 import vietnamworks.com.vnwcore.entities.Configuration;
 
 public class LauncherActivity extends vietnamworks.com.vnwcore.LauncherActivity {
@@ -16,9 +17,9 @@ public class LauncherActivity extends vietnamworks.com.vnwcore.LauncherActivity 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Configuration.load(LauncherActivity.this, new Callback() {
+        Configuration.load(LauncherActivity.this, new Callback<Configuration>() {
             @Override
-            public void onCompleted(Context context, CallbackResult result) {
+            public void onCompleted(Context context, CallbackResult<Configuration> result) {
                 if (result.hasError()) {
                     //TODO: handle error here
                     Common.Dialog.alert(context, result.getError().getMessage(), new Callback() {
@@ -28,13 +29,18 @@ public class LauncherActivity extends vietnamworks.com.vnwcore.LauncherActivity 
                         }
                     });
                 } else {
-                    if (UserLocalProfileModel.loadLocal()) {
-                        timeout(new Runnable() {
+                    if (UserLocalSearchDataModel.loadLocal()) {
+                        Auth.autoLogin(LauncherActivity.this, new Callback() {
                             @Override
-                            public void run() {
-                                openActivity(MainActivity.class);
+                            public void onCompleted(Context context, CallbackResult result) {
+                                timeout(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        openActivity(MainActivity.class);
+                                    }
+                                }, 1000);
                             }
-                        }, 1000);
+                        });
                     } else {
                         timeout(new Runnable() {
                             @Override

@@ -15,7 +15,7 @@ import R.helper.BaseFragment;
 import vietnamworks.com.vietnamworksjobapp.R;
 import vietnamworks.com.vietnamworksjobapp.activities.onboarding.input.InputInfoActivity;
 import vietnamworks.com.vietnamworksjobapp.entities.WorkingLocation;
-import vietnamworks.com.vietnamworksjobapp.models.UserLocalProfileModel;
+import vietnamworks.com.vietnamworksjobapp.models.UserLocalSearchDataModel;
 
 /**
  * Created by duynk on 1/4/16.
@@ -61,7 +61,7 @@ public class InputLocationFragment extends BaseFragment {
                     locations.add(WorkingLocation.Other);
                 }
                 */
-                UserLocalProfileModel.getEntity().setWorkingLocations(locations);
+                UserLocalSearchDataModel.getEntity().setWorkingLocations(locations);
                 getActivityRef(InputInfoActivity.class).setPageIndex(2);
             }
         });

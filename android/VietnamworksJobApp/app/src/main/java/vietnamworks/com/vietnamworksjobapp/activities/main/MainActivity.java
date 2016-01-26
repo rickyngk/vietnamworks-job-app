@@ -21,7 +21,7 @@ import vietnamworks.com.vietnamworksjobapp.activities.main.fragments.CardsFragme
 import vietnamworks.com.vietnamworksjobapp.activities.main.fragments.CoverLetterFragment;
 import vietnamworks.com.vietnamworksjobapp.activities.main.fragments.LoginFragment;
 import vietnamworks.com.vietnamworksjobapp.activities.main.fragments.UploadCVFragment;
-import vietnamworks.com.vietnamworksjobapp.models.UserLocalProfileModel;
+import vietnamworks.com.vietnamworksjobapp.models.UserLocalSearchDataModel;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -85,7 +85,7 @@ public class MainActivity extends BaseActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            UserLocalProfileModel.removeLocal();
+            UserLocalSearchDataModel.removeLocal();
             openActivity(LauncherActivity.class);
             return true;
         }

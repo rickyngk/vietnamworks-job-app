@@ -8,13 +8,13 @@ import R.helper.EntityX;
 /**
  * Created by duynk on 1/5/16.
  */
-public class UserLocalProfile extends EntityX {
+public class UserLocalSearchData extends EntityX {
     @BindField("jobTitle") String jobTitle = "";
     @BindField("industry") String industry = "";
     @BindField("industry_code") String industryCode = "";
     @BindField("workingLocation") ArrayList<WorkingLocation> workingLocations = new ArrayList<>();
 
-    public UserLocalProfile() {
+    public UserLocalSearchData() {
         super();
     }
 

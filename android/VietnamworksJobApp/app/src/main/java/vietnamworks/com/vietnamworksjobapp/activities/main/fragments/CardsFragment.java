@@ -28,7 +28,7 @@ import vietnamworks.com.vietnamworksjobapp.R;
 import vietnamworks.com.vietnamworksjobapp.custom_view.CardView;
 import vietnamworks.com.vietnamworksjobapp.custom_view.EmptyCardView;
 import vietnamworks.com.vietnamworksjobapp.models.JobSearchModel;
-import vietnamworks.com.vietnamworksjobapp.models.UserLocalProfileModel;
+import vietnamworks.com.vietnamworksjobapp.models.UserLocalSearchDataModel;
 import vietnamworks.com.vnwcore.Auth;
 import vietnamworks.com.vnwcore.VNWAPI;
 import vietnamworks.com.vnwcore.matchingscore.MatchingScoreChangedListener;
@@ -121,14 +121,14 @@ public class CardsFragment extends BaseFragment {
         cardView.setDelegate(delegate);
 
         preventTextChangedEvent = true;
-        jobTitle.setText(UserLocalProfileModel.getEntity().getJobTitle());
+        jobTitle.setText(UserLocalSearchDataModel.getEntity().getJobTitle());
         adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_dropdown_item_1line);
         jobTitle.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if ((actionId == getResources().getInteger(R.integer.ime_job_title) || actionId == EditorInfo.IME_NULL) && event == null) {
-                    UserLocalProfileModel.getEntity().setJobTitle(jobTitle.getText().toString());
-                    UserLocalProfileModel.saveLocal();
+                    UserLocalSearchDataModel.getEntity().setJobTitle(jobTitle.getText().toString());
+                    UserLocalSearchDataModel.saveLocal();
                     BaseActivity.hideKeyboard();
                     adapter.clear();
                     adapter.getFilter().filter(jobTitle.getText(), null);
@@ -191,7 +191,7 @@ public class CardsFragment extends BaseFragment {
     public void onLayoutChanged(Rect r, boolean isSoftKeyShown) {
         if (!isSoftKeyShown) {
             preventTextChangedEvent = true;
-            jobTitle.setText(UserLocalProfileModel.getEntity().getJobTitle());
+            jobTitle.setText(UserLocalSearchDataModel.getEntity().getJobTitle());
             jobTitle.clearFocus();
         } else {
             jobTitle.requestFocus();

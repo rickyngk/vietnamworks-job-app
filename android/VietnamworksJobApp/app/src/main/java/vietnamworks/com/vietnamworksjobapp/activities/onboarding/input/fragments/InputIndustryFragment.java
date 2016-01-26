@@ -13,7 +13,7 @@ import butterknife.ButterKnife;
 import R.helper.BaseFragment;
 import vietnamworks.com.vietnamworksjobapp.R;
 import vietnamworks.com.vietnamworksjobapp.activities.onboarding.input.InputInfoActivity;
-import vietnamworks.com.vietnamworksjobapp.models.UserLocalProfileModel;
+import vietnamworks.com.vietnamworksjobapp.models.UserLocalSearchDataModel;
 
 /**
  * Created by duynk on 1/4/16.
@@ -40,8 +40,8 @@ public class InputIndustryFragment extends BaseFragment {
                     industry = industrySpinner.getSelectedItem().toString();
                     industry_code = getResources().getStringArray(R.array.industry_code)[index];
                 }
-                UserLocalProfileModel.getEntity().setIndustry(industry);
-                UserLocalProfileModel.getEntity().setIndustryCode(industry_code);
+                UserLocalSearchDataModel.getEntity().setIndustry(industry);
+                UserLocalSearchDataModel.getEntity().setIndustryCode(industry_code);
                 getActivityRef(InputInfoActivity.class).onSkip(null);
             }
         });

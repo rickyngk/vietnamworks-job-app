@@ -13,7 +13,7 @@ import vietnamworks.com.vietnamworksjobapp.activities.main.MainActivity;
 import vietnamworks.com.vietnamworksjobapp.activities.onboarding.input.fragments.InputIndustryFragment;
 import vietnamworks.com.vietnamworksjobapp.activities.onboarding.input.fragments.InputLocationFragment;
 import vietnamworks.com.vietnamworksjobapp.activities.onboarding.input.fragments.InputTitleFragment;
-import vietnamworks.com.vietnamworksjobapp.models.UserLocalProfileModel;
+import vietnamworks.com.vietnamworksjobapp.models.UserLocalSearchDataModel;
 
 public class InputInfoActivity extends BaseActivity {
     int currentPageIndex = 0;
@@ -28,7 +28,7 @@ public class InputInfoActivity extends BaseActivity {
     }
 
     public void onSkip(View v) {
-        UserLocalProfileModel.saveLocal();
+        UserLocalSearchDataModel.saveLocal();
         openActivity(MainActivity.class);
     }
 

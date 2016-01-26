@@ -1,15 +1,15 @@
 package vietnamworks.com.vietnamworksjobapp.models;
 
 import R.helper.LocalStorage;
-import vietnamworks.com.vietnamworksjobapp.entities.UserLocalProfile;
+import vietnamworks.com.vietnamworksjobapp.entities.UserLocalSearchData;
 
 /**
  * Created by duynk on 1/5/16.
  */
-public class UserLocalProfileModel {
+public class UserLocalSearchDataModel {
     public final static String LS_LOCAL_PROFILE_MODEL = "local_profile_model";
 
-    static UserLocalProfile entity = new UserLocalProfile();
+    static UserLocalSearchData entity = new UserLocalSearchData();
 
     public static boolean loadLocal() {
         try {
@@ -32,7 +32,7 @@ public class UserLocalProfileModel {
         LocalStorage.remove(LS_LOCAL_PROFILE_MODEL);
     }
 
-    public static UserLocalProfile getEntity() {
+    public static UserLocalSearchData getEntity() {
         return entity;
     }
 }

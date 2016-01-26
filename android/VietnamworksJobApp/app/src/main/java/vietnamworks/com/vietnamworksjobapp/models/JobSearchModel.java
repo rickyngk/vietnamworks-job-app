@@ -21,8 +21,8 @@ public class JobSearchModel {
     ArrayList<JobSearchResult> data = new ArrayList<>();
 
     public static void load(final Context ctx, final Callback<Object> callback) {
-        String jobTitle = UserLocalProfileModel.getEntity().getJobTitle();
-        ArrayList<WorkingLocation> locations = UserLocalProfileModel.getEntity().getWorkingLocations();
+        String jobTitle = UserLocalSearchDataModel.getEntity().getJobTitle();
+        ArrayList<WorkingLocation> locations = UserLocalSearchDataModel.getEntity().getWorkingLocations();
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < locations.size(); i++) {
             WorkingLocation l = locations.get(i);
@@ -31,7 +31,7 @@ public class JobSearchModel {
                 sb.append(",");
             }
         }
-        String jobIndustry = UserLocalProfileModel.getEntity().getIndustryCode();
+        String jobIndustry = UserLocalSearchDataModel.getEntity().getIndustryCode();
 
 
         VNWAPI.searchJob(ctx, MAX_JOBS, jobTitle, sb.toString(), jobIndustry, new Callback<ArrayList<JobSearchResult>>() {
