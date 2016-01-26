@@ -3,7 +3,6 @@ package vietnamworks.com.vietnamworksjobapp.models;
 import android.content.Context;
 
 import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -21,7 +20,7 @@ public class JobSearchModel {
     static JobSearchModel instance =  new JobSearchModel();
     ArrayList<JobSearchResult> data = new ArrayList<>();
 
-    public static void load(final Context ctx, final Callback callback) {
+    public static void load(final Context ctx, final Callback<Object> callback) {
         String jobTitle = UserLocalProfileModel.getEntity().getJobTitle();
         ArrayList<WorkingLocation> locations = UserLocalProfileModel.getEntity().getWorkingLocations();
         StringBuilder sb = new StringBuilder();
@@ -35,22 +34,14 @@ public class JobSearchModel {
         String jobIndustry = UserLocalProfileModel.getEntity().getIndustryCode();
 
 
-        VNWAPI.searchJob(ctx, MAX_JOBS, jobTitle, sb.toString(), jobIndustry, new Callback() {
+        VNWAPI.searchJob(ctx, MAX_JOBS, jobTitle, sb.toString(), jobIndustry, new Callback<ArrayList<JobSearchResult>>() {
             @Override
-            public void onCompleted(Context context, CallbackResult result) {
+            public void onCompleted(Context context, CallbackResult<ArrayList<JobSearchResult>> result) {
                 if (result.hasError()) {
                     callback.onCompleted(context, CallbackResult.error(result.getError()));
                 } else {
                     try {
-                        instance.data.clear();
-                        JSONObject res = (JSONObject) result.getData();
-                        JSONObject data = res.optJSONObject("data");
-                        JSONArray jobs = data.getJSONArray("jobs");
-                        for (int i = 0; i < jobs.length(); i++) {
-                            JobSearchResult j = new JobSearchResult();
-                            j.importFromJson(jobs.getJSONObject(i));
-                            instance.data.add(j);
-                        }
+                        instance.data = result.getData();
                     } catch (Exception E) {
                         callback.onCompleted(context, CallbackResult.error(E.getMessage()));
                     }

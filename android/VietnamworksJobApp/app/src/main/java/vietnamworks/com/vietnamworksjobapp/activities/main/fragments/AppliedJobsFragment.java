@@ -90,11 +90,11 @@ public class AppliedJobsFragment extends BaseFragment {
         BaseActivity.timeout(new Runnable() {
             @Override
             public void run() {
-                VNWAPI.getAppliedJobs(getContext(), new Callback() {
+                VNWAPI.getAppliedJobs(getContext(), new Callback<ArrayList<AppliedJob>>() {
                     @Override
-                    public void onCompleted(Context context, CallbackResult result) {
+                    public void onCompleted(Context context, CallbackResult<ArrayList<AppliedJob>> result) {
                         if (!result.hasError()) {
-                            adapter.setItems((ArrayList<AppliedJob>)result.getData());
+                            adapter.setItems(result.getData());
                             progressBar.setVisibility(View.GONE);
                         } else {
                             progressBar.setVisibility(View.GONE);
