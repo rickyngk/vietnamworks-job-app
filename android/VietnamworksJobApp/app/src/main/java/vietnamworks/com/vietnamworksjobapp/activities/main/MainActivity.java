@@ -21,7 +21,9 @@ import vietnamworks.com.vietnamworksjobapp.activities.main.fragments.CardsFragme
 import vietnamworks.com.vietnamworksjobapp.activities.main.fragments.CoverLetterFragment;
 import vietnamworks.com.vietnamworksjobapp.activities.main.fragments.LoginFragment;
 import vietnamworks.com.vietnamworksjobapp.activities.main.fragments.UploadCVFragment;
+import vietnamworks.com.vietnamworksjobapp.activities.onboarding.WelcomeActivity;
 import vietnamworks.com.vietnamworksjobapp.models.UserLocalSearchDataModel;
+import vietnamworks.com.vnwcore.Auth;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -101,6 +103,10 @@ public class MainActivity extends BaseActivity
 
         if (id == R.id.nav_applied_jobs) {
             pushFragment(new AppliedJobsFragment(), R.id.fragment_holder);
+        } else if (id == R.id.nav_logout) {
+            Auth.logout();
+            MainActivity.openActivity(WelcomeActivity.class);
+            return true;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
