@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="vietnamworks.com.vietnamworksjobapp.activities.onboarding.WelcomeActivity"
-    android:background="@drawable/background">
+    android:background="#ffffff">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -13,19 +13,20 @@
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:paddingLeft="@dimen/base_padding_16x"
-        android:paddingRight="@dimen/base_padding_16x">
+        android:paddingLeft="@dimen/base_padding_8x"
+        android:paddingRight="@dimen/base_padding_8x">
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/imageView2"
             android:src="@drawable/ic_vietnamworks"
-            android:contentDescription="@null" />
+            android:contentDescription="@null"
+            android:layout_alignParentEnd="false" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="300dp"
             android:layout_alignParentTop="false"
             android:layout_alignParentLeft="false"
             android:layout_alignParentStart="false"
@@ -47,13 +48,13 @@
         android:paddingRight="@dimen/base_padding_4x">
 
         <Button
-            style="@style/Text.Medium.Light"
+            style="@style/Text.Medium.Muted"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/get_started"
             android:id="@+id/btn_get_started"
             android:background="@drawable/rounded_button"
-            android:layout_marginBottom="@dimen/base_padding_8x"
+            android:layout_marginBottom="@dimen/base_padding_4x"
             android:textStyle="bold"
             android:onClick="onGettingStarted" />
 
@@ -63,8 +64,8 @@
             android:text="@string/already_have_account"
             android:id="@+id/btn_sign_in"
             android:background="@drawable/rounded_button"
-            style="@style/Text.Medium.Light"
-            android:layout_marginBottom="@dimen/base_padding_8x"
+            style="@style/Text.Medium.Muted"
+            android:layout_marginBottom="@dimen/base_padding_4x"
             android:textStyle="bold"
             android:onClick="onLogin" />
 
@@ -74,7 +75,7 @@
             android:text="@string/register_new_account"
             android:id="@+id/btn_sign_up"
             android:background="@drawable/rounded_button"
-            style="@style/Text.Medium.Light"
+            style="@style/Text.Medium.Muted"
             android:textStyle="bold"
             android:onClick="onSignUp" />
     </LinearLayout>

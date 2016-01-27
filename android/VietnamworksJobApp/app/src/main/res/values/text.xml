@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="textColorLight">#FFFFFF</color>
-    <color name="textColorDark">#333333</color>
-    <color name="textColorSemiDark">#666666</color>
+    <color name="textColorDark">#A0000000</color>
+    <color name="textColorSemiDark">#70000000</color>
     <color name="textColorError">@color/colorError</color>
 
     <dimen name="font_xs">12sp</dimen>
