@@ -46,10 +46,11 @@ public class SignInFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        BaseActivity.hideActionBar();
-
         final ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_onboarding_login, container, false);
         ButterKnife.bind(this, rootView);
+
+        email.requestFocus();
+        BaseActivity.showKeyboard();
 
         error.setVisibility(View.INVISIBLE);
 
@@ -91,6 +92,13 @@ public class SignInFragment extends BaseFragment {
                 });
             }
         });
+        BaseActivity.timeout(new Runnable() {
+            @Override
+            public void run() {
+                rootView.invalidate();
+            }
+        }, 1000);
+
         return rootView;
     }
 

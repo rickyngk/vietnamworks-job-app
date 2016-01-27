@@ -26,7 +26,8 @@
             android:theme="@style/NoActionBar" />
         <activity
             android:name=".activities.signup.SignUpActivity"
-            android:theme="@style/NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".activities.main.MainActivity"
             android:label="@string/title_activity_main"
