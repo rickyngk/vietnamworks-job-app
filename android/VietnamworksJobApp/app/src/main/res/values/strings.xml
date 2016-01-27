@@ -14,10 +14,12 @@
     <string name="done">Done</string>
     <string name="cancel">Cancel</string>
     <string name="search">Search</string>
+    <string name="ok">OK</string>
 
 
     <string name="get_started">Getting started</string>
     <string name="already_have_account">Already have account</string>
+    <string name="register_new_account">Sign up</string>
 
     <string name="question_job_title">What\'s your job title?</string>
     <string name="question_job_location">Where do you prefer working?</string>
@@ -72,4 +74,13 @@
     <string name="invalid_file">Fail to get file</string>
     <string name="cv_is_required">CV is mandatory</string>
     <string name="apply_job_success">Apply job successfully</string>
+
+    <!-- register -->
+    <string name="register">Register</string>
+    <string name="firstname">First name</string>
+    <string name="lastname">Last name</string>
+    <string name="firstname_is_required">First name is required</string>
+    <string name="lastname_is_required">Last name is required</string>
+    <string name="duplicated_email">Email address already in use</string>
+    <string name="register_successful">Your account has been created. Please check your email to get password</string>
 </resources>

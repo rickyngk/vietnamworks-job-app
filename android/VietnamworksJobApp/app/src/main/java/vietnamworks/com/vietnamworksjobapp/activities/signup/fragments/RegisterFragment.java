@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -19,34 +17,36 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import vietnamworks.com.vietnamworksjobapp.R;
 import vietnamworks.com.vietnamworksjobapp.activities.onboarding.WelcomeActivity;
-import vietnamworks.com.vietnamworksjobapp.activities.onboarding.input.InputInfoActivity;
 import vietnamworks.com.vietnamworksjobapp.activities.signup.SignUpActivity;
-import vietnamworks.com.vnwcore.Auth;
-import vietnamworks.com.vnwcore.errors.ELoginError;
+import vietnamworks.com.vnwcore.VNWAPI;
+import vietnamworks.com.vnwcore.entities.RegisterInfo;
+import vietnamworks.com.vnwcore.errors.ERegisterError;
 
 /**
- * Created by duynk on 1/26/16.
- *
+ * Created by duynk on 1/27/16.
  */
-public class SignInFragment extends BaseFragment {
+public class RegisterFragment extends BaseFragment {
     @Bind(R.id.email)
-    AutoCompleteTextView email;
+    EditText email;
 
-    @Bind(R.id.password)
-    EditText password;
+    @Bind(R.id.firstname)
+    EditText firstName;
 
-    @Bind(R.id.btn_login)
-    Button btnLogin;
+    @Bind(R.id.lastname)
+    EditText lastName;
 
-    @Bind(R.id.btn_cancel_login)
-    Button btnCancelLogin;
+    @Bind(R.id.btn_register)
+    Button btnRegister;
+
+    @Bind(R.id.btn_cancel_register)
+    Button btnCancel;
 
     @Bind(R.id.error)
     TextView error;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_onboarding_login, container, false);
+        final ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_onboarding_register, container, false);
         ButterKnife.bind(this, rootView);
 
         email.requestFocus();
@@ -54,10 +54,7 @@ public class SignInFragment extends BaseFragment {
 
         error.setVisibility(View.INVISIBLE);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this.getContext(), android.R.layout.simple_list_item_1, Auth.getRecentEmails());
-        email.setAdapter(adapter);
-
-        btnCancelLogin.setOnClickListener(new View.OnClickListener() {
+        btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 BaseActivity.hideKeyboard();
@@ -65,28 +62,41 @@ public class SignInFragment extends BaseFragment {
             }
         });
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
+        btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 hideError();
-                Auth.login(getContext(), email.getText().toString(), password.getText().toString(), new Callback<Object>() {
+                RegisterInfo info = new RegisterInfo();
+                info.setEmail(email.getText().toString());
+                info.setFirstName(firstName.getText().toString());
+                info.setLastName(lastName.getText().toString());
+
+                VNWAPI.register(getContext(), info, new Callback<Object>() {
                     @Override
                     public void onCompleted(Context context, CallbackResult result) {
                         if (result.hasError()) {
                             int code = result.getError().getCode();
-                            if (ELoginError.EMPTY_EMAIL.is(code)) {
+                            if (ERegisterError.EMPTY_EMAIL.is(code)) {
                                 showError(R.string.email_is_required);
-                            } else if (ELoginError.INVALID_EMAIL.is(code)) {
+                                email.requestFocus();
+                            } else if (ERegisterError.INVALID_EMAIL.is(code)) {
                                 showError(R.string.invalid_email_format);
-                            } else if (ELoginError.EMPTY_PASSWORD.is(code)) {
-                                showError(R.string.password_is_required);
-                            } else if (ELoginError.WRONG_CREDENTIAL.is(code)) {
-                                showError(R.string.invalid_credential);
+                                email.requestFocus();
+                            } else if (ERegisterError.FIRST_NAME_MISSING.is(code)) {
+                                showError(R.string.firstname_is_required);
+                                firstName.requestFocus();
+                            } else if (ERegisterError.LAST_NAME_MISSING.is(code)) {
+                                showError(R.string.lastname_is_required);
+                                lastName.requestFocus();
+                            } else if (ERegisterError.DUPLICATED.is(code)) {
+                                showError(R.string.duplicated_email);
+                                email.requestFocus();
                             } else {
                                 showError(R.string.oops_something_wrong);
                             }
                         } else {
-                            SignUpActivity.openActivity(InputInfoActivity.class);
+                            //TODO
+                            SignUpActivity.openFragment(new RegisterSuccessFragment(), R.id.fragment_holder);
                         }
                     }
                 });

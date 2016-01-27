@@ -24,4 +24,10 @@ public class WelcomeActivity extends BaseActivity {
     public void onLogin(View v) {
         openActivity(SignUpActivity.class);
     }
+
+    public void onSignUp(View v) {
+        Bundle b = new Bundle();
+        b.putInt("mode", 1);
+        openActivity(SignUpActivity.class, b);
+    }
 }

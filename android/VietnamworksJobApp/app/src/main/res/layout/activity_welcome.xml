@@ -51,7 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/get_started"
-            android:id="@+id/button2"
+            android:id="@+id/btn_get_started"
             android:background="@drawable/rounded_button"
             android:layout_marginBottom="@dimen/base_padding_8x"
             android:textStyle="bold"
@@ -61,11 +61,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/already_have_account"
-            android:id="@+id/button"
+            android:id="@+id/btn_sign_in"
+            android:background="@drawable/rounded_button"
+            style="@style/Text.Medium.Light"
+            android:layout_marginBottom="@dimen/base_padding_8x"
+            android:textStyle="bold"
+            android:onClick="onLogin" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/register_new_account"
+            android:id="@+id/btn_sign_up"
             android:background="@drawable/rounded_button"
             style="@style/Text.Medium.Light"
             android:textStyle="bold"
-            android:onClick="onLogin" />
+            android:onClick="onSignUp" />
     </LinearLayout>
 
 </RelativeLayout>
