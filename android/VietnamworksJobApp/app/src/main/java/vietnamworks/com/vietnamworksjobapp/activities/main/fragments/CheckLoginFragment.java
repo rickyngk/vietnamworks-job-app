@@ -25,7 +25,7 @@ public class CheckLoginFragment extends BaseFragment {
         final ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_check_login, container, false);
         ButterKnife.bind(this, rootView);
 
-        Auth.autoLogin(getContext(), new Callback() {
+        Auth.autoLogin(getContext(), new Callback<Object>() {
             @Override
             public void onCompleted(Context context, CallbackResult result) {
                 if (result.hasError()) {

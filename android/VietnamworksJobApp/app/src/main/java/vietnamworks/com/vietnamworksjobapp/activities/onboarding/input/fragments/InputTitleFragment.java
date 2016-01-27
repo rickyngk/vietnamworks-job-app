@@ -14,7 +14,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.TextView;
 
-import org.json.JSONArray;
+import java.util.ArrayList;
 
 import R.helper.BaseFragment;
 import R.helper.Callback;
@@ -77,16 +77,16 @@ public class InputTitleFragment extends BaseFragment {
                     preventTextChangeEvent = false;
                     return;
                 }
-                VNWAPI.jobTitleSuggestion(getContext(), jobTitle.getText().toString(), new Callback() {
+                VNWAPI.jobTitleSuggestion(getContext(), jobTitle.getText().toString(), new Callback<ArrayList<String>>() {
                     @Override
-                    public void onCompleted(Context context, CallbackResult result) {
+                    public void onCompleted(Context context, CallbackResult<ArrayList<String>> result) {
                         adapter.clear();
                         if (!result.hasError()) {
                             try {
-                                JSONArray data = (JSONArray) result.getData();
+                                ArrayList<String> data = result.getData();
                                 if (data != null) {
-                                    for (int i = 0; i < data.length(); i++) {
-                                        adapter.add(data.get(i).toString());
+                                    for (int i = 0; i < data.size(); i++) {
+                                        adapter.add(data.get(i));
                                     }
                                 }
                                 System.out.println(data);
