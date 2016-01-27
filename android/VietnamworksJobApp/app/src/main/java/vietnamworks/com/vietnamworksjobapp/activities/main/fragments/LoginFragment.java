@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import R.helper.BaseActivity;
@@ -43,6 +44,9 @@ public class LoginFragment extends BaseFragment {
     @Bind(R.id.error)
     TextView error;
 
+    @Bind(R.id.progressBar_login)
+    ProgressBar progressBar;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         BaseActivity.hideActionBar();
@@ -66,8 +70,8 @@ public class LoginFragment extends BaseFragment {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                hideError();
-                Auth.login(getContext(), email.getText().toString(), password.getText().toString(), new Callback() {
+                startProgress();
+                Auth.login(getContext(), email.getText().toString(), password.getText().toString(), new Callback<Object>() {
                     @Override
                     public void onCompleted(Context context, CallbackResult result) {
                         if (result.hasError()) {
@@ -87,11 +91,13 @@ public class LoginFragment extends BaseFragment {
                             ((JobApplyForm) ShareContext.get(ShareContext.SELECTED_JOB)).setToken(Auth.getAuthData().getProfile().getLoginToken());
                             BaseActivity.replaceFragment(new UploadCVFragment(), R.id.fragment_holder);
                         }
+                        endProgress();
                     }
                 });
             }
         });
 
+        progressBar.setVisibility(View.GONE);
         return rootView;
     }
 
@@ -102,5 +108,22 @@ public class LoginFragment extends BaseFragment {
 
     private void hideError() {
         error.setVisibility(View.INVISIBLE);
+    }
+
+    private void startProgress() {
+        email.setEnabled(false);
+        password.setEnabled(false);
+        btnCancelLogin.setEnabled(false);
+        btnLogin.setEnabled(false);
+        hideError();
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    private void endProgress() {
+        email.setEnabled(true);
+        password.setEnabled(true);
+        btnCancelLogin.setEnabled(true);
+        btnLogin.setEnabled(true);
+        progressBar.setVisibility(View.GONE);
     }
 }

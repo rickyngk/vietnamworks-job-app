@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import R.helper.BaseActivity;
@@ -44,6 +45,9 @@ public class RegisterFragment extends BaseFragment {
     @Bind(R.id.error)
     TextView error;
 
+    @Bind(R.id.progressBar_register)
+    ProgressBar progressBar;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_onboarding_register, container, false);
@@ -65,7 +69,7 @@ public class RegisterFragment extends BaseFragment {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                hideError();
+                startProgress();
                 RegisterInfo info = new RegisterInfo();
                 info.setEmail(email.getText().toString());
                 info.setFirstName(firstName.getText().toString());
@@ -95,13 +99,14 @@ public class RegisterFragment extends BaseFragment {
                                 showError(R.string.oops_something_wrong);
                             }
                         } else {
-                            //TODO
                             SignUpActivity.openFragment(new RegisterSuccessFragment(), R.id.fragment_holder);
                         }
+                        endProgress();
                     }
                 });
             }
         });
+        progressBar.setVisibility(View.GONE);
         return rootView;
     }
 
@@ -112,5 +117,24 @@ public class RegisterFragment extends BaseFragment {
 
     private void hideError() {
         error.setVisibility(View.INVISIBLE);
+    }
+
+    private void startProgress() {
+        email.setEnabled(false);
+        lastName.setEnabled(false);
+        firstName.setEnabled(false);
+        btnCancel.setEnabled(false);
+        btnRegister.setEnabled(false);
+        hideError();
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    private void endProgress() {
+        email.setEnabled(true);
+        lastName.setEnabled(true);
+        firstName.setEnabled(true);
+        btnCancel.setEnabled(true);
+        btnRegister.setEnabled(true);
+        progressBar.setVisibility(View.GONE);
     }
 }

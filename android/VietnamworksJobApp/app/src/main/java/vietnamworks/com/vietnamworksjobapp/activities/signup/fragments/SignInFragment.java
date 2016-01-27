@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import R.helper.BaseActivity;
@@ -44,6 +45,9 @@ public class SignInFragment extends BaseFragment {
     @Bind(R.id.error)
     TextView error;
 
+    @Bind(R.id.progressBar_login)
+    ProgressBar progressBar;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_onboarding_login, container, false);
@@ -68,7 +72,7 @@ public class SignInFragment extends BaseFragment {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                hideError();
+                startProgress();
                 Auth.login(getContext(), email.getText().toString(), password.getText().toString(), new Callback<Object>() {
                     @Override
                     public void onCompleted(Context context, CallbackResult result) {
@@ -88,10 +92,13 @@ public class SignInFragment extends BaseFragment {
                         } else {
                             SignUpActivity.openActivity(InputInfoActivity.class);
                         }
+                        endProgress();
                     }
                 });
             }
         });
+
+        progressBar.setVisibility(View.GONE);
         return rootView;
     }
 
@@ -102,5 +109,22 @@ public class SignInFragment extends BaseFragment {
 
     private void hideError() {
         error.setVisibility(View.INVISIBLE);
+    }
+
+    private void startProgress() {
+        email.setEnabled(false);
+        password.setEnabled(false);
+        btnCancelLogin.setEnabled(false);
+        btnLogin.setEnabled(false);
+        hideError();
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    private void endProgress() {
+        email.setEnabled(true);
+        password.setEnabled(true);
+        btnCancelLogin.setEnabled(true);
+        btnLogin.setEnabled(true);
+        progressBar.setVisibility(View.GONE);
     }
 }
