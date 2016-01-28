@@ -3,10 +3,12 @@ package vietnamworks.com.vietnamworksjobapp.activities.onboarding;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import R.helper.BaseActivity;
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import vietnamworks.com.vietnamworksjobapp.BuildConfig;
 import vietnamworks.com.vietnamworksjobapp.R;
 import vietnamworks.com.vietnamworksjobapp.activities.onboarding.input.InputInfoActivity;
 import vietnamworks.com.vietnamworksjobapp.activities.signup.SignUpActivity;
@@ -21,6 +23,9 @@ public class WelcomeActivity extends BaseActivity {
 
     @Bind(R.id.btn_sign_up)
     Button btnSignUp;
+
+    @Bind(R.id.version)
+    TextView version;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +45,11 @@ public class WelcomeActivity extends BaseActivity {
         btnSignUp.setAlpha(0);
         btnSignUp.setY(5);
         btnSignUp.animate().setDuration(500).alpha(1).translationY(0).setStartDelay(500).start();
+
+        String ver = String.format("%s.%s", BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE);
+        version.setText(String.format(getString(R.string.version), ver));
+        version.setAlpha(0);
+        version.animate().setDuration(500).alpha(1).setStartDelay(750).start();
     }
 
     public void onGettingStarted(View v) {

@@ -3,6 +3,7 @@
 
     <!-- common-->
     <string name="any">Any</string>
+    <string name="version">Version %s</string>
     <string name="oops_something_wrong">Oops something wrong. Please try again later</string>
 
     <!-- activity title -->
