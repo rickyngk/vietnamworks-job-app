@@ -1,30 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Button">
+    <style name="RoundButton">
+        <item name="android:textSize">@dimen/font_m</item>
     </style>
 
-    <style name="Button.Large" parent="Button">
+    <style name="RoundButton.Basic" parent="RoundButton">
+        <item name="android:background">@drawable/shape_small_button</item>
+        <item name="android:textColor">@color/textColorDark</item>
+    </style>
+
+    <style name="RoundButton.CTA" parent="RoundButton">
+        <item name="android:background">@drawable/shape_small_button_cta</item>
+        <item name="android:textColor">@color/textColorLight</item>
+    </style>
+
+    <style name="RoundButton.Large" parent="RoundButton">
         <item name="android:background">@drawable/shape_rounded_button</item>
         <item name="android:textColor">@color/textColorDark</item>
         <item name="android:textSize">@dimen/font_m</item>
     </style>
 
-    <style name="Button.Large.CTA" parent="Button.Large">
+    <style name="RoundButton.Large.CTA" parent="RoundButton.Large">
         <item name="android:background">@drawable/shape_button_cta</item>
         <item name="android:textColor">@color/textColorLight</item>
     </style>
 
-    <style name="Button.Large.CTA.Line" parent="Button.Large">
+    <style name="RoundButton.Large.CTA.Line" parent="RoundButton.Large">
         <item name="android:background">@drawable/shape_button_cta_line</item>
         <item name="android:textColor">@color/textColorWarning</item>
     </style>
 
-    <style name="Button.Large.Primary" parent="Button.Large">
+    <style name="RoundButton.Large.Primary" parent="RoundButton.Large">
         <item name="android:background">@drawable/shape_button_primary</item>
         <item name="android:textColor">@color/textColorLight</item>
     </style>
 
-    <style name="Button.Large.Primary.Line" parent="Button.Large">
+    <style name="RoundButton.Large.Primary.Line" parent="RoundButton.Large">
         <item name="android:background">@drawable/shape_button_primary_line</item>
         <item name="android:textColor">@color/textColorPrimary</item>
     </style>

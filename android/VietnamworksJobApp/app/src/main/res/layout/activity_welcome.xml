@@ -37,7 +37,7 @@
             android:id="@+id/linearLayout2">
 
             <Button
-                style="@style/Button.Large.CTA.Line"
+                style="@style/RoundButton.Large.CTA.Line"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/get_started"
@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/already_have_account"
                 android:id="@+id/btn_sign_in"
-                style="@style/Button.Large.Primary.Line"
+                style="@style/RoundButton.Large.Primary.Line"
                 android:layout_marginBottom="@dimen/base_padding_4x"
                 android:onClick="onLogin" />
 
@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/register_new_account"
                 android:id="@+id/btn_sign_up"
-                style="@style/Button.Large.Primary.Line"
+                style="@style/RoundButton.Large.Primary.Line"
                 android:onClick="onSignUp" />
         </LinearLayout>
 

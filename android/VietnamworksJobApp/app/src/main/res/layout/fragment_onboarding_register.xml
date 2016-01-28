@@ -96,16 +96,19 @@
 
                 <Button
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/button_small_height"
                     android:text="@string/cancel"
-                    android:id="@+id/btn_cancel_register" />
+                    android:id="@+id/btn_cancel_register"
+                    style="@style/RoundButton.Basic"
+                    android:layout_marginRight="@dimen/base_padding_2x" />
 
                 <Button
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/button_small_height"
                     android:text="@string/register"
                     android:id="@+id/btn_register"
-                    android:layout_gravity="right" />
+                    android:layout_gravity="right"
+                    style="@style/RoundButton.CTA" />
             </LinearLayout>
 
         </LinearLayout>
