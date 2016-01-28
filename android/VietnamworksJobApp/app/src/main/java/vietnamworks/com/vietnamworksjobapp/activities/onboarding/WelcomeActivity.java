@@ -33,7 +33,6 @@ public class WelcomeActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        hideSystemUI();
         setContentView(R.layout.activity_welcome);
         ButterKnife.bind(this);
 

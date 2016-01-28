@@ -76,7 +76,7 @@ public class UploadCVFragment extends BaseFragment {
                     jf.setResumeAttachId(null);
                 } else {
                     jf.setFileContents(null);
-                    jf.setResumeAttachId(Integer.parseInt(Auth.getAuthData().getResume().getId()));
+                    jf.setResumeAttachId(Auth.getAuthData().getAttachmentResumeId());
                 }
 
                 boolean hasUploadFile = jf.getFileContents() != null && !jf.getFileContents().isEmpty();
@@ -90,7 +90,7 @@ public class UploadCVFragment extends BaseFragment {
         });
 
 
-        if (Auth.getAuthData().getResume() == null) {
+        if (Auth.getAuthData().getAttachmentResumeId() == null || Auth.getAuthData().getAttachmentResumeId().isEmpty()) {
             btnUploadFromDropBox.setEnabled(true);
             btnUploadFromSDCard.setEnabled(true);
             optUseCurrentCV.setEnabled(false);
