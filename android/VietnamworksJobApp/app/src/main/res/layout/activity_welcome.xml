@@ -6,69 +6,25 @@
     tools:context=".activities.welcome.WelcomeActivity"
     android:background="#ffffff">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         android:background="#ffffff">
 
-        <RelativeLayout
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/relativeLayout"
-            android:layout_centerVertical="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:paddingLeft="@dimen/base_padding_8x"
-            android:paddingRight="@dimen/base_padding_8x">
+            android:id="@+id/imageView2"
+            android:src="@drawable/ic_vietnamworks"
+            android:contentDescription="@null"
+            android:layout_margin="@dimen/base_padding_2x" />
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/imageView2"
-                android:src="@drawable/ic_vietnamworks"
-                android:contentDescription="@null"
-                android:layout_alignParentEnd="false" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_alignParentTop="false"
-                android:layout_alignParentLeft="false"
-                android:layout_alignParentStart="false"
-                android:layout_below="@+id/imageView2"
-                android:visibility="invisible" />
-
-        </RelativeLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
+        <Space
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:id="@+id/footer"
-            android:layout_margin="@dimen/base_padding_2x">
-
-            <TextView
-                style="@style/Text.ExtraSmall.Muted"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="@string/version"
-                android:id="@+id/version"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="@string/vnw_copyright"
-                android:id="@+id/textView4"
-                style="@style/Text.ExtraSmall.Muted"
-                android:layout_marginTop="@dimen/base_padding" />
-        </LinearLayout>
+            android:layout_height="0dp"
+            android:visibility="invisible"
+            android:layout_weight="1" />
 
         <LinearLayout
             android:orientation="vertical"
@@ -78,10 +34,7 @@
             android:paddingBottom="@dimen/base_padding_8x"
             android:paddingLeft="@dimen/base_padding_4x"
             android:paddingRight="@dimen/base_padding_4x"
-            android:id="@+id/linearLayout2"
-            android:layout_above="@+id/footer"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
+            android:id="@+id/linearLayout2">
 
             <Button
                 style="@style/Button.Large.CTA.Line"
@@ -110,7 +63,34 @@
                 android:onClick="onSignUp" />
         </LinearLayout>
 
-    </RelativeLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/footer"
+            android:layout_margin="@dimen/base_padding_2x">
+
+            <TextView
+                style="@style/Text.ExtraSmall.Muted"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/version"
+                android:id="@+id/version"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/vnw_copyright"
+                android:id="@+id/textView4"
+                style="@style/Text.ExtraSmall.Muted"
+                android:layout_marginTop="@dimen/base_padding" />
+        </LinearLayout>
+
+    </LinearLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
