@@ -48,14 +48,12 @@
         android:paddingRight="@dimen/base_padding_4x">
 
         <Button
-            style="@style/Text.Medium.Muted"
+            style="@style/Button.Large.CTA.Line"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/get_started"
             android:id="@+id/btn_get_started"
-            android:background="@drawable/rounded_button"
             android:layout_marginBottom="@dimen/base_padding_4x"
-            android:textStyle="bold"
             android:onClick="onGettingStarted" />
 
         <Button
@@ -63,10 +61,8 @@
             android:layout_height="wrap_content"
             android:text="@string/already_have_account"
             android:id="@+id/btn_sign_in"
-            android:background="@drawable/rounded_button"
-            style="@style/Text.Medium.Muted"
+            style="@style/Button.Large.Primary.Line"
             android:layout_marginBottom="@dimen/base_padding_4x"
-            android:textStyle="bold"
             android:onClick="onLogin" />
 
         <Button
@@ -74,9 +70,7 @@
             android:layout_height="wrap_content"
             android:text="@string/register_new_account"
             android:id="@+id/btn_sign_up"
-            android:background="@drawable/rounded_button"
-            style="@style/Text.Medium.Muted"
-            android:textStyle="bold"
+            style="@style/Button.Large.Primary.Line"
             android:onClick="onSignUp" />
     </LinearLayout>
 

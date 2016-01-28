@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#00b9f2</color>
+    <color name="colorPrimaryAlpha">#4000b9f2</color>
     <color name="colorPrimaryDark">#345465</color>
     <color name="colorAccent">#009688</color>
     <color name="colorBaseBackground">#FFFFFF</color>
 
     <color name="colorSemiAlpha">#cccccccc</color>
     <color name="colorError">#c0392b</color>
+    <color name="colorWarning">#f57700</color>
+    <color name="colorWarningAlpha">#40f57700</color>
 </resources>
