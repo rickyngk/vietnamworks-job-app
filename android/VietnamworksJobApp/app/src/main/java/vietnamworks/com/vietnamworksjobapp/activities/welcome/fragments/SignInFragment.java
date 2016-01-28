@@ -107,7 +107,7 @@ public class SignInFragment extends BaseFragment {
                 email.requestFocus();
                 BaseActivity.showKeyboard();
             }
-        }, 250);
+        }, 50);
 
 
         return rootView;
