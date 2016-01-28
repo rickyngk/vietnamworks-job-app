@@ -83,7 +83,7 @@ public class CoverLetterFragment extends BaseFragment {
 
                             LocalStorage.set("last_cover_letter", coverLetter.getText().toString().trim());
 
-                            VNWAPI.applyJob(getContext(), jf, new Callback() {
+                            VNWAPI.applyJob(getContext(), jf, new Callback<Object>() {
                                 @Override
                                 public void onCompleted(Context context, CallbackResult result) {
                                     if (result.hasError()) {
@@ -91,7 +91,7 @@ public class CoverLetterFragment extends BaseFragment {
                                         int errorNumber = result.getError().getCode();
                                         if (EApplyJobError.BAD_REQUEST.is(errorNumber)) {
                                             String tmpMessage = result.getError().getMessage();
-                                            if (!tmpMessage.isEmpty()) {
+                                            if (tmpMessage != null && !tmpMessage.isEmpty()) {
                                                 errorMessage = tmpMessage;
                                             }
                                         }
