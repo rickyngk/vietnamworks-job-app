@@ -90,6 +90,7 @@ public class SignInFragment extends BaseFragment {
                             } else {
                                 showError(R.string.oops_something_wrong);
                             }
+                            BaseActivity.showKeyboard();
                         } else {
                             BaseActivity.openActivity(InputInfoActivity.class);
                         }

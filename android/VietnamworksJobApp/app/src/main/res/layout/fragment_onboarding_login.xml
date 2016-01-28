@@ -65,7 +65,9 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="right">
+                android:gravity="right"
+                android:layout_marginBottom="@dimen/base_padding_2x"
+                android:layout_marginTop="@dimen/base_padding_2x">
 
                 <LinearLayout
                     android:orientation="horizontal"

@@ -96,6 +96,7 @@ public class RegisterFragment extends BaseFragment {
                             } else {
                                 showError(R.string.oops_something_wrong);
                             }
+                            BaseActivity.showKeyboard();
                         } else {
                             BaseActivity.openFragment(new RegisterSuccessFragment(), R.id.fragment_holder);
                         }
