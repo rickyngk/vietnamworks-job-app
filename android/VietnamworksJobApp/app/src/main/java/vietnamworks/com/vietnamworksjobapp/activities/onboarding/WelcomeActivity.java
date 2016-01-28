@@ -27,6 +27,9 @@ public class WelcomeActivity extends BaseActivity {
     @Bind(R.id.version)
     TextView version;
 
+    @Bind(R.id.footer)
+    View footer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,8 +51,8 @@ public class WelcomeActivity extends BaseActivity {
 
         String ver = String.format("%s.%s", BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE);
         version.setText(String.format(getString(R.string.version), ver));
-        version.setAlpha(0);
-        version.animate().setDuration(500).alpha(1).setStartDelay(750).start();
+        footer.setAlpha(0);
+        footer.animate().setDuration(500).alpha(1).setStartDelay(750).start();
     }
 
     public void onGettingStarted(View v) {
