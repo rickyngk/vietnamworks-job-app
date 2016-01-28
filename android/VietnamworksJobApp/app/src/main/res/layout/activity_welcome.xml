@@ -1,108 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="vietnamworks.com.vietnamworksjobapp.activities.onboarding.WelcomeActivity"
+    tools:context=".activities.welcome.WelcomeActivity"
     android:background="#ffffff">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/relativeLayout"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:paddingLeft="@dimen/base_padding_8x"
-        android:paddingRight="@dimen/base_padding_8x">
+        android:layout_height="match_parent"
+        android:background="#ffffff">
 
-        <ImageView
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/imageView2"
-            android:src="@drawable/ic_vietnamworks"
-            android:contentDescription="@null"
-            android:layout_alignParentEnd="false" />
+            android:id="@+id/relativeLayout"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:paddingLeft="@dimen/base_padding_8x"
+            android:paddingRight="@dimen/base_padding_8x">
 
-        <Space
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView2"
+                android:src="@drawable/ic_vietnamworks"
+                android:contentDescription="@null"
+                android:layout_alignParentEnd="false" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_alignParentTop="false"
+                android:layout_alignParentLeft="false"
+                android:layout_alignParentStart="false"
+                android:layout_below="@+id/imageView2"
+                android:visibility="invisible" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_alignParentTop="false"
-            android:layout_alignParentLeft="false"
-            android:layout_alignParentStart="false"
-            android:layout_below="@+id/imageView2"
-            android:visibility="invisible" />
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/footer"
+            android:layout_margin="@dimen/base_padding_2x">
+
+            <TextView
+                style="@style/Text.ExtraSmall.Muted"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/version"
+                android:id="@+id/version"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/vnw_copyright"
+                android:id="@+id/textView4"
+                style="@style/Text.ExtraSmall.Muted"
+                android:layout_marginTop="@dimen/base_padding" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/base_padding_8x"
+            android:paddingBottom="@dimen/base_padding_8x"
+            android:paddingLeft="@dimen/base_padding_4x"
+            android:paddingRight="@dimen/base_padding_4x"
+            android:id="@+id/linearLayout2"
+            android:layout_above="@+id/footer"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+            <Button
+                style="@style/Button.Large.CTA.Line"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/get_started"
+                android:id="@+id/btn_get_started"
+                android:layout_marginBottom="@dimen/base_padding_4x"
+                android:onClick="onGettingStarted" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/already_have_account"
+                android:id="@+id/btn_sign_in"
+                style="@style/Button.Large.Primary.Line"
+                android:layout_marginBottom="@dimen/base_padding_4x"
+                android:onClick="onLogin" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/register_new_account"
+                android:id="@+id/btn_sign_up"
+                style="@style/Button.Large.Primary.Line"
+                android:onClick="onSignUp" />
+        </LinearLayout>
 
     </RelativeLayout>
 
-    <LinearLayout
-        android:orientation="vertical"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/footer"
-        android:layout_margin="@dimen/base_padding_2x">
-
-        <TextView
-            style="@style/Text.ExtraSmall.Muted"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/version"
-            android:id="@+id/version"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/vnw_copyright"
-            android:id="@+id/textView4"
-            style="@style/Text.ExtraSmall.Muted"
-            android:layout_marginTop="@dimen/base_padding" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="@dimen/base_padding_8x"
-        android:paddingBottom="@dimen/base_padding_8x"
-        android:paddingLeft="@dimen/base_padding_4x"
-        android:paddingRight="@dimen/base_padding_4x"
-        android:id="@+id/linearLayout2"
-        android:layout_above="@+id/footer"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
-
-        <Button
-            style="@style/Button.Large.CTA.Line"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/get_started"
-            android:id="@+id/btn_get_started"
-            android:layout_marginBottom="@dimen/base_padding_4x"
-            android:onClick="onGettingStarted" />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/already_have_account"
-            android:id="@+id/btn_sign_in"
-            style="@style/Button.Large.Primary.Line"
-            android:layout_marginBottom="@dimen/base_padding_4x"
-            android:onClick="onLogin" />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/register_new_account"
-            android:id="@+id/btn_sign_up"
-            style="@style/Button.Large.Primary.Line"
-            android:onClick="onSignUp" />
-    </LinearLayout>
-
-</RelativeLayout>
+        android:layout_height="match_parent"
+        android:id="@+id/fragment_holder"/>
+</FrameLayout>

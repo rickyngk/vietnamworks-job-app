@@ -21,7 +21,7 @@ import vietnamworks.com.vietnamworksjobapp.activities.main.fragments.CardsFragme
 import vietnamworks.com.vietnamworksjobapp.activities.main.fragments.CoverLetterFragment;
 import vietnamworks.com.vietnamworksjobapp.activities.main.fragments.LoginFragment;
 import vietnamworks.com.vietnamworksjobapp.activities.main.fragments.UploadCVFragment;
-import vietnamworks.com.vietnamworksjobapp.activities.onboarding.WelcomeActivity;
+import vietnamworks.com.vietnamworksjobapp.activities.welcome.WelcomeActivity;
 import vietnamworks.com.vietnamworksjobapp.models.UserLocalSearchDataModel;
 import vietnamworks.com.vnwcore.Auth;
 

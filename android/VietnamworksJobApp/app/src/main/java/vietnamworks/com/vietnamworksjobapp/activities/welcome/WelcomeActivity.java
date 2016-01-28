@@ -1,4 +1,4 @@
-package vietnamworks.com.vietnamworksjobapp.activities.onboarding;
+package vietnamworks.com.vietnamworksjobapp.activities.welcome;
 
 import android.os.Bundle;
 import android.view.View;
@@ -10,8 +10,9 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import vietnamworks.com.vietnamworksjobapp.BuildConfig;
 import vietnamworks.com.vietnamworksjobapp.R;
-import vietnamworks.com.vietnamworksjobapp.activities.onboarding.input.InputInfoActivity;
-import vietnamworks.com.vietnamworksjobapp.activities.signup.SignUpActivity;
+import vietnamworks.com.vietnamworksjobapp.activities.input.InputInfoActivity;
+import vietnamworks.com.vietnamworksjobapp.activities.welcome.fragments.RegisterFragment;
+import vietnamworks.com.vietnamworksjobapp.activities.welcome.fragments.SignInFragment;
 
 public class WelcomeActivity extends BaseActivity {
 
@@ -54,17 +55,24 @@ public class WelcomeActivity extends BaseActivity {
         footer.animate().setDuration(500).alpha(1).setStartDelay(750).start();
     }
 
+    @Override
+    public void onBackPressed() {
+        if (getSupportFragmentManager().findFragmentById(R.id.fragment_holder) !=null ) {
+            removeFragment(R.id.fragment_holder);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
     public void onGettingStarted(View v) {
         openActivity(InputInfoActivity.class);
     }
 
     public void onLogin(View v) {
-        openActivity(SignUpActivity.class);
+        openFragment(new SignInFragment(), R.id.fragment_holder);
     }
 
     public void onSignUp(View v) {
-        Bundle b = new Bundle();
-        b.putInt("mode", 1);
-        openActivity(SignUpActivity.class, b);
+        openFragment(new RegisterFragment(), R.id.fragment_holder);
     }
 }

@@ -19,15 +19,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.onboarding.WelcomeActivity"
-            android:theme="@style/NoActionBar" />
-        <activity
-            android:name=".activities.onboarding.input.InputInfoActivity"
-            android:theme="@style/NoActionBar" />
-        <activity
-            android:name=".activities.signup.SignUpActivity"
+            android:name=".activities.welcome.WelcomeActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".activities.input.InputInfoActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activities.main.MainActivity"
             android:label="@string/title_activity_main"

@@ -7,7 +7,7 @@ import R.helper.Callback;
 import R.helper.CallbackResult;
 import R.helper.Common;
 import vietnamworks.com.vietnamworksjobapp.activities.main.MainActivity;
-import vietnamworks.com.vietnamworksjobapp.activities.onboarding.WelcomeActivity;
+import vietnamworks.com.vietnamworksjobapp.activities.welcome.WelcomeActivity;
 import vietnamworks.com.vietnamworksjobapp.models.UserLocalSearchDataModel;
 import vietnamworks.com.vnwcore.Auth;
 import vietnamworks.com.vnwcore.entities.Configuration;

@@ -1,4 +1,4 @@
-package vietnamworks.com.vietnamworksjobapp.activities.onboarding.input.fragments;
+package vietnamworks.com.vietnamworksjobapp.activities.input.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -22,7 +22,7 @@ import R.helper.CallbackResult;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import vietnamworks.com.vietnamworksjobapp.R;
-import vietnamworks.com.vietnamworksjobapp.activities.onboarding.input.InputInfoActivity;
+import vietnamworks.com.vietnamworksjobapp.activities.input.InputInfoActivity;
 import vietnamworks.com.vietnamworksjobapp.models.UserLocalSearchDataModel;
 import vietnamworks.com.vnwcore.VNWAPI;
 

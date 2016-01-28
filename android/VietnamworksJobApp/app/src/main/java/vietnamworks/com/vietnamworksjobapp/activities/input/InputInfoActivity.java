@@ -1,4 +1,4 @@
-package vietnamworks.com.vietnamworksjobapp.activities.onboarding.input;
+package vietnamworks.com.vietnamworksjobapp.activities.input;
 
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -10,9 +10,9 @@ import android.widget.LinearLayout;
 import R.helper.BaseActivity;
 import vietnamworks.com.vietnamworksjobapp.R;
 import vietnamworks.com.vietnamworksjobapp.activities.main.MainActivity;
-import vietnamworks.com.vietnamworksjobapp.activities.onboarding.input.fragments.InputIndustryFragment;
-import vietnamworks.com.vietnamworksjobapp.activities.onboarding.input.fragments.InputLocationFragment;
-import vietnamworks.com.vietnamworksjobapp.activities.onboarding.input.fragments.InputTitleFragment;
+import vietnamworks.com.vietnamworksjobapp.activities.input.fragments.InputIndustryFragment;
+import vietnamworks.com.vietnamworksjobapp.activities.input.fragments.InputLocationFragment;
+import vietnamworks.com.vietnamworksjobapp.activities.input.fragments.InputTitleFragment;
 import vietnamworks.com.vietnamworksjobapp.models.UserLocalSearchDataModel;
 
 public class InputInfoActivity extends BaseActivity {

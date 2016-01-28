@@ -1,4 +1,4 @@
-package vietnamworks.com.vietnamworksjobapp.activities.signup.fragments;
+package vietnamworks.com.vietnamworksjobapp.activities.welcome.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -17,8 +17,6 @@ import R.helper.CallbackResult;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import vietnamworks.com.vietnamworksjobapp.R;
-import vietnamworks.com.vietnamworksjobapp.activities.onboarding.WelcomeActivity;
-import vietnamworks.com.vietnamworksjobapp.activities.signup.SignUpActivity;
 import vietnamworks.com.vnwcore.VNWAPI;
 import vietnamworks.com.vnwcore.entities.RegisterInfo;
 import vietnamworks.com.vnwcore.errors.ERegisterError;
@@ -62,7 +60,7 @@ public class RegisterFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 BaseActivity.hideKeyboard();
-                BaseActivity.openActivity(WelcomeActivity.class);
+                BaseActivity.removeFragment(RegisterFragment.this);
             }
         });
 
@@ -99,7 +97,7 @@ public class RegisterFragment extends BaseFragment {
                                 showError(R.string.oops_something_wrong);
                             }
                         } else {
-                            SignUpActivity.openFragment(new RegisterSuccessFragment(), R.id.fragment_holder);
+                            BaseActivity.openFragment(new RegisterSuccessFragment(), R.id.fragment_holder);
                         }
                         endProgress();
                     }
@@ -107,6 +105,15 @@ public class RegisterFragment extends BaseFragment {
             }
         });
         progressBar.setVisibility(View.GONE);
+
+        BaseActivity.timeout(new Runnable() {
+            @Override
+            public void run() {
+                email.requestFocus();
+                BaseActivity.showKeyboard();
+            }
+        }, 250);
+
         return rootView;
     }
 

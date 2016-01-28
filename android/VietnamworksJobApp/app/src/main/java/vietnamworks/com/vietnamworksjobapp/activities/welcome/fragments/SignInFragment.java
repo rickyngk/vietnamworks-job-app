@@ -1,4 +1,4 @@
-package vietnamworks.com.vietnamworksjobapp.activities.signup.fragments;
+package vietnamworks.com.vietnamworksjobapp.activities.welcome.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -19,9 +19,7 @@ import R.helper.CallbackResult;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import vietnamworks.com.vietnamworksjobapp.R;
-import vietnamworks.com.vietnamworksjobapp.activities.onboarding.WelcomeActivity;
-import vietnamworks.com.vietnamworksjobapp.activities.onboarding.input.InputInfoActivity;
-import vietnamworks.com.vietnamworksjobapp.activities.signup.SignUpActivity;
+import vietnamworks.com.vietnamworksjobapp.activities.input.InputInfoActivity;
 import vietnamworks.com.vnwcore.Auth;
 import vietnamworks.com.vnwcore.errors.ELoginError;
 
@@ -64,8 +62,7 @@ public class SignInFragment extends BaseFragment {
         btnCancelLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BaseActivity.hideKeyboard();
-                BaseActivity.openActivity(WelcomeActivity.class);
+                BaseActivity.removeFragment(SignInFragment.this);
             }
         });
 
@@ -80,17 +77,21 @@ public class SignInFragment extends BaseFragment {
                             int code = result.getError().getCode();
                             if (ELoginError.EMPTY_EMAIL.is(code)) {
                                 showError(R.string.email_is_required);
+                                email.requestFocus();
                             } else if (ELoginError.INVALID_EMAIL.is(code)) {
                                 showError(R.string.invalid_email_format);
+                                email.requestFocus();
                             } else if (ELoginError.EMPTY_PASSWORD.is(code)) {
                                 showError(R.string.password_is_required);
+                                password.requestFocus();
                             } else if (ELoginError.WRONG_CREDENTIAL.is(code)) {
                                 showError(R.string.invalid_credential);
+                                email.requestFocus();
                             } else {
                                 showError(R.string.oops_something_wrong);
                             }
                         } else {
-                            SignUpActivity.openActivity(InputInfoActivity.class);
+                            BaseActivity.openActivity(InputInfoActivity.class);
                         }
                         endProgress();
                     }
@@ -99,6 +100,16 @@ public class SignInFragment extends BaseFragment {
         });
 
         progressBar.setVisibility(View.GONE);
+
+        BaseActivity.timeout(new Runnable() {
+            @Override
+            public void run() {
+                email.requestFocus();
+                BaseActivity.showKeyboard();
+            }
+        }, 250);
+
+
         return rootView;
     }
 

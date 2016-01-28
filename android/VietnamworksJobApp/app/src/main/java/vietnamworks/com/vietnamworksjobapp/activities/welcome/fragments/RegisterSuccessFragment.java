@@ -1,4 +1,4 @@
-package vietnamworks.com.vietnamworksjobapp.activities.signup.fragments;
+package vietnamworks.com.vietnamworksjobapp.activities.welcome.fragments;
 /**
  * Created by duynk on 1/27/16.
  *
@@ -15,7 +15,6 @@ import R.helper.BaseFragment;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import vietnamworks.com.vietnamworksjobapp.R;
-import vietnamworks.com.vietnamworksjobapp.activities.onboarding.WelcomeActivity;
 
 public class RegisterSuccessFragment extends BaseFragment {
     @Bind(R.id.btn_ok)
@@ -29,7 +28,7 @@ public class RegisterSuccessFragment extends BaseFragment {
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BaseActivity.openActivity(WelcomeActivity.class);
+                BaseActivity.removeFragment(RegisterSuccessFragment.this);
             }
         });
         return rootView;
