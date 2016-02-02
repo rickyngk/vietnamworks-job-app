@@ -34,19 +34,35 @@
                     style="@style/Text.Large.Light"
                     android:visibility="gone" />
 
-                <AutoCompleteTextView
-                    android:layout_width="match_parent"
+                <RelativeLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/job_title"
-                    style="@style/Text.Large.Light"
-                    android:inputType="textNoSuggestions|text"
-                    android:completionThreshold="1"
-                    android:imeActionLabel="@string/search"
-                    android:imeActionId="@integer/ime_job_title"
-                    android:hint="@string/jobtitle_input_hint"
-                    android:background="@android:color/transparent"
-                    android:visibility="gone"
-                    android:gravity="center" />
+                    android:background="#22ffffff">
+
+                    <ImageView
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        android:id="@+id/imageView3"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="@dimen/base_padding_half"
+                        android:src="@drawable/ic_action_action_search_white" />
+
+                    <AutoCompleteTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/job_title"
+                        android:layout_alignParentLeft="true"
+                        style="@style/Text.Large.Light"
+                        android:inputType="textNoSuggestions|text"
+                        android:completionThreshold="1"
+                        android:imeActionLabel="@string/search"
+                        android:imeActionId="@integer/ime_job_title"
+                        android:hint="@string/jobtitle_input_hint"
+                        android:visibility="gone"
+                        android:padding="@dimen/base_padding"
+                        android:background="@android:color/transparent"
+                        android:gravity="center" />
+                </RelativeLayout>
             </LinearLayout>
         </android.support.v7.widget.Toolbar>
 
