@@ -1,5 +1,6 @@
 package vietnamworks.com.vietnamworksjobapp.activities.main;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -9,15 +10,23 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import R.helper.BaseActivity;
 import R.helper.BaseFragment;
+import R.helper.Callback;
+import R.helper.CallbackResult;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import vietnamworks.com.vietnamworksjobapp.R;
@@ -30,6 +39,7 @@ import vietnamworks.com.vietnamworksjobapp.activities.main.fragments.UploadCVFra
 import vietnamworks.com.vietnamworksjobapp.activities.welcome.WelcomeActivity;
 import vietnamworks.com.vietnamworksjobapp.models.UserLocalSearchDataModel;
 import vietnamworks.com.vnwcore.Auth;
+import vietnamworks.com.vnwcore.VNWAPI;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -39,7 +49,7 @@ public class MainActivity extends BaseActivity
     @Bind(R.id.job_title)
     AutoCompleteTextView jobTitle;
     ArrayAdapter<String> jobTitleAdapter;
-
+    boolean preventTextChangedEvent = false;
     @Bind(R.id.main_title)
     TextView mainTitle;
 
@@ -72,6 +82,70 @@ public class MainActivity extends BaseActivity
         });
 
         updateActionBar();
+        setupJobTitleSearchBox();
+    }
+
+    void setupJobTitleSearchBox() {
+        jobTitleAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line);
+        jobTitle.setText(UserLocalSearchDataModel.getEntity().getJobTitle());
+        jobTitle.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if ((actionId == getResources().getInteger(R.integer.ime_job_title) || actionId == EditorInfo.IME_NULL) && event == null) {
+                    UserLocalSearchDataModel.getEntity().setJobTitle(jobTitle.getText().toString());
+                    UserLocalSearchDataModel.saveLocal();
+                    BaseActivity.hideKeyboard();
+                    jobTitleAdapter.clear();
+                    jobTitleAdapter.getFilter().filter(jobTitle.getText(), null);
+                    BaseFragment currentFragment = (BaseFragment) sInstance.getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
+                    if (currentFragment instanceof CardsFragment) {
+                        ((CardsFragment)currentFragment).reset();
+                    }
+                    jobTitle.clearFocus();
+                    return true;
+                }
+                return false;
+            }
+        });
+        jobTitle.setAdapter(jobTitleAdapter);
+        jobTitle.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (preventTextChangedEvent) {
+                    preventTextChangedEvent = false;
+                    return;
+                }
+                VNWAPI.jobTitleSuggestion(MainActivity.this, jobTitle.getText().toString(), new Callback<ArrayList<String>>() {
+                    @Override
+                    public void onCompleted(Context context, CallbackResult result) {
+                        jobTitleAdapter.clear();
+                        if (!result.hasError()) {
+                            try {
+                                Object re = result.getData();
+                                ArrayList<?> data = (ArrayList<?>) re;
+                                for (int i = 0; i < data.size(); i++) {
+                                    jobTitleAdapter.add((String) data.get(i));
+                                }
+                                jobTitleAdapter.getFilter().filter(jobTitle.getText(), null);
+                            } catch (Exception E) {
+                                E.printStackTrace();
+                            }
+                        }
+                    }
+                });
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
     }
 
     @Override
@@ -175,10 +249,9 @@ public class MainActivity extends BaseActivity
     }
 
     @Override
-    public void onLayoutChanged(Rect r, boolean isSoftKeyShown) {
-        BaseFragment currentFragment = (BaseFragment) sInstance.getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
-        if (currentFragment instanceof CardsFragment) {
-            ((CardsFragment)currentFragment).onLayoutChanged(r, isSoftKeyShown);
+    public void onLayoutChanged(Rect r, boolean isSoftKeyShown, boolean lastState) {
+        if (jobTitle.getVisibility() == View.VISIBLE && !isSoftKeyShown && lastState) {
+            jobTitle.clearFocus();
         }
     }
 }
