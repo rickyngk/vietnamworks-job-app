@@ -39,20 +39,20 @@ public class WelcomeActivity extends BaseActivity {
 
         btnGetStarted.setAlpha(0);
         btnGetStarted.setY(5);
-        btnGetStarted.animate().setDuration(500).alpha(1).translationY(0).start();
+        btnGetStarted.animate().setDuration(250).alpha(1).translationY(0).start();
 
         btnSignIn.setAlpha(0);
         btnSignIn.setY(5);
-        btnSignIn.animate().setDuration(500).alpha(1).translationY(0).setStartDelay(250).start();
+        btnSignIn.animate().setDuration(250).alpha(1).translationY(0).setStartDelay(100).start();
 
         btnSignUp.setAlpha(0);
         btnSignUp.setY(5);
-        btnSignUp.animate().setDuration(500).alpha(1).translationY(0).setStartDelay(500).start();
+        btnSignUp.animate().setDuration(250).alpha(1).translationY(0).setStartDelay(200).start();
 
         String ver = String.format("%s.%s", BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE);
         version.setText(String.format(getString(R.string.version), ver));
         footer.setAlpha(0);
-        footer.animate().setDuration(500).alpha(1).setStartDelay(750).start();
+        footer.animate().setDuration(250).alpha(1).setStartDelay(300).start();
     }
 
     @Override

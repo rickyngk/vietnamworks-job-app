@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:background="@drawable/gradient_background">
+    android:background="@color/colorBaseBackground">
 
     <R.cardstack.CardStackView
         android:layout_width="match_parent"
@@ -18,21 +18,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/base_padding_4x"
-        android:layout_marginLeft="@dimen/base_padding_4x"
-        android:layout_marginRight="@dimen/base_padding_4x">
+        android:orientation="horizontal"
+        android:layout_margin="@dimen/base_padding_4x">
 
         <AutoCompleteTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/job_title"
-            style="@style/Text.Large.Light"
+            style="@style/Text.Large"
             android:inputType="textNoSuggestions|text"
-            android:background="@drawable/rounded_input"
+            android:background="@drawable/shape_rounded_input"
             android:completionThreshold="1"
             android:imeActionLabel="@string/search"
             android:paddingLeft="@dimen/button_large_corner"
             android:paddingRight="@dimen/button_large_corner"
-            android:imeActionId="@integer/ime_job_title" />
+            android:imeActionId="@integer/ime_job_title"
+            android:hint="@string/jobtitle_input_hint" />
     </LinearLayout>
 </RelativeLayout>

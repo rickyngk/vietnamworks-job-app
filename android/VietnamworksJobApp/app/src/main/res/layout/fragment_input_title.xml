@@ -1,7 +1,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:background="@drawable/gradient_background">
+    android:background="#006b9f">
 
     <LinearLayout
         android:orientation="vertical"
@@ -40,19 +40,17 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:background="@drawable/shape_small_button"
-                style="@style/Text.Medium.Light"
+                style="@style/RoundButton.CTA"
                 android:paddingLeft="@dimen/button_small_padding"
                 android:paddingRight="@dimen/button_small_padding"
                 android:layout_margin="@dimen/base_padding_4x" />
 
             <Button
-                style="@style/Text.Medium.Light"
+                style="@style/RoundButton.Light"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/button_small_height"
                 android:text="@string/skip"
                 android:id="@+id/btn_skip"
-                android:background="@drawable/shape_small_button"
                 android:paddingLeft="@dimen/button_small_padding"
                 android:paddingRight="@dimen/button_small_padding"
                 android:layout_alignParentBottom="true"
@@ -65,9 +63,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/job_title"
-                style="@style/Text.Large.Light"
+                style="@style/Text.Large"
                 android:inputType="text"
-                android:background="@drawable/rounded_input"
+                android:background="@drawable/shape_rounded_input_light"
                 android:paddingLeft="@dimen/button_large_corner"
                 android:paddingRight="@dimen/button_large_corner"
                 android:layout_gravity="center"
