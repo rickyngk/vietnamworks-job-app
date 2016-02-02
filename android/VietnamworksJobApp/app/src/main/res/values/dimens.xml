@@ -9,6 +9,7 @@
     <dimen name="base_padding_4x">16dp</dimen>
     <dimen name="base_padding_8x">32dp</dimen>
     <dimen name="base_padding_16x">64dp</dimen>
+    <dimen name="base_padding_32x">128dp</dimen>
 
     <dimen name="button_large_height">60dp</dimen>
     <dimen name="button_large_corner">30dp</dimen>
