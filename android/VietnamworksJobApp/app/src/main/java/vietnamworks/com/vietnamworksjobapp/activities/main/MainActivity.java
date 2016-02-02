@@ -11,15 +11,21 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.TextView;
 
 import R.helper.BaseActivity;
 import R.helper.BaseFragment;
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import vietnamworks.com.vietnamworksjobapp.R;
 import vietnamworks.com.vietnamworksjobapp.activities.launcher.LauncherActivity;
 import vietnamworks.com.vietnamworksjobapp.activities.main.fragments.AppliedJobsFragment;
 import vietnamworks.com.vietnamworksjobapp.activities.main.fragments.CardsFragment;
 import vietnamworks.com.vietnamworksjobapp.activities.main.fragments.CoverLetterFragment;
-import vietnamworks.com.vietnamworksjobapp.activities.main.fragments.LoginFragment;
+import vietnamworks.com.vietnamworksjobapp.activities.main.fragments.JobDetailFragment;
 import vietnamworks.com.vietnamworksjobapp.activities.main.fragments.UploadCVFragment;
 import vietnamworks.com.vietnamworksjobapp.activities.welcome.WelcomeActivity;
 import vietnamworks.com.vietnamworksjobapp.models.UserLocalSearchDataModel;
@@ -30,12 +36,21 @@ public class MainActivity extends BaseActivity
 
     public final static int PICK_FILE_REQUEST_CODE = 30000;
 
+    @Bind(R.id.job_title)
+    AutoCompleteTextView jobTitle;
+    ArrayAdapter<String> jobTitleAdapter;
+
+    @Bind(R.id.main_title)
+    TextView mainTitle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        ButterKnife.bind(this);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -56,7 +71,7 @@ public class MainActivity extends BaseActivity
             }
         });
 
-        //hideActionBar();
+        updateActionBar();
     }
 
     @Override
@@ -116,14 +131,29 @@ public class MainActivity extends BaseActivity
         return true;
     }
 
-    private void updateActionBar() {
+    public void updateActionBar() {
         BaseFragment currentFragment = (BaseFragment)sInstance.getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
         if (currentFragment != null) {
-            if (currentFragment instanceof LoginFragment || currentFragment instanceof CoverLetterFragment || currentFragment instanceof UploadCVFragment) {
-                hideActionBar();
+            if (currentFragment instanceof CardsFragment) {
+                jobTitle.setVisibility(View.VISIBLE);
+                mainTitle.setVisibility(View.GONE);
             } else {
-                showActionBar();
+                jobTitle.setVisibility(View.GONE);
+                mainTitle.setVisibility(View.VISIBLE);
+
+                String title = "";
+                if (currentFragment instanceof CoverLetterFragment) {
+                    title = getString(R.string.cover_letter);
+                } else if (currentFragment instanceof JobDetailFragment) {
+                    title = ((JobDetailFragment)currentFragment).getJobTitle();
+                } else if (currentFragment instanceof UploadCVFragment) {
+                    title = "Apply job"; //TODO: localization
+                }
+                mainTitle.setText(title);
             }
+        } else {
+            jobTitle.setVisibility(View.VISIBLE);
+            mainTitle.setVisibility(View.GONE);
         }
     }
 

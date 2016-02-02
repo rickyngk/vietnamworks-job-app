@@ -49,7 +49,7 @@ public class LoginFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        BaseActivity.hideActionBar();
+        //BaseActivity.hideActionBar();
 
         final ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_login, container, false);
         ButterKnife.bind(this, rootView);

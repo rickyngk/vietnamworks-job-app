@@ -41,7 +41,7 @@ public class CoverLetterFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_input_cover_letter, container, false);
         ButterKnife.bind(this, rootView);
-        BaseActivity.hideActionBar();
+        //BaseActivity.hideActionBar();
 
         vietnamworks.com.vnwcore.entities.Auth auth = Auth.getAuthData();
         coverLetter.setText(auth.getCoverLetter());

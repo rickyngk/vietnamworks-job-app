@@ -57,7 +57,7 @@ public class UploadCVFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_upload_cv, container, false);
         ButterKnife.bind(this, rootView);
-        BaseActivity.hideActionBar();
+        //BaseActivity.hideActionBar();
 
         btnCancelUploadCV.setOnClickListener(new View.OnClickListener() {
             @Override

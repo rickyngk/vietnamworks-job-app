@@ -22,6 +22,7 @@ import R.helper.Common;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import vietnamworks.com.vietnamworksjobapp.R;
+import vietnamworks.com.vietnamworksjobapp.activities.main.MainActivity;
 import vietnamworks.com.vietnamworksjobapp.models.JobDetailModel;
 import vietnamworks.com.vietnamworksjobapp.services.ShareContext;
 import vietnamworks.com.vnwcore.entities.Category;
@@ -222,6 +223,12 @@ public class JobDetailFragment extends BaseFragment {
                 BaseActivity.pushFragment(new CheckLoginFragment(), R.id.fragment_holder);
             }
         });
+
+        getActivityRef(MainActivity.class).updateActionBar();
         return rootView;
+    }
+
+    public String getJobTitle() {
+        return jobTitle.getText().toString();
     }
 }

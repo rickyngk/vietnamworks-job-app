@@ -27,6 +27,13 @@
                 android:layout_gravity="center"
                 android:orientation="horizontal">
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/main_title"
+                    style="@style/Text.Large.Light"
+                    android:visibility="gone" />
+
                 <AutoCompleteTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -38,6 +45,7 @@
                     android:imeActionId="@integer/ime_job_title"
                     android:hint="@string/jobtitle_input_hint"
                     android:background="@android:color/transparent"
+                    android:visibility="gone"
                     android:gravity="center" />
             </LinearLayout>
         </android.support.v7.widget.Toolbar>
