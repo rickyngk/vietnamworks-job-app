@@ -22,6 +22,8 @@ import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import R.helper.BaseActivity;
 import R.helper.BaseFragment;
@@ -85,6 +87,8 @@ public class MainActivity extends BaseActivity
         setupJobTitleSearchBox();
     }
 
+
+    private Timer timer = new Timer();
     void setupJobTitleSearchBox() {
         jobTitleAdapter = new ArrayAdapter<>(this, R.layout.dropdown_item);
         jobTitle.setText(UserLocalSearchDataModel.getEntity().getJobTitle());
@@ -111,38 +115,47 @@ public class MainActivity extends BaseActivity
         jobTitle.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (preventTextChangedEvent) {
-                    preventTextChangedEvent = false;
-                    return;
-                }
-                VNWAPI.jobTitleSuggestion(MainActivity.this, jobTitle.getText().toString(), new Callback<ArrayList<String>>() {
-                    @Override
-                    public void onCompleted(Context context, CallbackResult result) {
-                        jobTitleAdapter.clear();
-                        if (!result.hasError()) {
-                            try {
-                                Object re = result.getData();
-                                ArrayList<?> data = (ArrayList<?>) re;
-                                for (int i = 0; i < data.size(); i++) {
-                                    jobTitleAdapter.add((String) data.get(i));
-                                }
-                                jobTitleAdapter.getFilter().filter(jobTitle.getText(), null);
-                            } catch (Exception E) {
-                                E.printStackTrace();
-                            }
-                        }
-                    }
-                });
+                if(timer != null)
+                    timer.cancel();
             }
 
             @Override
             public void afterTextChanged(Editable s) {
+                if (s.length() >= 3) {
+                    timer = new Timer();
+                    timer.schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            if (preventTextChangedEvent) {
+                                preventTextChangedEvent = false;
+                                return;
+                            }
+                            VNWAPI.jobTitleSuggestion(MainActivity.this, jobTitle.getText().toString(), new Callback<ArrayList<String>>() {
+                                @Override
+                                public void onCompleted(Context context, CallbackResult result) {
+                                    jobTitleAdapter.clear();
+                                    if (!result.hasError()) {
+                                        try {
+                                            Object re = result.getData();
+                                            ArrayList<?> data = (ArrayList<?>) re;
+                                            for (int i = 0; i < data.size(); i++) {
+                                                jobTitleAdapter.add((String) data.get(i));
+                                            }
+                                            jobTitleAdapter.getFilter().filter(jobTitle.getText(), null);
+                                        } catch (Exception E) {
+                                            E.printStackTrace();
+                                        }
+                                    }
+                                }
+                            });
+                        }
 
+                    }, 1000);
+                }
             }
         });
 

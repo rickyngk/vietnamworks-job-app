@@ -15,6 +15,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import R.helper.BaseFragment;
 import R.helper.Callback;
@@ -39,6 +41,8 @@ public class InputTitleFragment extends BaseFragment {
     ArrayAdapter<String> adapter;
 
     private boolean preventTextChangeEvent = false;
+
+    private Timer timer = new Timer();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -73,35 +77,45 @@ public class InputTitleFragment extends BaseFragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (preventTextChangeEvent) {
-                    preventTextChangeEvent = false;
-                    return;
-                }
-                VNWAPI.jobTitleSuggestion(getContext(), jobTitle.getText().toString(), new Callback<ArrayList<String>>() {
-                    @Override
-                    public void onCompleted(Context context, CallbackResult<ArrayList<String>> result) {
-                        adapter.clear();
-                        if (!result.hasError()) {
-                            try {
-                                ArrayList<String> data = result.getData();
-                                if (data != null) {
-                                    for (int i = 0; i < data.size(); i++) {
-                                        adapter.add(data.get(i));
-                                    }
-                                }
-                                System.out.println(data);
-                                adapter.getFilter().filter(jobTitle.getText(), null);
-                            } catch (Exception E) {
-                                E.printStackTrace();
-                            }
-                        }
-                    }
-                });
+                if(timer != null)
+                    timer.cancel();
             }
 
             @Override
             public void afterTextChanged(Editable s) {
+                if (s.length() >= 3) {
+                    timer = new Timer();
+                    timer.schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            if (preventTextChangeEvent) {
+                                preventTextChangeEvent = false;
+                                return;
+                            }
+                            VNWAPI.jobTitleSuggestion(getContext(), jobTitle.getText().toString(), new Callback<ArrayList<String>>() {
+                                @Override
+                                public void onCompleted(Context context, CallbackResult<ArrayList<String>> result) {
+                                    adapter.clear();
+                                    if (!result.hasError()) {
+                                        try {
+                                            ArrayList<String> data = result.getData();
+                                            if (data != null) {
+                                                for (int i = 0; i < data.size(); i++) {
+                                                    adapter.add(data.get(i));
+                                                }
+                                            }
+                                            System.out.println(data);
+                                            adapter.getFilter().filter(jobTitle.getText(), null);
+                                        } catch (Exception E) {
+                                            E.printStackTrace();
+                                        }
+                                    }
+                                }
+                            });
+                        }
 
+                    }, 1000);
+                }
             }
         });
 

@@ -63,7 +63,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/job_title"
-                style="@style/Text.Large"
+                style="@style/Text.Large.Light"
                 android:inputType="text"
                 android:background="@drawable/shape_rounded_input_light"
                 android:paddingLeft="@dimen/button_large_corner"
