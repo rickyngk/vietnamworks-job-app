@@ -86,7 +86,7 @@ public class MainActivity extends BaseActivity
     }
 
     void setupJobTitleSearchBox() {
-        jobTitleAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line);
+        jobTitleAdapter = new ArrayAdapter<>(this, R.layout.dropdown_item);
         jobTitle.setText(UserLocalSearchDataModel.getEntity().getJobTitle());
         jobTitle.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
