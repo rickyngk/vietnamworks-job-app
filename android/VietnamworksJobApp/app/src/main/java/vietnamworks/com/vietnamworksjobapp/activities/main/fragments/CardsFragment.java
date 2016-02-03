@@ -66,9 +66,14 @@ public class CardsFragment extends BaseFragment {
 
         @Override
         public void onDrag(CardStackView v, float confidence) {
-            if (v.getFront() != null) {
-                ((CardView)((ViewGroup)v.getFront()).getChildAt(0)).setConfidence(confidence);
+            if (v.getFrontViewHolder() != null) {
+                ((CardView)v.getFrontView()).setConfidence(confidence);
             }
+        }
+
+        @Override
+        public void onRollback(CardStackView v) {
+            ((CardView)v.getFrontView()).setConfidence(0);
         }
 
         @Override
@@ -85,7 +90,7 @@ public class CardsFragment extends BaseFragment {
             if (index == -1) { //click on empty card
                 v.reset();
             } else {
-                TextView ele = (TextView) cardView.getFront().findViewById(R.id.job_card_job_title);
+                TextView ele = (TextView) cardView.getFrontViewHolder().findViewById(R.id.job_card_job_title);
 
                 Bundle bundle = new Bundle();
                 bundle.putString("jobTitle", ele.getText().toString());

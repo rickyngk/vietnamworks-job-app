@@ -128,13 +128,15 @@ public class CardView extends FrameLayout {
             public void run() {
                 if (f > 0) {
                     cardSkipIcon.setVisibility(INVISIBLE);
+                    cardAcceptIcon.setVisibility(VISIBLE);
                     cardAcceptIcon.setAlpha(f);
                 } else if (f < 0) {
                     cardAcceptIcon.setVisibility(INVISIBLE);
+                    cardSkipIcon.setVisibility(VISIBLE);
                     cardSkipIcon.setAlpha(-f);
                 } else {
-                    cardSkipIcon.setVisibility(VISIBLE);
-                    cardAcceptIcon.setVisibility(VISIBLE);
+                    cardSkipIcon.setVisibility(INVISIBLE);
+                    cardAcceptIcon.setVisibility(INVISIBLE);
                 }
             }
         });
