@@ -97,6 +97,14 @@ public class LoginFragment extends BaseFragment {
             }
         });
 
+        BaseActivity.timeout(new Runnable() {
+            @Override
+            public void run() {
+                email.requestFocus();
+                BaseActivity.showKeyboard();
+            }
+        }, 100);
+
         progressBar.setVisibility(View.GONE);
         return rootView;
     }

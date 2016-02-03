@@ -23,14 +23,15 @@
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:id="@+id/main_title"
+                    android:gravity="center_vertical"
                     style="@style/Text.Large.Light"
                     android:visibility="gone" />
 
