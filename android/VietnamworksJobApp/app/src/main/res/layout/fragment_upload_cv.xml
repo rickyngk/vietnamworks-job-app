@@ -86,19 +86,23 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="right">
+                    android:gravity="right"
+                    android:layout_marginTop="@dimen/base_padding_2x">
 
                     <Button
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="@dimen/button_small_height"
                         android:text="@string/cancel"
-                        android:id="@+id/btn_cancel_upload_cv" />
+                        android:id="@+id/btn_cancel_upload_cv"
+                        style="@style/RoundButton.Basic"
+                        android:layout_marginRight="@dimen/base_padding_2x" />
 
                     <Button
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="@dimen/button_small_height"
                         android:text="@string/next"
-                        android:id="@+id/btn_confirm_cv" />
+                        android:id="@+id/btn_confirm_cv"
+                        style="@style/RoundButton.CTA" />
                 </LinearLayout>
             </LinearLayout>
 
