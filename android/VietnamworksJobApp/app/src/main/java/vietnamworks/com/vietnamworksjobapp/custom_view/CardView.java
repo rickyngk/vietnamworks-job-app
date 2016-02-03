@@ -4,10 +4,12 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import R.helper.BaseActivity;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import vietnamworks.com.vietnamworksjobapp.R;
@@ -36,6 +38,12 @@ public class CardView extends FrameLayout {
 
     @Bind(R.id.job_card_skills)
     TextView skills;
+
+    @Bind(R.id.card_skip_icon)
+    ImageView cardSkipIcon;
+
+    @Bind(R.id.card_accept_icon)
+    ImageView cardAcceptIcon;
 
     public CardView(Context context) {
         super(context);
@@ -112,5 +120,23 @@ public class CardView extends FrameLayout {
             }
         }
         skills.setText(sb.toString());
+    }
+
+    public void setConfidence(final float f) {
+        BaseActivity.timeout(new Runnable() {
+            @Override
+            public void run() {
+                if (f > 0) {
+                    cardSkipIcon.setVisibility(INVISIBLE);
+                    cardAcceptIcon.setAlpha(f);
+                } else if (f < 0) {
+                    cardAcceptIcon.setVisibility(INVISIBLE);
+                    cardSkipIcon.setAlpha(-f);
+                } else {
+                    cardSkipIcon.setVisibility(VISIBLE);
+                    cardAcceptIcon.setVisibility(VISIBLE);
+                }
+            }
+        });
     }
 }

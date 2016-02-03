@@ -1,7 +1,6 @@
 package vietnamworks.com.vietnamworksjobapp.activities.main.fragments;
 
 import android.content.Context;
-import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -67,6 +66,9 @@ public class CardsFragment extends BaseFragment {
 
         @Override
         public void onDrag(CardStackView v, float confidence) {
+            if (v.getFront() != null) {
+                ((CardView)((ViewGroup)v.getFront()).getChildAt(0)).setConfidence(confidence);
+            }
         }
 
         @Override
@@ -113,19 +115,6 @@ public class CardsFragment extends BaseFragment {
         });
 
         return rootView;
-    }
-
-    public void onLayoutChanged(Rect r, boolean isSoftKeyShown) {
-        /*
-        if (!isSoftKeyShown) {
-            preventTextChangedEvent = true;
-            jobTitle.setText(UserLocalSearchDataModel.getEntity().getJobTitle());
-            jobTitle.clearFocus();
-        } else {
-            jobTitle.requestFocus();
-            jobTitle.setSelection(jobTitle.getText().length());
-        }
-        */
     }
 
     public void reset() {
